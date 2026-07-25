@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andy Furgeri — Rach</title>
-<meta name="description" content="Folletería, fotografía de producto y contenido para la Expo Construir, realizado para Rach.">
+<meta name="description" content="Creación de contenido visual y comunicación de marca para Rach en Expo Construir 2025.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -893,6 +893,110 @@
   }
   .brand-page-back:hover{ color:var(--accent); }
 
+  /* ---- Case study article ---- */
+  .case-article{
+    max-width:760px;
+  }
+  .article-section{
+    margin-bottom:56px;
+  }
+  .article-section h2{
+    font-size:22px;
+    margin-bottom:16px;
+  }
+  .article-section h3{
+    font-size:16px;
+    color:var(--accent);
+    margin-bottom:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+  }
+  .article-section p{
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.8;
+    margin-bottom:14px;
+  }
+  .article-section ul{
+    padding-left:20px;
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.9;
+    margin-bottom:14px;
+  }
+  .article-section li{ margin-bottom:4px; }
+
+  .reposition-quote{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:16px;
+    padding:28px 32px;
+    margin:20px 0 24px;
+    flex-wrap:wrap;
+  }
+  .reposition-quote .rq-block{ flex:1; min-width:200px; }
+  .reposition-quote .rq-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-2);
+    display:block;
+    margin-bottom:8px;
+  }
+  .reposition-quote .rq-text{
+    font-size:15.5px;
+    color:var(--text);
+  }
+  .reposition-quote .rq-from .rq-text{ color:var(--text-2); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.3); }
+  .reposition-quote .rq-arrow{ color:var(--accent); font-size:20px; }
+
+  .pillar-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:16px;
+  }
+  @media (max-width: 760px){
+    .pillar-grid{ grid-template-columns:1fr; }
+  }
+  .pillar-card{
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:14px;
+    padding:22px;
+  }
+  .pillar-card h3{ margin-bottom:10px; }
+  .pillar-card ul{ font-size:14px; padding-left:18px; margin-bottom:0; }
+
+  .tool-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
+  }
+  .skill-chip{
+    font-size:13.5px;
+    color:var(--text);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:8px 16px;
+    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .skill-chip:hover{ border-color:var(--accent); color:var(--accent); }
+
+  .section-divider{
+    border:none;
+    border-top:1px solid rgba(255,255,255,0.16);
+    margin:64px 0;
+  }
+
 </style>
 </head>
 <body>
@@ -941,12 +1045,42 @@
       <a href="andy-furgeri-portfolio.html" class="brand-page-back">← Volver al portfolio</a>
       <span class="section-label">Cliente</span>
       <h1>Rach</h1>
-      <p>Diseño de folletería, fotografía de producto y contenido para la Expo Construir. [EDITAR: sumar cualquier detalle adicional sobre el alcance o el período del trabajo.]</p>
+      <p>Creación de contenido visual y comunicación de marca.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
+      <div class="case-article reveal">
+
+        <div class="article-section">
+          <h2>Sobre el proyecto</h2>
+          <p>Producción de contenido para la presencia de Rach en la Expo Construir 2025, incluyendo fotografía de producto, diseño de folletería, desarrollo de piezas gráficas y creación de video institucional para la pantalla del stand.</p>
+        </div>
+
+        <div class="article-section">
+          <h2>Qué incluyó</h2>
+          <ul>
+            <li>Fotografía de producto</li>
+            <li>Diseño de folletería</li>
+            <li>Desarrollo de piezas gráficas</li>
+            <li>Video institucional para pantalla del stand</li>
+          </ul>
+        </div>
+
+        <div class="article-section" style="margin-bottom:0;">
+          <h2>Objetivo</h2>
+          <ul>
+            <li>Mejorar la presentación de los productos.</li>
+            <li>Reforzar la identidad visual de la marca.</li>
+            <li>Acompañar la estrategia de comunicación durante el evento.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="section-divider">
+
       <div class="portfolio-grid reveal">
           <div class="portfolio-item">
             <div class="portfolio-thumb">
@@ -960,36 +1094,36 @@
           <div class="portfolio-item">
             <div class="portfolio-thumb grad-2">[Pieza — reemplazar por imagen]</div>
             <div class="portfolio-meta">
-              <span class="cat">Folletería</span>
+              <span class="cat">Fotografía de producto</span>
               <h4>[Título de la pieza]</h4>
             </div>
           </div>
           <div class="portfolio-item">
             <div class="portfolio-thumb grad-3">[Pieza — reemplazar por imagen]</div>
             <div class="portfolio-meta">
-              <span class="cat">Fotografía de producto</span>
+              <span class="cat">Folletería</span>
               <h4>[Título de la pieza]</h4>
             </div>
           </div>
           <div class="portfolio-item">
             <div class="portfolio-thumb grad-1">[Pieza — reemplazar por imagen]</div>
             <div class="portfolio-meta">
-              <span class="cat">Fotografía de producto</span>
+              <span class="cat">Expo Construir 2025</span>
               <h4>[Título de la pieza]</h4>
             </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-thumb grad-2">[Pieza — reemplazar por imagen]</div>
-            <div class="portfolio-meta">
-              <span class="cat">Expo Construir</span>
-              <h4>[Título de la pieza]</h4>
+            <div class="portfolio-thumb grad-2">
+              <div>
+                <div class="play-icon">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="#F5F5F7"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                [Video institucional — reemplazar]
+              </div>
             </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="portfolio-thumb grad-3">[Pieza — reemplazar por imagen]</div>
             <div class="portfolio-meta">
-              <span class="cat">Expo Construir</span>
-              <h4>[Título de la pieza]</h4>
+              <span class="cat">Video institucional</span>
+              <h4>[Título del video]</h4>
             </div>
           </div>
       </div>
