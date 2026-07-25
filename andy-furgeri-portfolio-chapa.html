@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andy Furgeri — El Gran Emporio de la Chapa</title>
-<meta name="description" content="Trabajo de contenido y campañas realizado para El Gran Emporio de la Chapa.">
+<meta name="description" content="Caso de estudio: estrategia de marketing digital y posicionamiento de marca para El Gran Emporio de la Chapa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -893,6 +893,110 @@
   }
   .brand-page-back:hover{ color:var(--accent); }
 
+  /* ---- Case study article ---- */
+  .case-article{
+    max-width:760px;
+  }
+  .article-section{
+    margin-bottom:56px;
+  }
+  .article-section h2{
+    font-size:22px;
+    margin-bottom:16px;
+  }
+  .article-section h3{
+    font-size:16px;
+    color:var(--accent);
+    margin-bottom:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+  }
+  .article-section p{
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.8;
+    margin-bottom:14px;
+  }
+  .article-section ul{
+    padding-left:20px;
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.9;
+    margin-bottom:14px;
+  }
+  .article-section li{ margin-bottom:4px; }
+
+  .reposition-quote{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:16px;
+    padding:28px 32px;
+    margin:20px 0 24px;
+    flex-wrap:wrap;
+  }
+  .reposition-quote .rq-block{ flex:1; min-width:200px; }
+  .reposition-quote .rq-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-2);
+    display:block;
+    margin-bottom:8px;
+  }
+  .reposition-quote .rq-text{
+    font-size:15.5px;
+    color:var(--text);
+  }
+  .reposition-quote .rq-from .rq-text{ color:var(--text-2); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.3); }
+  .reposition-quote .rq-arrow{ color:var(--accent); font-size:20px; }
+
+  .pillar-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:16px;
+  }
+  @media (max-width: 760px){
+    .pillar-grid{ grid-template-columns:1fr; }
+  }
+  .pillar-card{
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:14px;
+    padding:22px;
+  }
+  .pillar-card h3{ margin-bottom:10px; }
+  .pillar-card ul{ font-size:14px; padding-left:18px; margin-bottom:0; }
+
+  .tool-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
+  }
+  .skill-chip{
+    font-size:13.5px;
+    color:var(--text);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:8px 16px;
+    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .skill-chip:hover{ border-color:var(--accent); color:var(--accent); }
+
+  .section-divider{
+    border:none;
+    border-top:1px solid rgba(255,255,255,0.16);
+    margin:64px 0;
+  }
+
 </style>
 </head>
 <body>
@@ -941,12 +1045,133 @@
       <a href="andy-furgeri-portfolio.html" class="brand-page-back">← Volver al portfolio</a>
       <span class="section-label">Cliente</span>
       <h1>El Gran Emporio de la Chapa</h1>
-      <p>[EDITAR: descripción completa del trabajo realizado para El Gran Emporio de la Chapa — qué se hizo, en qué período, y qué resolvió para la marca.]</p>
+      <p>Estrategia de marketing digital y posicionamiento de marca para un comercio de materiales de construcción en Zona Sur de Buenos Aires.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
+      <div class="case-article reveal">
+
+        <div class="article-section">
+          <h2>Contexto del proyecto</h2>
+          <p>El Gran Emporio de la Chapa es una empresa dedicada a la comercialización de materiales para techos y construcción en Zona Sur de Buenos Aires. El desafío principal era fortalecer su presencia digital, diferenciar la marca dentro de un mercado competitivo y transformar la comunicación comercial en una herramienta de generación de consultas.</p>
+        </div>
+
+        <div class="article-section">
+          <h2>Objetivo</h2>
+          <ul>
+            <li>Mejorar el posicionamiento de marca.</li>
+            <li>Aumentar la generación de consultas comerciales.</li>
+            <li>Crear una comunicación más cercana y diferencial.</li>
+            <li>Identificar oportunidades frente a competidores del rubro.</li>
+          </ul>
+        </div>
+
+        <div class="article-section">
+          <h2>Análisis y diagnóstico</h2>
+          <p>Se realizó un análisis del ecosistema digital de la marca y del mercado, identificando oportunidades de mejora:</p>
+          <ul>
+            <li>Necesidad de una comunicación más enfocada en soluciones y no únicamente en productos.</li>
+            <li>Falta de diferenciación frente a otros comercios de materiales.</li>
+            <li>Oportunidad de aprovechar contenido educativo para captar clientes en etapas tempranas de decisión.</li>
+            <li>Potencial de optimización de canales digitales como redes sociales, Google Ads y WhatsApp Business.</li>
+          </ul>
+        </div>
+
+        <div class="article-section">
+          <h2>Estrategia propuesta</h2>
+
+          <h3>Posicionamiento de marca</h3>
+          <p>Se trabajó una propuesta orientada a transformar la percepción del negocio, buscando comunicar confianza, asesoramiento y acompañamiento durante todo el proceso de compra.</p>
+          <div class="reposition-quote">
+            <div class="rq-block rq-from">
+              <span class="rq-label">De</span>
+              <span class="rq-text">"Venta de chapas y materiales"</span>
+            </div>
+            <span class="rq-arrow">→</span>
+            <div class="rq-block rq-to">
+              <span class="rq-label">A</span>
+              <span class="rq-text">"Una solución integral para construir o mejorar tu techo"</span>
+            </div>
+          </div>
+
+          <h3>Investigación competitiva</h3>
+          <p>Se desarrolló un análisis de competidores del rubro para evaluar propuesta de valor, comunicación digital, presencia en redes sociales, diferenciales comerciales y oportunidades de posicionamiento. A partir de ahí se identificaron espacios para construir una identidad más cercana y memorable.</p>
+
+          <h3>Desarrollo de estrategia de contenidos</h3>
+          <div class="pillar-grid">
+            <div class="pillar-card">
+              <h3>Contenido educativo</h3>
+              <ul>
+                <li>Tipos de chapas y sus diferencias</li>
+                <li>Consejos para construcción</li>
+                <li>Prevención de filtraciones</li>
+                <li>Errores frecuentes al hacer un techo</li>
+              </ul>
+            </div>
+            <div class="pillar-card">
+              <h3>Problema → solución</h3>
+              <ul>
+                <li>Humedad</li>
+                <li>Filtraciones</li>
+                <li>Necesidad de renovar un techo</li>
+                <li>Problemas después de una lluvia</li>
+              </ul>
+            </div>
+            <div class="pillar-card">
+              <h3>Contenido comercial</h3>
+              <ul>
+                <li>Promociones</li>
+                <li>Combos de materiales</li>
+                <li>Productos destacados</li>
+                <li>Proyectos realizados</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="margin-top:32px;">Campañas digitales</h3>
+          <div class="pillar-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="pillar-card">
+              <h3>Meta Ads</h3>
+              <ul>
+                <li>Reconocimiento de marca local</li>
+                <li>Generación de consultas vía WhatsApp</li>
+                <li>Segmentación geográfica en Zona Sur</li>
+              </ul>
+            </div>
+            <div class="pillar-card">
+              <h3>Google Ads</h3>
+              <ul>
+                <li>Orientado a usuarios con intención de compra</li>
+                <li>Búsquedas: chapas, materiales para techos, soluciones constructivas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-section">
+          <h2>Resultado estratégico</h2>
+          <p>El proyecto permitió construir una propuesta de marketing más enfocada en el cliente, pasando de una comunicación basada únicamente en producto hacia una estrategia centrada en necesidades, confianza y solución de problemas.</p>
+        </div>
+
+        <div class="article-section" style="margin-bottom:0;">
+          <h2>Herramientas utilizadas</h2>
+          <div class="tool-chips">
+            <span class="skill-chip">Meta Ads</span>
+            <span class="skill-chip">Google Ads</span>
+            <span class="skill-chip">Análisis competitivo</span>
+            <span class="skill-chip">Estrategia de contenidos</span>
+            <span class="skill-chip">Investigación de mercado</span>
+            <span class="skill-chip">Comunicación de marca</span>
+            <span class="skill-chip">IA generativa para análisis y desarrollo estratégico</span>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="section-divider">
+
       <div class="portfolio-grid reveal">
           <div class="portfolio-item">
             <div class="portfolio-thumb">
@@ -955,27 +1180,6 @@
             <div class="portfolio-meta">
               <span class="cat">Local</span>
               <h4>Fachada</h4>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="portfolio-thumb grad-2">[Pieza — reemplazar por imagen o video]</div>
-            <div class="portfolio-meta">
-              <span class="cat">[Categoría]</span>
-              <h4>[Título de la pieza]</h4>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="portfolio-thumb grad-3">[Pieza — reemplazar por imagen o video]</div>
-            <div class="portfolio-meta">
-              <span class="cat">[Categoría]</span>
-              <h4>[Título de la pieza]</h4>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="portfolio-thumb grad-1">[Pieza — reemplazar por imagen o video]</div>
-            <div class="portfolio-meta">
-              <span class="cat">[Categoría]</span>
-              <h4>[Título de la pieza]</h4>
             </div>
           </div>
           <div class="portfolio-item">

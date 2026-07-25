@@ -893,6 +893,110 @@
   }
   .brand-page-back:hover{ color:var(--accent); }
 
+  /* ---- Case study article ---- */
+  .case-article{
+    max-width:760px;
+  }
+  .article-section{
+    margin-bottom:56px;
+  }
+  .article-section h2{
+    font-size:22px;
+    margin-bottom:16px;
+  }
+  .article-section h3{
+    font-size:16px;
+    color:var(--accent);
+    margin-bottom:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+  }
+  .article-section p{
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.8;
+    margin-bottom:14px;
+  }
+  .article-section ul{
+    padding-left:20px;
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.9;
+    margin-bottom:14px;
+  }
+  .article-section li{ margin-bottom:4px; }
+
+  .reposition-quote{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:16px;
+    padding:28px 32px;
+    margin:20px 0 24px;
+    flex-wrap:wrap;
+  }
+  .reposition-quote .rq-block{ flex:1; min-width:200px; }
+  .reposition-quote .rq-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-2);
+    display:block;
+    margin-bottom:8px;
+  }
+  .reposition-quote .rq-text{
+    font-size:15.5px;
+    color:var(--text);
+  }
+  .reposition-quote .rq-from .rq-text{ color:var(--text-2); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.3); }
+  .reposition-quote .rq-arrow{ color:var(--accent); font-size:20px; }
+
+  .pillar-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:16px;
+  }
+  @media (max-width: 760px){
+    .pillar-grid{ grid-template-columns:1fr; }
+  }
+  .pillar-card{
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:14px;
+    padding:22px;
+  }
+  .pillar-card h3{ margin-bottom:10px; }
+  .pillar-card ul{ font-size:14px; padding-left:18px; margin-bottom:0; }
+
+  .tool-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
+  }
+  .skill-chip{
+    font-size:13.5px;
+    color:var(--text);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:8px 16px;
+    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .skill-chip:hover{ border-color:var(--accent); color:var(--accent); }
+
+  .section-divider{
+    border:none;
+    border-top:1px solid rgba(255,255,255,0.16);
+    margin:64px 0;
+  }
+
 </style>
 </head>
 <body>
@@ -954,7 +1058,7 @@
           <div>
             <span class="brand-role">Cliente</span>
             <h2>El Gran Emporio de la Chapa</h2>
-            <p>[EDITAR: una línea sobre qué trabajo realizaste para esta marca]</p>
+            <p>Estrategia de marketing digital y posicionamiento de marca.</p>
           </div>
           <span class="brand-card-cta">Ver trabajos →</span>
         </a>
