@@ -31,13 +31,15 @@ Todo lo que sigue se apoya en las decisiones ya tomadas en el Brand Book: foco p
 ```
 Home
 ├── Servicios
-├── Casos / Resultados
+├── Portfolio
 ├── Sobre mí
 ├── Recursos (opcional / Etapa posterior)
 └── Contacto
 ```
 
-**Por qué esta estructura y no más páginas:** coherente con el principio de minimalismo del Brand Book — cada página adicional es una decisión que hay que justificar. Cinco páginas (cuatro núcleo + una opcional) alcanzan para cubrir los tres objetivos sin fragmentar la atención del visitante. No se recomienda, en esta etapa, una página de "Precios" pública (ver sección 8) ni un blog obligatorio (ver justificación en sección 3.5).
+**Nota de actualización:** la página de "Casos / Resultados" que describía este documento originalmente se sacó de la versión publicada — todavía no hay resultados de negocio reales y verificables para mostrar, y publicar cifras de ejemplo (aunque estuvieran marcadas como editables en el código) rompía el valor de integridad profesional definido en el Brand Book. **Portfolio** cumple hoy la función de mostrar trabajo real (piezas concretas, sin cifras inventadas). Cuando existan casos reales con resultados medibles, se recomienda reincorporar "Casos" como página aparte, siguiendo la misma estructura que se detalla más abajo en este documento — queda documentada para ese momento.
+
+**Por qué esta estructura y no más páginas:** coherente con el principio de minimalismo del Brand Book — cada página adicional es una decisión que hay que justificar. No se recomienda, en esta etapa, una página de "Precios" pública (ver sección 8) ni un blog obligatorio (ver justificación en sección 3.5).
 
 ---
 
@@ -45,7 +47,7 @@ Home
 
 **Header (visible en todas las páginas):**
 
-`Logo (isotipo + nombre)` — `Servicios` — `Casos` — `Sobre mí` — `Contacto` (como botón destacado, no como link de texto)
+`Logo (isotipo + nombre)` — `Servicios` — `Portfolio` — `Sobre mí` — `Contacto` (como botón destacado, no como link de texto)
 
 - El botón de Contacto se diferencia visualmente del resto (color de acento) porque es la acción de conversión principal del sitio.
 - Navegación fija (sticky) al hacer scroll, pero minimalista — sin sombra dura, con el mismo criterio de "elevación sutil" definido en el sistema visual del Brand Book.
@@ -147,18 +149,18 @@ Página simple y de baja fricción:
 ## 5. FLUJOS DE USUARIO POR PERSONA
 
 ### Flujo — Marina (negocio local)
-`Llega por Instagram/recomendación` → `Home (entiende propuesta en 10 seg)` → `Servicios (se autocalifica: "esto es para mí")` → `Casos (ve que funcionó con alguien parecido a ella)` → `Contacto (WhatsApp o formulario)`
+`Llega por Instagram/recomendación` → `Home (entiende propuesta en 10 seg)` → `Servicios (se autocalifica: "esto es para mí")` → `Portfolio (ve el tipo de trabajo real que hace)` → `Contacto (WhatsApp o formulario)`
 
 ### Flujo — Tomás (emprendedor en escalada)
-`Llega buscando "cómo invertir en Ads"` → `Home` → `Casos (quiere ver resultados concretos primero)` → `Servicios (entiende el detalle)` → `Contacto`
+`Llega buscando "cómo invertir en Ads"` → `Home` → `Portfolio (quiere ver ejemplos concretos primero)` → `Servicios (entiende el detalle)` → `Contacto`
 
 ### Flujo — Valentina (reclutadora/agencia)
-`Llega por LinkedIn o referido` → `Sobre mí (directo, buscando trayectoria y criterio)` → `Casos (evalúa forma de pensar y ejecutar)` → `Contacto o descarga de CV`
+`Llega por LinkedIn o referido` → `Sobre mí (directo, buscando trayectoria y criterio)` → `Portfolio (evalúa forma de pensar y ejecutar)` → `Contacto o descarga de CV`
 
 ### Flujo — Empresa grande (oportunista, no buscado activamente)
-`Llega por portfolio/referido` → `Casos (evalúa nivel de ejecución)` → `Sobre mí` → `Contacto`
+`Llega por portfolio/referido` → `Portfolio (evalúa nivel de ejecución)` → `Sobre mí` → `Contacto`
 
-**Lectura clave de estos cuatro flujos:** las páginas de **Casos** y **Sobre mí** son las que más trabajo hacen para las cuatro audiencias. Esto confirma que la inversión de esfuerzo y calidad debe concentrarse ahí, no en agregar más páginas.
+**Lectura clave de estos cuatro flujos:** las páginas de **Portfolio** y **Sobre mí** son las que más trabajo hacen para las cuatro audiencias. Esto confirma que la inversión de esfuerzo y calidad debe concentrarse ahí, no en agregar más páginas.
 
 ---
 
@@ -176,7 +178,7 @@ Todo lo demás (proceso, servicios en detalle, casos completos) es secundario y 
 
 ## 7. CONSIDERACIONES DE CONVERSIÓN (CTAs)
 
-- Un único CTA principal en todo el sitio: algo equivalente a "Conversemos" — se repite en Home, Servicios y Casos, siempre con la misma etiqueta (consistencia > creatividad en este punto específico).
+- Un único CTA principal en todo el sitio: algo equivalente a "Conversemos" — se repite en Home, Servicios y Portfolio, siempre con la misma etiqueta (consistencia > creatividad en este punto específico).
 - Nunca más de un CTA visualmente competido por sección (evita la sensación de "sitio de agencia con botones por todos lados").
 - El contacto directo por WhatsApp/email como alternativa al formulario reconoce el comportamiento real del público de negocios locales, que en general prefiere ese canal.
 
@@ -197,7 +199,7 @@ Si en el futuro se decide tener paquetes con precio (por ejemplo, para bajar la 
 
 Este documento cierra la **Etapa 2: Arquitectura UX**. El siguiente paso es:
 
-**Etapa 3 — Diseño UI:** wireframes de baja fidelidad de cada página definida acá (Home, Servicios, Casos, Sobre mí, Contacto), aplicando la grilla, tipografía, color y sistema visual del Brand Book. Recién después de aprobar wireframes se pasa a diseño visual de alta fidelidad, y solo al final, a código.
+**Etapa 3 — Diseño UI:** wireframes de baja fidelidad de cada página definida acá (Home, Servicios, Portfolio, Sobre mí, Contacto), aplicando la grilla, tipografía, color y sistema visual del Brand Book. Recién después de aprobar wireframes se pasa a diseño visual de alta fidelidad, y solo al final, a código.
 
 ---
 

@@ -80,14 +80,16 @@ Quiero que construyas un sitio web de portfolio/marca personal para **Andy Furge
 ```
 / (Home)
 /servicios
-/casos
+/portfolio
 /sobre-mi
 /contacto
 ```
 
-Header fijo (sticky, sutil) en todas las páginas: Logo — Servicios — Casos — Sobre mí — [Contacto como botón destacado con color de acento].
+**Nota:** no incluir una página de "Casos / Resultados" con cifras de ejemplo — todavía no hay resultados de negocio reales para mostrar, y publicar datos inventados (aunque estén marcados como placeholder) rompe la integridad de la marca. `/portfolio` cumple la función de mostrar trabajo real sin cifras de performance inventadas. Si en el futuro hay casos reales y medibles, se puede reincorporar `/casos` con la misma lógica de contenido (contexto → qué se hizo → resultado), pero solo con datos verdaderos.
 
-Footer: contacto directo (email / WhatsApp), redes sociales, link discreto a CV descargable.
+Header fijo (sticky, sutil) en todas las páginas: Logo — Servicios — Portfolio — Sobre mí — [Contacto como botón destacado con color de acento].
+
+Footer: contacto directo (email / WhatsApp), ubicación (Quilmes, Buenos Aires, Argentina), redes sociales, link discreto a CV descargable.
 
 ---
 
@@ -104,7 +106,7 @@ Construir en este orden exacto de secciones:
    - **Gestión de campañas** — Meta Ads y Google Ads con foco en conseguir consultas y ventas reales.
    - **Branding y diseño de piezas** — Identidad visual y anuncios coherentes con la imagen que tu negocio necesita.
    Cada tarjeta linkea a `/servicios`.
-4. **Caso destacado.** Un bloque con un mini-caso (usar contenido placeholder editable: contexto, problema, resultado con dato concreto) + link a "Ver más casos" → `/casos`.
+4. **Pieza de portfolio destacada.** Un bloque mostrando una pieza real de contenido/diseño (o un placeholder claro si todavía no hay una definitiva) + link a "Ver todo el portfolio" → `/portfolio`. No incluir cifras de resultado inventadas (ej. "+64% consultas") — mostrar la pieza en sí, no una métrica de performance no verificada.
 5. **Cómo trabajo.** 3 pasos en formato horizontal/vertical simple: *Diagnóstico → Estrategia → Ejecución y medición.*
 6. **CTA de cierre.** Repetir CTA principal con línea de baja fricción: *"Una primera conversación no tiene costo ni compromiso."*
 
@@ -112,14 +114,9 @@ Construir en este orden exacto de secciones:
 
 Página con las 3 categorías de servicio (mismas que en Home) pero desarrolladas: descripción de 2-3 líneas, "para quién es útil" (ej. "ideal si ya tenés algo de presencia pero no estás generando clientes"), y CTA a `/contacto` en cada bloque. **No incluir precios fijos. No incluir análisis de datos ni Power BI como servicio ofrecido** — esa habilidad se menciona solo en `/sobre-mi` como parte de cómo trabaja, nunca como un servicio que se contrata por separado.
 
-### 3. CASOS (`/casos`)
+### 3. PORTFOLIO (`/portfolio`)
 
-Grid o lista de casos. Cada caso con esta estructura (crear 2-3 casos con contenido placeholder realista y editable, marcados claramente como `[EDITAR: contenido real del caso]`):
-
-1. Contexto breve del negocio (rubro, tamaño, zona).
-2. Objetivo/problema real.
-3. Qué se hizo.
-4. Resultado con dato concreto, acompañado de un elemento visual simple (gráfico de barras o línea minimalista con Framer Motion/SVG, usando la paleta de acento).
+Grid de piezas reales de contenido, campañas y diseño (no casos de negocio con cifras — piezas concretas: posts, reels, anuncios, identidad visual). Si todavía no hay piezas reales para cargar, usar placeholders visuales claramente marcados como `[REEMPLAZAR: imagen o video real]`, pero **nunca inventar cifras de resultado** (porcentajes, tiempos, métricas) para acompañarlas.
 
 ### 4. SOBRE MÍ (`/sobre-mi`)
 
@@ -161,7 +158,7 @@ Grid o lista de casos. Cada caso con esta estructura (crear 2-3 casos con conten
 1. Proyecto Next.js funcional con las 5 rutas definidas.
 2. Componentes reutilizables (Header, Footer, Button, Card, CTASection) en carpeta `/components`.
 3. Configuración de Tailwind con la paleta y tipografía de marca ya cargadas en `tailwind.config`.
-4. Contenido real de este documento ya insertado (no lorem ipsum), con los casos marcados claramente como editables.
+4. Contenido real de este documento ya insertado (no lorem ipsum), con las piezas del portfolio marcadas claramente donde falte reemplazar por contenido real — sin cifras de resultado inventadas en ningún lugar del sitio.
 5. Responsive completo (mobile, tablet, desktop).
 
 Empezá por el layout base (Header + Footer + configuración de Tailwind/fuentes), después la Home, y luego el resto de las páginas en el orden en que aparecen en el sitemap.
