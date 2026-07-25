@@ -475,8 +475,7 @@
   .process{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
-    gap:1px;
-    background:rgba(255,255,255,0.16);
+    gap:20px;
   }
 
   @media (max-width: 760px){
@@ -484,8 +483,12 @@
   }
 
   .process-step{
-    background:var(--bg);
-    padding:40px 8px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:20px;
+    padding:40px 32px;
   }
 
   .process-step .step-label{
