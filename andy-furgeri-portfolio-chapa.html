@@ -997,6 +997,69 @@
     margin:64px 0;
   }
 
+  /* ---- Live Instagram phone mockup ---- */
+  .instagram-live{
+    display:flex;
+    gap:40px;
+    align-items:center;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:24px;
+    padding:40px;
+    margin-bottom:64px;
+    flex-wrap:wrap;
+  }
+  @media (max-width: 760px){
+    .instagram-live{ flex-direction:column; padding:28px; }
+  }
+
+  .phone-mockup{
+    width:220px;
+    height:440px;
+    flex-shrink:0;
+    background:#0A0A0F;
+    border:6px solid rgba(255,255,255,0.14);
+    border-radius:36px;
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .phone-mockup::before{
+    content:'';
+    position:absolute;
+    top:10px; left:50%;
+    transform:translateX(-50%);
+    width:70px; height:16px;
+    background:#0A0A0F;
+    border-radius:100px;
+    z-index:5;
+  }
+  .phone-screen{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+    background: radial-gradient(circle at 30% 20%, rgba(167,139,250,0.25), transparent 65%), var(--bg);
+  }
+  .phone-screen iframe{
+    width:100%;
+    height:100%;
+    border:none;
+  }
+  .phone-screen .placeholder-text{
+    color:var(--text-2);
+    font-size:12.5px;
+    line-height:1.6;
+  }
+
+  .instagram-live-info h2{ font-size:22px; margin-bottom:12px; }
+  .instagram-live-info p{ color:var(--text-2); font-size:15px; margin-bottom:20px; max-width:400px; }
+
 </style>
 </head>
 <body>
@@ -1051,6 +1114,21 @@
 
   <section>
     <div class="wrap">
+
+      <div class="instagram-live reveal">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <!-- PEGAR ACÁ el <iframe> de SnapWidget (u otro embed) cuando esté listo -->
+            <p class="placeholder-text">Acá va el feed en vivo de Instagram — pendiente de conectar</p>
+          </div>
+        </div>
+        <div class="instagram-live-info">
+          <h2>Seguí a El Gran Emporio de la Chapa</h2>
+          <p>Contenido y campañas en vivo, directo desde Instagram.</p>
+          <a href="https://www.instagram.com/elgranemporiodelachapa" target="_blank" rel="noopener" class="btn btn-ghost">Ver en Instagram →</a>
+        </div>
+      </div>
+
       <div class="case-article reveal">
 
         <div class="article-section">
