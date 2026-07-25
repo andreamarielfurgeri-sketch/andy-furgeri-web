@@ -181,8 +181,32 @@
   }
 
   @media (max-width: 860px){
-    .nav-links{ display:none; }
-    .mobile-toggle{ display:block; }
+    .nav-links{
+      display:none;
+      position:fixed;
+      top:73px;
+      left:0; right:0;
+      background:rgba(18,11,54,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom:1px solid rgba(255,255,255,0.16);
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      padding:8px 20px 20px;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links a{
+      width:100%;
+      padding:14px 0;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      font-size:15px;
+    }
+    .nav-links a:last-child{ border-bottom:none; }
+    .mobile-toggle{ display:block; position:relative; z-index:120; }
+    .mobile-toggle .icon-close{ display:none; }
+    .mobile-toggle.open .icon-menu{ display:none; }
+    .mobile-toggle.open .icon-close{ display:block; }
   }
 
   /* ---------- Hero ---------- */
@@ -718,8 +742,9 @@
         <a href="andy-furgeri-sobre-mi.html">Sobre mí</a>
       </div>
       <a href="andy-furgeri-contacto.html" class="btn btn-primary">Conversemos</a>
-      <button class="mobile-toggle" aria-label="Abrir menú">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </button>
     </nav>
   </div>
@@ -793,6 +818,23 @@
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 20);
   });
+
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.querySelector('.nav-links');
+  if(mobileToggle && navLinks){
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      mobileToggle.classList.toggle('open', isOpen);
+      mobileToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        mobileToggle.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
