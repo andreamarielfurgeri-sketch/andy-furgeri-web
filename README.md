@@ -6,8 +6,9 @@ Sitio de marca personal / portfolio. HTML + CSS + JS, sin dependencias ni build 
 - `index.html` — Home
 - `andy-furgeri-servicios.html` — Servicios
 - `andy-furgeri-portfolio.html` — Portfolio (piezas de contenido/diseño)
-- `andy-furgeri-casos.html` — Casos (resultados de negocio)
 - `andy-furgeri-sobre-mi.html` — Sobre mí
+
+> Nota: no hay página de "Casos" todavía — se sacó a propósito porque no había resultados de negocio reales y verificables para mostrar. `andy-furgeri-portfolio.html` cumple esa función mientras tanto, mostrando trabajo real sin cifras inventadas. Reincorporar Casos cuando existan resultados reales (ver `docs/Andy-Furgeri-Arquitectura-UX.md`).
 - `andy-furgeri-contacto.html` — Contacto
 
 ## Documentación de marca
