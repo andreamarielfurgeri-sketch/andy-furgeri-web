@@ -209,6 +209,18 @@
     .mobile-toggle.open .icon-close{ display:block; }
   }
 
+  .nav-contact-mobile{ display:none; }
+  @media (max-width: 860px){
+    .nav-contact-mobile{
+      display:block;
+      margin-top:6px;
+      padding:14px 0 4px !important;
+      color:var(--accent) !important;
+      font-weight:500;
+      border-bottom:none !important;
+    }
+  }
+
   /* ---------- Hero ---------- */
 
   .hero{
@@ -660,6 +672,7 @@
         <a href="andy-furgeri-servicios.html">Servicios</a>
         <a href="andy-furgeri-portfolio.html">Portfolio</a>
         <a href="andy-furgeri-sobre-mi.html">Sobre mí</a>
+        <a href="andy-furgeri-contacto.html" class="nav-contact-mobile">Contacto</a>
       </div>
       <a href="andy-furgeri-contacto.html" class="btn btn-primary">Conversemos</a>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú" aria-expanded="false">
