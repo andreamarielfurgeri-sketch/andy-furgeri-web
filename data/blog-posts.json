@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "ejemplo-primera-nota",
+    "title": "Cómo escribir tu primera nota acá",
+    "date": "2026-07-29",
+    "tags": ["Guía"],
+    "excerpt": "Esta es una nota de ejemplo. Reemplazala por tu primer artículo real siguiendo esta misma estructura.",
+    "content": "Para publicar una nota nueva, copiá este bloque completo (desde la llave { hasta la llave }), pegalo arriba de este mismo ejemplo dentro de los corchetes, separado por una coma, y completá los campos: título, fecha, tags, resumen y contenido. El contenido puede tener varios párrafos separados por '\\n\\n'.\n\nCuando termines, hacé commit del archivo directo en GitHub — no hace falta tocar ningún otro archivo del sitio."
+  }
+]

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andy Furgeri — Servicios</title>
-<meta name="description" content="Creación de contenido, gestión de campañas y branding para negocios locales.">
+<title>Andy Furgeri — Producción de TV</title>
+<meta name="description" content="Experiencia práctica en producción audiovisual y de TV.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -511,8 +511,7 @@
   .process{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
-    gap:1px;
-    background:rgba(255,255,255,0.16);
+    gap:20px;
   }
 
   @media (max-width: 760px){
@@ -520,8 +519,12 @@
   }
 
   .process-step{
-    background:var(--bg);
-    padding:40px 8px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:20px;
+    padding:40px 32px;
   }
 
   .process-step .step-label{
@@ -600,78 +603,6 @@
     .reveal{ opacity:1; transform:none; }
   }
 
-  /* ---- Page hero (subpages) ---- */
-  .page-hero{
-    padding:160px 0 40px;
-    border-bottom:1px solid rgba(255,255,255,0.16);
-  }
-  .page-hero + section{
-    padding-top:20px;
-  }
-  .page-hero .section-label{ margin-bottom:20px; }
-  .page-hero h1{
-    font-size:clamp(32px, 5vw, 52px);
-    max-width:680px;
-  }
-  .page-hero p{
-    color:var(--text-2);
-    font-size:17px;
-    max-width:560px;
-    margin-top:20px;
-  }
-
-  /* ---- Servicios page ---- */
-  .service-detail{
-    display:grid;
-    grid-template-columns:80px 1fr 280px;
-    gap:40px;
-    padding:56px 0;
-    border-top:1px solid rgba(255,255,255,0.16);
-    align-items:start;
-  }
-  .service-detail:last-child{ border-bottom:1px solid rgba(255,255,255,0.16); }
-  @media (max-width: 860px){
-    .service-detail{ grid-template-columns:1fr; gap:20px; }
-  }
-  .service-detail .num{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:15px;
-    color:var(--accent);
-  }
-  .service-detail h3{ font-size:26px; margin-bottom:14px; }
-  .service-detail p{ color:var(--text-2); font-size:15px; margin-bottom:10px; max-width:520px; }
-  .service-fit{
-    background:var(--bg-2);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border:1px solid rgba(255,255,255,0.16);
-    border-radius:14px;
-    padding:22px;
-  }
-  .service-fit span{
-    display:block;
-    font-size:12px;
-    color:var(--text-2);
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    margin-bottom:10px;
-  }
-  .service-fit p{ font-size:14px; color:var(--text); margin:0; }
-
-  .note-box{
-    background:var(--bg-2);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border:1px solid rgba(255,255,255,0.16);
-    border-left:2px solid var(--accent);
-    border-radius:12px;
-    padding:28px 32px;
-    margin-top:24px;
-  }
-  .note-box p{ color:var(--text-2); font-size:15px; margin:0; }
-  .note-box strong{ color:var(--text); }
-
-
   /* ---- WhatsApp floating button ---- */
   .wa-float{
     position:fixed;
@@ -709,6 +640,491 @@
   @media (prefers-reduced-motion: reduce){
     .wa-float{ animation:none; }
   }
+
+
+  /* ---- Page hero (subpages) ---- */
+  .page-hero{
+    padding:160px 0 40px;
+    border-bottom:1px solid rgba(255,255,255,0.16);
+  }
+  .page-hero + section{
+    padding-top:20px;
+  }
+  .page-hero .section-label{ margin-bottom:20px; }
+  .page-hero h1{
+    font-size:clamp(32px, 5vw, 52px);
+    max-width:680px;
+  }
+  .page-hero p{
+    color:var(--text-2);
+    font-size:17px;
+    max-width:560px;
+    margin-top:20px;
+  }
+
+  /* ---- Portfolio page (organizado por marca) ---- */
+  .brand-nav{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:64px;
+  }
+  .brand-nav a{
+    font-size:13.5px;
+    color:var(--text-2);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:9px 18px;
+    transition: all 0.25s var(--ease);
+  }
+  .brand-nav a:hover{ border-color:var(--accent); color:var(--text); }
+
+  .brand-section{
+    padding:64px 0;
+    border-top:1px solid rgba(255,255,255,0.16);
+    scroll-margin-top:100px;
+  }
+  .brand-section:first-of-type{ border-top:none; padding-top:0; }
+
+  .brand-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:36px;
+    flex-wrap:wrap;
+  }
+  .brand-head h2{
+    font-size:clamp(22px, 3vw, 30px);
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+  .brand-head p{
+    color:var(--text-2);
+    font-size:14.5px;
+    max-width:440px;
+  }
+  .brand-role{
+    font-size:12px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width: 960px){
+    .portfolio-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width: 640px){
+    .portfolio-grid{ grid-template-columns:1fr; }
+  }
+
+  .portfolio-item{
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.16);
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    cursor:pointer;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .portfolio-item:hover{
+    border-color:var(--accent);
+    transform:translateY(-4px);
+  }
+
+  .portfolio-thumb{
+    aspect-ratio:4/5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    font-size:12.5px;
+    color:var(--text-2);
+    position:relative;
+  }
+  .portfolio-thumb img, .portfolio-thumb video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .portfolio-thumb.grad-1{ background: radial-gradient(circle at 30% 20%, rgba(167,139,250,0.28), transparent 65%), var(--bg-2); }
+  .portfolio-thumb.grad-2{ background: radial-gradient(circle at 70% 30%, rgba(109,95,247,0.28), transparent 65%), var(--bg-2); }
+  .portfolio-thumb.grad-3{ background: radial-gradient(circle at 50% 70%, rgba(59,76,202,0.32), transparent 65%), var(--bg-2); }
+
+  .play-icon{
+    position:absolute;
+    top:14px; right:14px;
+    width:30px; height:30px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(6px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .portfolio-meta{
+    padding:16px 18px;
+  }
+  .portfolio-meta .cat{
+    font-size:11px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+  .portfolio-meta h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:14.5px;
+    font-weight:500;
+  }
+
+  .upload-note{ margin-top:56px; }
+
+  .note-box{
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-left:2px solid var(--accent);
+    border-radius:12px;
+    padding:28px 32px;
+  }
+  .note-box p{ color:var(--text-2); font-size:15px; margin:0; }
+  .note-box strong{ color:var(--text); }
+
+  /* ---- Portfolio index (tarjetas por marca) ---- */
+  .brand-cards{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .brand-card{
+    display:grid;
+    grid-template-columns:220px 1fr auto;
+    align-items:center;
+    gap:32px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:20px;
+    padding:32px;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .brand-card:hover{
+    border-color:var(--accent);
+    transform:translateY(-3px);
+  }
+
+  @media (max-width: 760px){
+    .brand-card{
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+  }
+
+  .brand-card-visual{
+    aspect-ratio:16/10;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .brand-card-visual.grad-1{ background: radial-gradient(circle at 30% 20%, rgba(167,139,250,0.35), transparent 65%), var(--bg); }
+  .brand-card-visual.grad-2{ background: radial-gradient(circle at 70% 30%, rgba(109,95,247,0.35), transparent 65%), var(--bg); }
+  .brand-card-visual.grad-3{ background: radial-gradient(circle at 50% 70%, rgba(59,76,202,0.4), transparent 65%), var(--bg); }
+  .brand-card-visual svg{ width:34px; height:34px; opacity:0.7; }
+
+  .brand-role{
+    font-size:12px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    display:block;
+    margin-bottom:8px;
+  }
+
+  .brand-card h2{
+    font-size:22px;
+    margin-bottom:10px;
+  }
+
+  .brand-card p{
+    color:var(--text-2);
+    font-size:14.5px;
+    max-width:480px;
+  }
+
+  .brand-card-cta{
+    font-size:14px;
+    color:var(--accent);
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  @media (max-width: 760px){
+    .brand-card-cta{ margin-top:4px; }
+  }
+
+  .brand-page-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--text-2);
+    margin-bottom:32px;
+    transition: color 0.25s var(--ease);
+  }
+  .brand-page-back:hover{ color:var(--accent); }
+
+  /* ---- Case study article ---- */
+  .case-article{
+    max-width:760px;
+  }
+  .article-section{
+    margin-bottom:56px;
+  }
+  .article-section h2{
+    font-size:22px;
+    margin-bottom:16px;
+  }
+  .article-section h3{
+    font-size:16px;
+    color:var(--accent);
+    margin-bottom:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+  }
+  .article-section p{
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.8;
+    margin-bottom:14px;
+  }
+  .article-section ul{
+    padding-left:20px;
+    color:var(--text-2);
+    font-size:15.5px;
+    line-height:1.9;
+    margin-bottom:14px;
+  }
+  .article-section li{ margin-bottom:4px; }
+
+  .reposition-quote{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:16px;
+    padding:28px 32px;
+    margin:20px 0 24px;
+    flex-wrap:wrap;
+  }
+  .reposition-quote .rq-block{ flex:1; min-width:200px; }
+  .reposition-quote .rq-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-2);
+    display:block;
+    margin-bottom:8px;
+  }
+  .reposition-quote .rq-text{
+    font-size:15.5px;
+    color:var(--text);
+  }
+  .reposition-quote .rq-from .rq-text{ color:var(--text-2); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.3); }
+  .reposition-quote .rq-arrow{ color:var(--accent); font-size:20px; }
+
+  .pillar-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:16px;
+  }
+  @media (max-width: 760px){
+    .pillar-grid{ grid-template-columns:1fr; }
+  }
+  .pillar-card{
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:14px;
+    padding:22px;
+  }
+  .pillar-card h3{ margin-bottom:10px; }
+  .pillar-card ul{ font-size:14px; padding-left:18px; margin-bottom:0; }
+
+  .tool-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
+  }
+  .skill-chip{
+    font-size:13.5px;
+    color:var(--text);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:8px 16px;
+    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .skill-chip:hover{ border-color:var(--accent); color:var(--accent); }
+
+  .section-divider{
+    border:none;
+    border-top:1px solid rgba(255,255,255,0.16);
+    margin:64px 0;
+  }
+
+  /* ---- Live Instagram phone mockup ---- */
+  .instagram-live{
+    display:flex;
+    gap:40px;
+    align-items:center;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:24px;
+    padding:40px;
+    margin-bottom:64px;
+    flex-wrap:wrap;
+  }
+  @media (max-width: 760px){
+    .instagram-live{ flex-direction:column; padding:28px; }
+  }
+
+  .phone-mockup{
+    width:220px;
+    height:440px;
+    flex-shrink:0;
+    background:#0A0A0F;
+    border:6px solid rgba(255,255,255,0.14);
+    border-radius:36px;
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .phone-mockup::before{
+    content:'';
+    position:absolute;
+    top:10px; left:50%;
+    transform:translateX(-50%);
+    width:70px; height:16px;
+    background:#0A0A0F;
+    border-radius:100px;
+    z-index:5;
+  }
+  .phone-screen{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+    background: radial-gradient(circle at 30% 20%, rgba(167,139,250,0.25), transparent 65%), var(--bg);
+  }
+  .phone-screen iframe{
+    width:100%;
+    height:100%;
+    border:none;
+  }
+  .phone-screen .placeholder-text{
+    color:var(--text-2);
+    font-size:12.5px;
+    line-height:1.6;
+  }
+
+  .instagram-live-info h2{ font-size:22px; margin-bottom:12px; }
+  .instagram-live-info p{ color:var(--text-2); font-size:15px; margin-bottom:20px; max-width:400px; }
+
+  .instagram-live-compact{
+    margin-top:56px;
+    margin-bottom:0;
+    padding:24px 28px;
+    gap:24px;
+  }
+  .phone-mockup-compact{
+    width:110px;
+    height:220px;
+    border-width:4px;
+    border-radius:20px;
+    flex-shrink:0;
+  }
+  .phone-mockup-compact::before{
+    width:36px;
+    height:8px;
+    top:6px;
+  }
+  .instagram-live-compact .instagram-live-info h2{ font-size:16px; margin-bottom:6px; }
+  .instagram-live-compact .instagram-live-info p{ font-size:13.5px; margin-bottom:14px; }
+  .instagram-live-compact .btn{ font-size:13px; padding:8px 16px; }
+
+  /* ---- Notas (blog) ---- */
+  .notes-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+  }
+  @media (max-width: 760px){
+    .notes-grid{ grid-template-columns:1fr; }
+  }
+  .note-card{
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:16px;
+    padding:28px;
+    cursor:pointer;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .note-card:hover{ border-color:var(--accent); transform:translateY(-3px); }
+  .note-date{ font-size:12px; color:var(--text-2); display:block; margin-bottom:10px; }
+  .note-card h3{ font-size:18px; margin-bottom:10px; }
+  .note-card p{ color:var(--text-2); font-size:14px; line-height:1.6; }
+  .note-tags{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  .note-tag{
+    font-size:11px;
+    color:var(--accent);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:4px 10px;
+  }
+
+  .note-detail{ max-width:720px; }
+  .note-detail .note-back{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:14px; color:var(--text-2); margin-bottom:24px;
+    cursor:pointer; background:none; border:none; font-family:'Inter',sans-serif;
+  }
+  .note-detail .note-back:hover{ color:var(--accent); }
+  .note-detail h1{ font-size:clamp(26px,4vw,38px); margin-bottom:14px; }
+  .note-detail p{ color:var(--text-2); font-size:16px; line-height:1.85; margin-bottom:18px; }
+
+  #giscus-container{ margin-top:56px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.16); }
 
 </style>
 </head>
@@ -757,64 +1173,17 @@
 
   <section class="page-hero">
     <div class="wrap">
-      <span class="section-label">Servicios</span>
-      <h1>Tres formas concretas de ayudarte a conseguir clientes</h1>
-      <p>Sin paquetes genéricos ni jerga técnica. Esto es lo que hago y para qué sirve cada cosa.</p>
+      <span class="section-label">Producción de TV</span>
+      <h1>Experiencia práctica en producción audiovisual</h1>
+      <p>[EDITAR: contame tu experiencia real en producción de TV durante la facultad — qué materias, qué prácticas, qué produjiste.]</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-
-      <div class="service-detail reveal">
-        <span class="num">01</span>
-        <div>
-          <h3>Creación de contenido</h3>
-          <p>Planifico y produzco el contenido de tus redes sociales — no como un calendario de fechas para llenar, sino pensado para que cada publicación acerque a alguien a escribirte o visitarte.</p>
-          <p>Incluye guion, diseño de piezas y una línea editorial coherente con tu marca.</p>
-        </div>
-        <div class="service-fit">
-          <span>Ideal si</span>
-          <p>Ya tenés redes pero sentís que publicás sin un rumbo claro, o que nadie escribe después de ver tus posts.</p>
-        </div>
+      <div class="note-box">
+        <p><strong>Pendiente de completar:</strong> esta página está lista para recibir el detalle de tu experiencia práctica en producción de TV en la Universidad Nacional de Quilmes — proyectos realizados, roles desempeñados (cámara, edición, guion, producción), y piezas o videos si los tenés.</p>
       </div>
-
-      <div class="service-detail reveal">
-        <span class="num">02</span>
-        <div>
-          <h3>Gestión de campañas</h3>
-          <p>Gestiono tus campañas de Meta Ads y Google Ads con un solo objetivo: que generen consultas y ventas, no solo alcance o "me gusta".</p>
-          <p>Incluye configuración, segmentación por zona y ajustes constantes según lo que va funcionando.</p>
-        </div>
-        <div class="service-fit">
-          <span>Ideal si</span>
-          <p>Tenés algo de presupuesto para invertir en publicidad pero no sabés bien por dónde empezar, o ya invertiste y no viste resultados.</p>
-        </div>
-      </div>
-
-      <div class="service-detail reveal">
-        <span class="num">03</span>
-        <div>
-          <h3>Branding y diseño de piezas</h3>
-          <p>Armo o pulo la identidad visual de tu negocio — logo, colores, tipografías — y diseño las piezas gráficas que necesites para redes y campañas.</p>
-          <p>El objetivo es que, con solo ver una publicación tuya, se note que es tuya.</p>
-        </div>
-        <div class="service-fit">
-          <span>Ideal si</span>
-          <p>Tu negocio todavía no tiene una imagen definida, o cada pieza que publicás se ve distinta a la anterior.</p>
-        </div>
-      </div>
-
-      <div class="note-box reveal">
-        <p><strong>Sobre el análisis de datos:</strong> no es un servicio que se contrate por separado. Reviso los resultados de cada campaña y cada publicación para saber qué ajustar — es parte de cómo trabajo, no algo que factures aparte ni un informe que tengas que interpretar vos.</p>
-      </div>
-
-      <div class="cta-close" style="padding-left:0; padding-right:0; text-align:left;">
-        <h2 class="reveal" style="font-size:clamp(24px,4vw,34px); margin-bottom:16px;">¿No sabés cuál de estos tres necesitás?</h2>
-        <p class="reveal" style="margin-bottom:28px;">Contame cómo está tu negocio hoy y te digo, con honestidad, por dónde arrancar.</p>
-        <a href="andy-furgeri-contacto.html" class="btn btn-primary reveal">Conversemos</a>
-      </div>
-
     </div>
   </section>
 
