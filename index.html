@@ -1042,9 +1042,67 @@
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
 
+
+  /* =========================================================
+     Fondos diagonales por sección + grano + flotantes (WeTransfer-ish)
+     ========================================================= */
+
+  /* Textura de grano, fija sobre toda la página, sutil */
+  .grain-overlay{
+    position:fixed;
+    inset:0;
+    z-index:50;
+    pointer-events:none;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Degradés diagonales por sección — reemplazan el fondo plano único */
+  .diag-1{ background: linear-gradient(135deg, #241968 0%, #3B2E8C 45%, #1B4B6B 100%); }
+  .diag-2{ background: linear-gradient(135deg, #1B4B6B 0%, #1F6B63 55%, #241968 100%); }
+  .diag-3{ background: linear-gradient(135deg, #241968 0%, #7A2F55 55%, #3B2E8C 100%); }
+  .diag-4{ background: linear-gradient(135deg, #3B2E8C 0%, #6D3B8C 50%, #7A2F55 100%); }
+
+  /* Elementos flotantes tipo "sticker", con movimiento sutil */
+  .floaty{
+    position:absolute;
+    pointer-events:none;
+    animation: floaty-move 7s ease-in-out infinite;
+  }
+  .floaty-slow{ animation-duration:10s; }
+  @keyframes floaty-move{
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-18px) rotate(6deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .floaty{ animation:none; }
+  }
+
+  .sticker-ring{
+    width:64px; height:64px;
+    border:3px solid var(--accent-cyan);
+    border-radius:50%;
+    opacity:0.55;
+  }
+  .sticker-dot{
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--accent-coral);
+    opacity:0.6;
+  }
+  .sticker-diamond{
+    width:26px; height:26px;
+    background:var(--accent-gold);
+    opacity:0.55;
+    transform:rotate(45deg);
+    border-radius:6px;
+  }
+
 </style>
 </head>
 <body>
+<div class="grain-overlay"></div>
 
 <a href="https://wa.me/5491122899249" target="_blank" rel="noopener" class="wa-float" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1090,9 +1148,11 @@
 <main>
 
   <!-- HERO EDITORIAL -->
-  <section class="ed-hero">
+  <section class="ed-hero diag-1">
     <div class="ed-blob ed-blob-1"></div>
     <div class="ed-blob ed-blob-2"></div>
+    <div class="floaty sticker-ring" style="top:18%; right:12%;"></div>
+    <div class="floaty floaty-slow sticker-diamond" style="bottom:16%; right:28%;"></div>
     <div class="ed-hero-wrap">
       <span class="ed-eyebrow">Portfolio de Andy Furgeri</span>
       <h1>
@@ -1116,7 +1176,7 @@
   </div>
 
   <!-- QUIÉN SOY EDITORIAL -->
-  <section class="ed-about">
+  <section class="ed-about diag-2">
     <div class="wrap">
       <div class="ed-about-grid">
         <div class="ed-photo-frame reveal">
@@ -1133,7 +1193,8 @@
   </section>
 
   <!-- BENTO ROTO -->
-  <section style="padding-top:0;">
+  <section class="diag-3" style="padding-top:0; position:relative;">
+    <div class="floaty sticker-dot" style="top:8%; left:6%;"></div>
     <div class="wrap">
       <div class="section-head reveal">
         <span class="section-label">Portfolio</span>
@@ -1171,7 +1232,7 @@
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto-preview">
+  <section id="contacto-preview" class="diag-4">
     <div class="ed-statement">
       <span class="section-label">Contacto</span>
       <h2>¿Trabajamos <span class="hl">juntos</span>?</h2>
