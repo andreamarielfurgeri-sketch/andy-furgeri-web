@@ -19,6 +19,9 @@
     --accent-2: #6D5FF7;
     --accent-deep: #3B4CCA;
     --glow: #D6C9FF;
+    --accent-teal: #2DD4BF;
+    --accent-coral: #FB7185;
+    --accent-gold: #FBBF24;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -413,7 +416,7 @@
   .service-num{
     font-family:'Space Grotesk', sans-serif;
     font-size:13px;
-    color:var(--text-2);
+    color:var(--accent);
     margin-bottom:24px;
     display:block;
   }
@@ -638,6 +641,8 @@
     font-size:15px;
     color:var(--accent);
   }
+  .service-detail:nth-child(3n+2) .num{ color:var(--accent-teal); }
+  .service-detail:nth-child(3n+3) .num{ color:var(--accent-coral); }
   .service-detail h3{ font-size:26px; margin-bottom:14px; }
   .service-detail p{ color:var(--text-2); font-size:15px; margin-bottom:10px; max-width:520px; }
   .service-fit{

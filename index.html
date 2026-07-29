@@ -19,6 +19,9 @@
     --accent-2: #6D5FF7;
     --accent-deep: #3B4CCA;
     --glow: #D6C9FF;
+    --accent-teal: #2DD4BF;
+    --accent-coral: #FB7185;
+    --accent-gold: #FBBF24;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -413,10 +416,12 @@
   .service-num{
     font-family:'Space Grotesk', sans-serif;
     font-size:13px;
-    color:var(--text-2);
+    color:var(--accent);
     margin-bottom:24px;
     display:block;
   }
+  .service-card:nth-child(3n+2) .service-num{ color:var(--accent-teal); }
+  .service-card:nth-child(3n+3) .service-num{ color:var(--accent-coral); }
 
   .service-card h3{
     font-size:20px;

@@ -19,6 +19,9 @@
     --accent-2: #6D5FF7;
     --accent-deep: #3B4CCA;
     --glow: #D6C9FF;
+    --accent-teal: #2DD4BF;
+    --accent-coral: #FB7185;
+    --accent-gold: #FBBF24;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -778,13 +781,20 @@
     padding:16px 18px;
   }
   .portfolio-meta .cat{
-    font-size:11px;
+    font-size:10.5px;
     color:var(--accent);
     text-transform:uppercase;
     letter-spacing:0.04em;
-    display:block;
-    margin-bottom:6px;
+    display:inline-block;
+    margin-bottom:10px;
+    padding:4px 10px;
+    border-radius:100px;
+    background:rgba(167,139,250,0.14);
+    border:1px solid rgba(167,139,250,0.35);
   }
+  .portfolio-item:nth-child(4n+2) .cat{ color:var(--accent-teal); background:rgba(45,212,191,0.14); border-color:rgba(45,212,191,0.35); }
+  .portfolio-item:nth-child(4n+3) .cat{ color:var(--accent-coral); background:rgba(251,113,133,0.14); border-color:rgba(251,113,133,0.35); }
+  .portfolio-item:nth-child(4n+4) .cat{ color:var(--accent-gold); background:rgba(251,191,36,0.14); border-color:rgba(251,191,36,0.35); }
   .portfolio-meta h4{
     font-family:'Space Grotesk', sans-serif;
     font-size:14.5px;
