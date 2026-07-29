@@ -1099,6 +1099,25 @@
     border-radius:6px;
   }
 
+/* Texturas extra por sección */
+  .texture-dots{ position:relative; }
+  .texture-dots::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  .texture-lines{ position:relative; }
+  .texture-lines::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 26px);
+    pointer-events:none;
+  }
+
 </style>
 </head>
 <body>
@@ -1148,7 +1167,7 @@
 <main>
 
   <!-- HERO EDITORIAL -->
-  <section class="ed-hero diag-1">
+  <section class="ed-hero diag-1 texture-lines">
     <div class="ed-blob ed-blob-1"></div>
     <div class="ed-blob ed-blob-2"></div>
     <div class="floaty sticker-ring" style="top:18%; right:12%;"></div>
@@ -1177,6 +1196,8 @@
 
   <!-- QUIÉN SOY EDITORIAL -->
   <section class="ed-about diag-2">
+    <div class="floaty sticker-dot" style="top:10%; right:8%;"></div>
+    <div class="floaty floaty-slow sticker-ring" style="bottom:10%; left:4%; width:44px; height:44px;"></div>
     <div class="wrap">
       <div class="ed-about-grid">
         <div class="ed-photo-frame reveal">
@@ -1193,7 +1214,7 @@
   </section>
 
   <!-- BENTO ROTO -->
-  <section class="diag-3" style="padding-top:0; position:relative;">
+  <section class="diag-3 texture-dots" style="padding-top:0; position:relative;">
     <div class="floaty sticker-dot" style="top:8%; left:6%;"></div>
     <div class="wrap">
       <div class="section-head reveal">
@@ -1232,7 +1253,8 @@
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto-preview" class="diag-4">
+  <section id="contacto-preview" class="diag-4" style="position:relative;">
+    <div class="floaty sticker-diamond" style="top:12%; left:8%;"></div>
     <div class="ed-statement">
       <span class="section-label">Contacto</span>
       <h2>¿Trabajamos <span class="hl">juntos</span>?</h2>
