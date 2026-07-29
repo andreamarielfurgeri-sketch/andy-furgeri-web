@@ -22,6 +22,9 @@
     --accent-teal: #2DD4BF;
     --accent-coral: #FB7185;
     --accent-gold: #FBBF24;
+    --accent-blue: #3B82F6;
+    --accent-cyan: #22D3EE;
+    --accent-magenta: #E879F9;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -811,6 +814,234 @@
     font-family:'Inter', sans-serif;
     margin-top:8px;
   }
+
+  /* =========================================================
+     NUEVA DIRECCIÓN CREATIVA — módulos editoriales para Home
+     ========================================================= */
+
+  /* ---- Hero editorial: tipografía gigante, asimétrico ---- */
+  .ed-hero{
+    position:relative;
+    padding:200px 0 160px;
+    overflow:hidden;
+  }
+  .ed-hero-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:2;
+  }
+  .ed-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-cyan);
+    margin-bottom:28px;
+  }
+  .ed-eyebrow::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--accent-cyan);
+  }
+  .ed-hero h1{
+    font-size:clamp(44px, 9vw, 118px);
+    line-height:0.96;
+    letter-spacing:-0.03em;
+    font-weight:700;
+  }
+  .ed-hero h1 .ln1{ display:block; }
+  .ed-hero h1 .ln2{
+    display:block;
+    margin-left:clamp(0px, 8vw, 140px);
+    background:linear-gradient(90deg, var(--accent) 0%, var(--accent-cyan) 60%, var(--accent-magenta) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .ed-hero-sub{
+    margin-top:44px;
+    max-width:480px;
+    margin-left:clamp(0px, 8vw, 140px);
+    font-size:17px;
+    color:var(--text-2);
+    line-height:1.7;
+  }
+  .ed-hero-ctas{
+    margin-top:36px;
+    margin-left:clamp(0px, 8vw, 140px);
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .ed-blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    z-index:0;
+    pointer-events:none;
+  }
+  .ed-blob-1{ width:420px; height:420px; top:-100px; right:-80px; background:radial-gradient(circle, rgba(59,130,246,0.35), transparent 70%); }
+  .ed-blob-2{ width:320px; height:320px; bottom:-60px; left:8%; background:radial-gradient(circle, rgba(232,121,249,0.25), transparent 70%); }
+
+  /* ---- Marquee ticker (reemplaza la franja de credibilidad) ---- */
+  .marquee-strip{
+    border-top:1px solid rgba(255,255,255,0.16);
+    border-bottom:1px solid rgba(255,255,255,0.16);
+    padding:22px 0;
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+  }
+  .marquee-track{
+    display:inline-flex;
+    align-items:center;
+    gap:40px;
+    animation:marquee 28s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(22px, 3.5vw, 34px);
+    font-weight:600;
+    color:var(--text-2);
+    display:inline-flex;
+    align-items:center;
+    gap:40px;
+  }
+  .marquee-track span em{
+    font-style:normal;
+    color:var(--accent);
+  }
+  .marquee-track span:nth-child(4n+2) em{ color:var(--accent-teal); }
+  .marquee-track span:nth-child(4n+3) em{ color:var(--accent-coral); }
+  .marquee-track span:nth-child(4n+4) em{ color:var(--accent-cyan); }
+  .marquee-dot{ width:6px; height:6px; border-radius:50%; background:var(--text-2); opacity:0.5; flex-shrink:0; }
+  @keyframes marquee{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation:none; }
+  }
+
+  /* ---- Quién soy editorial: foto con marco desfasado + pull-quote ---- */
+  .ed-about{
+    padding:140px 0;
+    position:relative;
+  }
+  .ed-about-grid{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:80px;
+    align-items:start;
+  }
+  @media (max-width: 860px){
+    .ed-about-grid{ grid-template-columns:1fr; gap:56px; }
+  }
+  .ed-photo-frame{
+    position:relative;
+    max-width:320px;
+  }
+  .ed-photo-frame::before{
+    content:'';
+    position:absolute;
+    top:24px; left:24px;
+    width:100%; height:100%;
+    border:2px solid var(--accent-teal);
+    border-radius:20px;
+    z-index:0;
+  }
+  .ed-photo{
+    position:relative;
+    z-index:1;
+    aspect-ratio:4/5;
+    border-radius:20px;
+    background: radial-gradient(circle at 25% 20%, rgba(167,139,250,0.5), transparent 55%), radial-gradient(circle at 80% 90%, rgba(232,121,249,0.3), transparent 55%), var(--bg-2);
+    border:1px solid rgba(255,255,255,0.18);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-2); font-size:13px; text-align:center; padding:20px;
+  }
+  .ed-pull-quote{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(24px, 3.2vw, 38px);
+    line-height:1.25;
+    letter-spacing:-0.01em;
+    margin-bottom:32px;
+  }
+  .ed-about p{
+    color:var(--text-2);
+    font-size:16px;
+    line-height:1.8;
+    margin-bottom:16px;
+    max-width:560px;
+  }
+
+  /* ---- Bento roto: tarjetas de distinto tipo, no uniformes ---- */
+  .ed-bento{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:18px;
+  }
+  @media (max-width: 860px){
+    .ed-bento{ grid-template-columns:repeat(2, 1fr); }
+  }
+  .ed-card{
+    position:relative;
+    border-radius:18px;
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    min-height:180px;
+    text-decoration:none;
+    transition:transform 0.35s var(--ease);
+  }
+  .ed-card:hover{ transform:translateY(-4px); }
+  .ed-card h3{ font-size:17px; margin-bottom:6px; color:var(--text); }
+  .ed-card p{ font-size:13px; color:var(--text-2); margin:0; }
+
+  .ed-card-xl{ grid-column:span 4; min-height:260px; }
+  .ed-card-md{ grid-column:span 2; }
+  .ed-card-sm{ grid-column:span 3; }
+  @media (max-width: 860px){
+    .ed-card-xl, .ed-card-md, .ed-card-sm{ grid-column:span 2; }
+  }
+
+  .ed-fill-1{ background: linear-gradient(155deg, rgba(167,139,250,0.28), rgba(18,11,54,0.4)), var(--bg-2); border:1px solid rgba(167,139,250,0.4); }
+  .ed-fill-2{ background: linear-gradient(155deg, rgba(45,212,191,0.24), rgba(18,11,54,0.4)), var(--bg-2); border:1px solid rgba(45,212,191,0.4); }
+  .ed-fill-3{ background: linear-gradient(155deg, rgba(251,113,133,0.24), rgba(18,11,54,0.4)), var(--bg-2); border:1px solid rgba(251,113,133,0.4); }
+  .ed-fill-4{ background: linear-gradient(155deg, rgba(251,191,36,0.22), rgba(18,11,54,0.4)), var(--bg-2); border:1px solid rgba(251,191,36,0.4); }
+  .ed-fill-outline{ background:transparent; border:1px solid rgba(255,255,255,0.3); }
+
+  .ed-card-tilt{ transform:rotate(-1.2deg); }
+  .ed-card-tilt:hover{ transform:rotate(-1.2deg) translateY(-4px); }
+
+  .ed-num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:13px;
+    letter-spacing:0.05em;
+    margin-bottom:14px;
+    opacity:0.7;
+  }
+
+  /* ---- Statement gigante para contacto ---- */
+  .ed-statement{
+    padding:160px 0;
+    text-align:center;
+  }
+  .ed-statement h2{
+    font-size:clamp(32px, 6vw, 72px);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    max-width:900px;
+    margin:0 auto 28px;
+  }
+  .ed-statement h2 .hl{
+    background:linear-gradient(90deg, var(--accent-cyan), var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
 </style>
 </head>
 <body>
@@ -858,40 +1089,42 @@
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <svg class="hero-chart" viewBox="0 0 1400 420" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
-      <defs>
-        <linearGradient id="lineGradient" x1="0" y1="0" x2="1400" y2="0">
-          <stop offset="0%" stop-color="#3B4CCA"/>
-          <stop offset="55%" stop-color="#6D5FF7"/>
-          <stop offset="100%" stop-color="#A78BFA"/>
-        </linearGradient>
-      </defs>
-      <path class="line-ghost" d="M0,360 C200,340 320,320 460,300 C620,275 720,260 860,220 C1000,180 1100,150 1400,60" />
-      <path class="line-main" d="M0,360 C200,340 320,320 460,300 C620,275 720,260 860,220 C1000,180 1100,150 1400,60" />
-      <circle cx="1400" cy="60" r="5"/>
-    </svg>
-
-    <div class="wrap hero-inner">
-      <span class="eyebrow"><span class="eyebrow-dot"></span> Portfolio de Andy Furgeri</span>
-      <h1>Diseño una marca. Leo un dashboard.<br><span class="grad">Escribo una nota. A veces, el mismo día.</span></h1>
-      <p>Comunicación, diseño, datos y curiosidad — en la misma persona.</p>
-      <div class="hero-ctas">
+  <!-- HERO EDITORIAL -->
+  <section class="ed-hero">
+    <div class="ed-blob ed-blob-1"></div>
+    <div class="ed-blob ed-blob-2"></div>
+    <div class="ed-hero-wrap">
+      <span class="ed-eyebrow">Portfolio de Andy Furgeri</span>
+      <h1>
+        <span class="ln1">Diseño una marca.</span>
+        <span class="ln1">Leo un dashboard.</span>
+        <span class="ln2">Escribo una nota.</span>
+      </h1>
+      <p class="ed-hero-sub">A veces, el mismo día. Comunicación, diseño, datos y curiosidad — en la misma persona.</p>
+      <div class="ed-hero-ctas">
         <a href="andy-furgeri-portfolio.html" class="btn btn-primary">Ver mi trabajo</a>
         <a href="andy-furgeri-contacto.html" class="btn btn-ghost">Conversemos</a>
       </div>
     </div>
   </section>
 
-  <!-- QUIÉN SOY -->
-  <section class="section-tint-teal">
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span><em>Comunicación</em><span class="marquee-dot"></span><em>Diseño</em><span class="marquee-dot"></span><em>Datos</em><span class="marquee-dot"></span><em>Producción de TV</em><span class="marquee-dot"></span><em>Branding</em><span class="marquee-dot"></span><em>Curiosidad</em><span class="marquee-dot"></span></span>
+      <span><em>Comunicación</em><span class="marquee-dot"></span><em>Diseño</em><span class="marquee-dot"></span><em>Datos</em><span class="marquee-dot"></span><em>Producción de TV</em><span class="marquee-dot"></span><em>Branding</em><span class="marquee-dot"></span><em>Curiosidad</em><span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- QUIÉN SOY EDITORIAL -->
+  <section class="ed-about">
     <div class="wrap">
-      <div class="intro-section reveal">
-        <div class="intro-photo">[Foto personal]</div>
-        <div>
-          <span class="section-label">Quién soy</span>
-          <p>Soy comunicadora. Y curiosa.</p>
+      <div class="ed-about-grid">
+        <div class="ed-photo-frame reveal">
+          <div class="ed-photo">[Foto personal]</div>
+        </div>
+        <div class="reveal">
+          <p class="ed-pull-quote">Soy comunicadora. Y curiosa.</p>
           <p>Me gusta investigar, resolver problemas y aprender algo nuevo todo el tiempo — sobre una marca, sobre un dato, o sobre mí misma.</p>
           <p>Estudié en la Universidad Nacional de Quilmes. Hoy trabajo como Marketing Manager, pero este portfolio va más allá de un cargo: producción de TV, redacción, diseño y datos, todo en la misma persona.</p>
           <a href="andy-furgeri-sobre-mi.html" class="case-link">Conocé más sobre mí →</a>
@@ -900,62 +1133,53 @@
     </div>
   </section>
 
-  <!-- ATAJOS -->
-  <section class="section-tint-coral" style="padding-top:0;">
+  <!-- BENTO ROTO -->
+  <section style="padding-top:0;">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="section-label">Portfolio</span>
         <h2>Y esto es solo una parte.</h2>
       </div>
-      <div class="shortcuts-grid shortcuts-bento reveal">
-        <a href="andy-furgeri-portfolio.html" class="shortcut-card shortcut-big">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#2DD4BF" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#2DD4BF" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#2DD4BF" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#2DD4BF" stroke-width="1.6"/></svg>
+
+      <div class="ed-bento reveal">
+        <a href="andy-furgeri-portfolio.html" class="ed-card ed-card-xl ed-fill-1">
+          <span class="ed-num">01</span>
           <h3>Portfolio</h3>
           <p>Trabajo real, marca por marca — con el detrás de escena, no solo el resultado final.</p>
         </a>
-        <a href="andy-furgeri-servicios.html" class="shortcut-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 20L11 6L15 15L22 4" stroke="#A78BFA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="andy-furgeri-servicios.html" class="ed-card ed-card-md ed-fill-2">
+          <span class="ed-num">02</span>
           <h3>Servicios</h3>
           <p>Contenido, campañas y branding</p>
         </a>
-        <a href="andy-furgeri-produccion-tv.html" class="shortcut-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="13" rx="2" stroke="#FB7185" stroke-width="1.6"/><path d="M8 21h8" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <a href="andy-furgeri-produccion-tv.html" class="ed-card ed-card-sm ed-fill-3 ed-card-tilt">
+          <span class="ed-num">03</span>
           <h3>Producción TV</h3>
           <p>Experiencia práctica universitaria</p>
         </a>
-        <a href="andy-furgeri-notas.html" class="shortcut-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="#FBBF24" stroke-width="1.6"/><path d="M8 9h8M8 13h5" stroke="#FBBF24" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <a href="andy-furgeri-notas.html" class="ed-card ed-card-sm ed-fill-4">
+          <span class="ed-num">04</span>
           <h3>Notas</h3>
           <p>Redacción y publicaciones</p>
         </a>
-        <a href="andy-furgeri-sobre-mi.html" class="shortcut-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#6D5FF7" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#6D5FF7" stroke-width="1.6"/></svg>
+        <a href="andy-furgeri-sobre-mi.html" class="ed-card ed-card-xl ed-fill-outline">
+          <span class="ed-num">05</span>
           <h3>Sobre mí</h3>
-          <p>Formación y trayectoria</p>
+          <p>Formación y trayectoria — de dónde vengo y hacia dónde voy.</p>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- CREDIBILITY STRIP -->
-  <div class="strip reveal">
-    <div class="wrap">
-      <div><span>Comunicación</span> · Estrategia y redacción</div>
-      <div><span>Marketing Digital</span> · Contenido y campañas</div>
-      <div><span>Producción de TV</span> · Experiencia audiovisual</div>
-      <div><span>Branding</span> · Identidad visual</div>
-    </div>
-  </div>
-
   <!-- CONTACTO -->
   <section id="contacto-preview">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-label">Contacto</span>
-        <h2>¿Trabajamos juntos?</h2>
-        <p>Para un proyecto, una consulta, una propuesta laboral o simplemente para conectar.</p>
-      </div>
+    <div class="ed-statement">
+      <span class="section-label">Contacto</span>
+      <h2>¿Trabajamos <span class="hl">juntos</span>?</h2>
+      <p style="color:var(--text-2); max-width:480px; margin:0 auto;">Para un proyecto, una consulta, una propuesta laboral, o simplemente para conectar.</p>
+    </div>
 
+    <div class="wrap">
       <div class="contact-grid">
         <div class="reveal">
           <h3 style="font-size:18px; margin-bottom:8px;">Contacto directo</h3>
