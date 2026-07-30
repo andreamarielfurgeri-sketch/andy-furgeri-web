@@ -756,6 +756,24 @@
   }
   .section-tint-coral .wrap{ position:relative; }
 
+  .section-tint-gold{ position:relative; }
+  .section-tint-gold::before{
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at 90% 10%, rgba(251,191,36,0.06), transparent 55%);
+    pointer-events:none;
+  }
+  .section-tint-gold .wrap{ position:relative; }
+
+  .section-tint-cyan{ position:relative; }
+  .section-tint-cyan::before{
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at 10% 90%, rgba(34,211,238,0.07), transparent 55%);
+    pointer-events:none;
+  }
+  .section-tint-cyan .wrap{ position:relative; }
+
 
   /* ---- Contact form (Home) ---- */
   .contact-grid{
@@ -1057,10 +1075,10 @@
   }
 
   /* Degradés diagonales por sección — reemplazan el fondo plano único */
-  .diag-1{ background: linear-gradient(135deg, #241968 0%, #B45309 100%); }
+  .diag-1{ background: linear-gradient(135deg, #271A66 0%, #2E2178 100%); }
   .diag-2{ background: linear-gradient(135deg, #1B4B6B 0%, #1F6B63 55%, #241968 100%); }
   .diag-3{ background: linear-gradient(135deg, #241968 0%, #7A2F55 55%, #3B2E8C 100%); }
-  .diag-4{ background: linear-gradient(135deg, #241968 0%, #15803D 100%); }
+  .diag-4{ background: linear-gradient(135deg, #271A66 0%, #2E2178 100%); }
 
   /* Elementos flotantes tipo "sticker", con movimiento sutil */
   .floaty{
@@ -1179,7 +1197,7 @@
 <main>
 
   <!-- HERO EDITORIAL -->
-  <section class="ed-hero">
+  <section class="ed-hero section-tint-cyan">
     <div class="wrap">
       <div class="color-panel diag-1 texture-lines">
         <div class="ed-blob ed-blob-1"></div>
@@ -1209,7 +1227,7 @@
   </div>
 
   <!-- QUIÉN SOY EDITORIAL -->
-  <section class="ed-about">
+  <section class="ed-about section-tint-teal">
     <div class="floaty sticker-dot" style="top:10%; right:8%;"></div>
     <div class="floaty floaty-slow sticker-ring" style="bottom:10%; left:4%; width:44px; height:44px;"></div>
     <div class="wrap">
@@ -1228,7 +1246,7 @@
   </section>
 
   <!-- BENTO ROTO -->
-  <section style="padding-top:0; position:relative;">
+  <section class="section-tint-coral" style="padding-top:0; position:relative;">
     <div class="floaty sticker-dot" style="top:8%; left:6%;"></div>
     <div class="wrap">
       <div class="section-head reveal">
@@ -1267,7 +1285,7 @@
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto-preview" style="position:relative;">
+  <section id="contacto-preview" class="section-tint-gold" style="position:relative;">
     <div class="wrap" style="margin-bottom:56px;">
       <div class="color-panel diag-4" style="text-align:center;">
         <div class="floaty sticker-diamond" style="top:12%; left:8%;"></div>
