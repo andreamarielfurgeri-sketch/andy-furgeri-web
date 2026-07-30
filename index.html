@@ -822,7 +822,7 @@
   /* ---- Hero editorial: tipografía gigante, asimétrico ---- */
   .ed-hero{
     position:relative;
-    padding:200px 0 160px;
+    padding:120px 0 60px;
     overflow:hidden;
   }
   .ed-hero-wrap{
@@ -1118,6 +1118,20 @@
     pointer-events:none;
   }
 
+
+  /* Paneles contenidos con color — reemplaza el fondo de sección a todo lo ancho */
+  .color-panel{
+    border-radius:28px;
+    padding:56px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.14);
+  }
+  .color-panel.texture-dots::after, .color-panel.texture-lines::after{ border-radius:28px; }
+  @media (max-width: 640px){
+    .color-panel{ padding:32px 24px; border-radius:20px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1167,21 +1181,23 @@
 <main>
 
   <!-- HERO EDITORIAL -->
-  <section class="ed-hero diag-1 texture-lines">
-    <div class="ed-blob ed-blob-1"></div>
-    <div class="ed-blob ed-blob-2"></div>
-    <div class="floaty sticker-ring" style="top:18%; right:12%;"></div>
-    <div class="floaty floaty-slow sticker-diamond" style="bottom:16%; right:28%;"></div>
-    <div class="ed-hero-wrap">
-      <span class="ed-eyebrow">Portfolio de Andy Furgeri</span>
-      <h1>
-        <span class="ln1">Cada marca tiene una personalidad.</span>
-        <span class="ln2">Mi trabajo es hacer que la gente también la vea.</span>
-      </h1>
-      <p class="ed-hero-sub">Comunicadora Social · Marketing Manager · Contenido · Paid Media (Meta & Google Ads) · Branding</p>
-      <div class="ed-hero-ctas">
-        <a href="andy-furgeri-portfolio.html" class="btn btn-primary">Ver mi trabajo</a>
-        <a href="andy-furgeri-contacto.html" class="btn btn-ghost">Conversemos</a>
+  <section class="ed-hero">
+    <div class="wrap">
+      <div class="color-panel diag-1 texture-lines">
+        <div class="ed-blob ed-blob-1"></div>
+        <div class="ed-blob ed-blob-2"></div>
+        <div class="floaty sticker-ring" style="top:18%; right:12%;"></div>
+        <div class="floaty floaty-slow sticker-diamond" style="bottom:16%; right:28%;"></div>
+        <span class="ed-eyebrow">Portfolio de Andy Furgeri</span>
+        <h1>
+          <span class="ln1">Cada marca tiene una personalidad.</span>
+          <span class="ln2">Mi trabajo es hacer que la gente también la vea.</span>
+        </h1>
+        <p class="ed-hero-sub">Comunicadora Social · Marketing Manager · Contenido · Paid Media (Meta & Google Ads) · Branding</p>
+        <div class="ed-hero-ctas">
+          <a href="andy-furgeri-portfolio.html" class="btn btn-primary">Ver mi trabajo</a>
+          <a href="andy-furgeri-contacto.html" class="btn btn-ghost">Conversemos</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1195,7 +1211,7 @@
   </div>
 
   <!-- QUIÉN SOY EDITORIAL -->
-  <section class="ed-about diag-2">
+  <section class="ed-about">
     <div class="floaty sticker-dot" style="top:10%; right:8%;"></div>
     <div class="floaty floaty-slow sticker-ring" style="bottom:10%; left:4%; width:44px; height:44px;"></div>
     <div class="wrap">
@@ -1214,7 +1230,7 @@
   </section>
 
   <!-- BENTO ROTO -->
-  <section class="diag-3 texture-dots" style="padding-top:0; position:relative;">
+  <section style="padding-top:0; position:relative;">
     <div class="floaty sticker-dot" style="top:8%; left:6%;"></div>
     <div class="wrap">
       <div class="section-head reveal">
@@ -1253,12 +1269,14 @@
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto-preview" class="diag-4" style="position:relative;">
-    <div class="floaty sticker-diamond" style="top:12%; left:8%;"></div>
-    <div class="ed-statement">
-      <span class="section-label">Contacto</span>
-      <h2>¿Trabajamos <span class="hl">juntos</span>?</h2>
-      <p style="color:var(--text-2); max-width:480px; margin:0 auto;">Para un proyecto, una consulta, una propuesta laboral, o simplemente para conectar.</p>
+  <section id="contacto-preview" style="position:relative;">
+    <div class="wrap" style="margin-bottom:56px;">
+      <div class="color-panel diag-4" style="text-align:center;">
+        <div class="floaty sticker-diamond" style="top:12%; left:8%;"></div>
+        <span class="section-label">Contacto</span>
+        <h2 style="font-size:clamp(28px, 5vw, 52px); line-height:1.1; letter-spacing:-0.02em; max-width:700px; margin:0 auto 20px;">¿Trabajamos <span class="hl">juntos</span>?</h2>
+        <p style="color:var(--text-2); max-width:480px; margin:0 auto;">Para un proyecto, una consulta, una propuesta laboral, o simplemente para conectar.</p>
+      </div>
     </div>
 
     <div class="wrap">
