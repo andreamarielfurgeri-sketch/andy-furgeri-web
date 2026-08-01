@@ -663,6 +663,10 @@
     grid-template-columns:repeat(3, 1fr);
     gap:18px;
   }
+  .services-teaser-4{ grid-template-columns:repeat(4, 1fr); }
+  @media (max-width: 960px){
+    .services-teaser-4{ grid-template-columns:repeat(2, 1fr); }
+  }
   @media (max-width: 760px){
     .services-teaser-grid{ grid-template-columns:1fr; }
   }
@@ -677,9 +681,21 @@
     .process-grid{ grid-template-columns:1fr; gap:28px; }
   }
   .process-item{
-    border-top:1px solid var(--line);
-    padding-top:22px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 22px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
+  .process-grid > .process-item:nth-child(1){ border-color:var(--accent); border-top:3px solid var(--accent); }
+  .process-grid > .process-item:nth-child(1) .process-num{ color:var(--accent); }
+  .process-grid > .process-item:nth-child(2){ border-color:var(--c-teal); border-top:3px solid var(--c-teal); }
+  .process-grid > .process-item:nth-child(2) .process-num{ color:var(--c-teal); }
+  .process-grid > .process-item:nth-child(3){ border-color:var(--c-coral); border-top:3px solid var(--c-coral); }
+  .process-grid > .process-item:nth-child(3) .process-num{ color:var(--c-coral); }
+  .process-grid > .process-item:nth-child(4){ border-color:var(--c-orange); border-top:3px solid var(--c-orange); }
+  .process-grid > .process-item:nth-child(4) .process-num{ color:var(--c-orange); }
   .process-num{
     font-family:'Space Grotesk', sans-serif;
     font-size:13px;
@@ -842,7 +858,7 @@
         <span class="section-label">Servicios</span>
         <h2 class="display-serif">En qué te puedo ayudar</h2>
       </div>
-      <div class="services-teaser-grid reveal">
+      <div class="services-teaser-grid services-teaser-4 reveal">
         <a href="andy-furgeri-servicios.html" class="ed-card ed-fill-1" style="min-height:200px;">
           <span class="ed-num">01</span>
           <h3>Creación de contenido</h3>
@@ -857,6 +873,11 @@
           <span class="ed-num">03</span>
           <h3>Branding y diseño</h3>
           <p>Identidad visual y piezas coherentes con la imagen de tu negocio.</p>
+        </a>
+        <a href="andy-furgeri-servicios.html" class="ed-card ed-fill-4" style="min-height:200px;">
+          <span class="ed-num">04</span>
+          <h3>Análisis de métricas</h3>
+          <p>Estudio de tendencias y competencia para tomar mejores decisiones.</p>
         </a>
       </div>
     </div>
