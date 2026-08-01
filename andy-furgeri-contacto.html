@@ -683,7 +683,7 @@
   .form-row{ display:flex; flex-direction:column; gap:8px; }
   .form-row label{ font-size:13px; color:var(--text-2); }
   .form-row input, .form-row select, .form-row textarea{
-    background:var(--bg-2);
+    background: rgba(5,4,8,0.45);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border:1px solid rgba(255,255,255,0.18);
@@ -694,6 +694,10 @@
     font-size:14.5px;
     transition: border-color 0.25s var(--ease);
   }
+  .form-row input::placeholder, .form-row textarea::placeholder{
+    color:rgba(245,244,240,0.4);
+  }
+  .form-row select{ color:rgba(245,244,240,0.75); }
   .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
     outline:none;
     border-color:var(--accent);
@@ -759,6 +763,9 @@
     position:relative;
     overflow:hidden;
     border:1px solid rgba(255,255,255,0.14);
+    background: rgba(5,4,8,0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   .color-panel.texture-dots::after, .color-panel.texture-lines::after{ border-radius:28px; }
   .diag-1{ background:transparent; }
