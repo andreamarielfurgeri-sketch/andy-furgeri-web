@@ -44,7 +44,7 @@
     position:fixed;
     inset:0;
     z-index:-2;
-    background: linear-gradient(135deg, #D9667A 0%, #8C4F87 32%, #4A3496 58%, #241968 80%, #1B1345 100%);
+    background: linear-gradient(160deg, #5C6B6A 0%, #7C86C9 45%, #3B3496 75%, #241968 100%);
   }
 
   .grain-overlay{
@@ -1033,6 +1033,56 @@
     margin:64px 0;
   }
 
+
+
+  /* ---- Sistema visual unificado (paneles, flotantes, Fraunces) ---- */
+  .display-serif{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .color-panel{
+    border-radius:28px;
+    padding:56px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.14);
+  }
+  .color-panel.texture-dots::after, .color-panel.texture-lines::after{ border-radius:28px; }
+  .diag-1{ background: linear-gradient(135deg, #271A66 0%, #2E2178 100%); }
+  .diag-2{ background: linear-gradient(135deg, #1B4B6B 0%, #1F6B63 55%, #241968 100%); }
+  .diag-3{ background: linear-gradient(135deg, #241968 0%, #7A2F55 55%, #3B2E8C 100%); }
+  .diag-4{ background: linear-gradient(135deg, #271A66 0%, #2E2178 100%); }
+  .floaty{
+    position:absolute;
+    pointer-events:none;
+    animation: floaty-move 7s ease-in-out infinite;
+  }
+  .floaty-slow{ animation-duration:10s; }
+  @keyframes floaty-move{
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-18px) rotate(6deg); }
+  }
+  .sticker-ring{
+    width:64px; height:64px;
+    border:3px solid var(--accent-cyan);
+    border-radius:50%;
+    opacity:0.55;
+  }
+  .sticker-dot{
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--accent-coral);
+    opacity:0.6;
+  }
+  .sticker-diamond{
+    width:26px; height:26px;
+    background:var(--accent-gold);
+    opacity:0.55;
+    transform:rotate(45deg);
+    border-radius:6px;
+  }
+
 </style>
 </head>
 <body>
@@ -1082,9 +1132,14 @@
 
   <section class="page-hero">
     <div class="wrap">
-      <span class="section-label">Portfolio</span>
-      <h1>Trabajo real, por marca</h1>
-      <p>Entrá a cada una para ver el contenido, las campañas y el trabajo que hice.</p>
+      <div class="color-panel diag-1 texture-lines">
+        <div class="floaty sticker-ring" style="top:15%; right:10%; width:44px; height:44px;"></div>
+        <div class="floaty floaty-slow sticker-dot" style="bottom:15%; right:22%;"></div>
+        <span class="section-label">Portfolio</span>
+        <h1 class="display-serif">Trabajo real, por marca</h1>
+        <p>Entrá a cada una para ver el contenido, las campañas y el trabajo que hice.</p>
+    
+      </div>
     </div>
   </section>
 
