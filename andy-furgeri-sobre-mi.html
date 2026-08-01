@@ -10,18 +10,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #120B36;
-    --bg-2: rgba(255,255,255,0.16);
-    --bg-2-translucent: rgba(255,255,255,0.14);
-    --text: #F5F5F7;
-    --text-2: #B8B2DE;
-    --accent: #A78BFA;
-    --accent-2: #6D5FF7;
-    --accent-deep: #3B4CCA;
-    --glow: #D6C9FF;
-    --accent-teal: #2DD4BF;
-    --accent-coral: #FB7185;
-    --accent-gold: #FBBF24;
+    --bg: #0B0A10;
+    --bg-deep: #050408;
+    --bg-2: rgba(255,255,255,0.06);
+    --text: #F5F4F0;
+    --text-2: #9799A6;
+    --accent: #7C5CFC;
+    --accent-soft: #B9A6FF;
+    --accent-deep: #3B2472;
+    --c-coral: #F0555C;
+    --c-orange: #FF8A3D;
+    --c-green: #2ECC71;
+    --c-white: #F0EEF5;
+    --c-teal: #2DD4BF;
+    --line: rgba(245,244,240,0.12);
+    /* Alias de compatibilidad con el sistema anterior */
+    --accent-teal: var(--c-teal);
+    --accent-coral: var(--c-coral);
+    --accent-gold: var(--c-orange);
+    --accent-2: var(--accent-soft);
+    --accent-blue: var(--accent);
+    --accent-cyan: var(--c-teal);
+    --accent-magenta: var(--c-coral);
+    --glow: var(--accent-soft);
+    --bg-2-translucent: var(--bg-2);
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -44,7 +56,8 @@
     position:fixed;
     inset:0;
     z-index:-2;
-    background: linear-gradient(160deg, #5C6B6A 0%, #7C86C9 45%, #3B3496 75%, #241968 100%);
+    background:
+      linear-gradient(180deg, #2DD4BF 0%, #6C5CE7 20%, #14121B 52%, var(--bg-deep) 100%);
   }
 
   .grain-overlay{
@@ -52,7 +65,7 @@
     inset:0;
     z-index:50;
     pointer-events:none;
-    opacity:0.09;
+    opacity:0.035;
     mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
@@ -90,9 +103,9 @@
   }
 
   header.scrolled{
-    background:rgba(18,11,54,0.5);
+    background:rgba(15,17,22,0.6);
     backdrop-filter: blur(20px);
-    border-bottom:1px solid rgba(255,255,255,0.14);
+    border-bottom:1px solid var(--line);
   }
 
   header .wrap{
@@ -128,7 +141,7 @@
     background:#FFFFFF;
     padding:11px 26px;
     border-radius:100px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   }
 
   .nav-links a{
@@ -196,7 +209,7 @@
       position:fixed;
       top:73px;
       left:0; right:0;
-      background:rgba(18,11,54,0.85);
+      background:rgba(15,17,22,0.92);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom:1px solid rgba(255,255,255,0.16);
@@ -718,11 +731,11 @@
     width:58px;
     height:58px;
     border-radius:50%;
-    background:linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    background:linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow: 0 4px 24px rgba(167,139,250,0.4), 0 0 0 0 rgba(167,139,250,0.5);
+    box-shadow: 0 4px 24px rgba(139,92,246,0.35);
     transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
     animation: wa-pulse 2.8s ease-in-out infinite;
   }
@@ -763,10 +776,10 @@
     border:1px solid rgba(255,255,255,0.14);
   }
   .color-panel.texture-dots::after, .color-panel.texture-lines::after{ border-radius:28px; }
-  .diag-1{ background: linear-gradient(135deg, #271A66 0%, #2E2178 100%); }
-  .diag-2{ background: linear-gradient(135deg, #1B4B6B 0%, #1F6B63 55%, #241968 100%); }
-  .diag-3{ background: linear-gradient(135deg, #241968 0%, #7A2F55 55%, #3B2E8C 100%); }
-  .diag-4{ background: linear-gradient(135deg, #271A66 0%, #2E2178 100%); }
+  .diag-1{ background:transparent; }
+  .diag-2{ background:transparent; }
+  .diag-3{ background:transparent; }
+  .diag-4{ background:transparent; }
   .floaty{
     position:absolute;
     pointer-events:none;
@@ -846,9 +859,7 @@
 
   <section class="page-hero">
     <div class="wrap">
-      <div class="color-panel diag-1 texture-lines">
-        <div class="floaty sticker-ring" style="top:15%; right:10%; width:44px; height:44px;"></div>
-        <div class="floaty floaty-slow sticker-dot" style="bottom:15%; right:22%;"></div>
+      <div class="color-panel diag-1">
         <span class="section-label">Sobre mí</span>
         <h1 class="display-serif">Comunicadora primero. Marketer, después.</h1>
         
