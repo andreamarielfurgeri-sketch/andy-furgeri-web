@@ -885,6 +885,38 @@
     color:#FFFFFF;
   }
 
+
+  /* ---- Mosaico decorativo del Hero (estilo Canva) ---- */
+  .hero-mosaic{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .hero-mosaic .htile{
+    position:absolute;
+    border-radius:16px;
+    padding:14px 18px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    line-height:1.3;
+    max-width:150px;
+    opacity:0.9;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .htile-1{ background:var(--accent); color:#FFFFFF; top:4%; left:2%; transform:rotate(-6deg); }
+  .htile-2{ background:var(--c-teal); color:#0B0A10; top:8%; right:3%; transform:rotate(5deg); }
+  .htile-3{ background:var(--c-coral); color:#FFFFFF; bottom:10%; left:4%; transform:rotate(4deg); }
+  .htile-4{ background:var(--c-orange); color:#0B0A10; bottom:6%; right:6%; transform:rotate(-5deg); }
+  .htile-5{ background:var(--c-white); color:#0B0A10; top:42%; left:-2%; transform:rotate(-3deg); }
+  .htile-6{ background:var(--accent-deep); color:#FFFFFF; top:38%; right:-2%; transform:rotate(3deg); }
+
+  @media (max-width: 860px){
+    .hero-mosaic .htile{ display:none; }
+  }
+
 </style>
 </head>
 <body>
@@ -935,6 +967,14 @@
 
   <!-- HERO EDITORIAL — único gran momento de color -->
   <section class="ed-hero">
+    <div class="hero-mosaic">
+      <div class="htile htile-1">Content that connects</div>
+      <div class="htile htile-2">Data that decides</div>
+      <div class="htile htile-3">Brand with personality</div>
+      <div class="htile htile-4">Campaigns that convert</div>
+      <div class="htile htile-5">Ideas with judgment</div>
+      <div class="htile htile-6">Design with intent</div>
+    </div>
     <div class="wrap">
       <div class="color-panel diag-1">
         <span class="ed-eyebrow">Andy Furgeri's Portfolio</span>
