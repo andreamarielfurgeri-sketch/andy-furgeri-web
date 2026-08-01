@@ -398,7 +398,7 @@
 
   form{ display:flex; flex-direction:column; gap:20px; }
   .form-row{ display:flex; flex-direction:column; gap:8px; }
-  .form-row label{ font-size:13px; color:var(--text-2); }
+  .form-row label{ font-size:13px; color:var(--accent-soft); font-weight:500; }
   .form-row input, .form-row select, .form-row textarea{
     background: rgba(5,4,8,0.45);
     backdrop-filter: blur(16px);
@@ -813,6 +813,78 @@
     .lang-switch{ order:-1; margin-right:auto; }
   }
 
+
+  /* ---- Desplegable personalizado ---- */
+  .custom-select{
+    position:relative;
+  }
+  .custom-select-trigger{
+    width:100%;
+    text-align:left;
+    background: rgba(5,4,8,0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px;
+    padding:13px 16px;
+    color:rgba(245,244,240,0.75);
+    font-family:'Inter', sans-serif;
+    font-size:14.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    transition: border-color 0.25s var(--ease);
+  }
+  .custom-select-trigger.filled{ color:var(--text); }
+  .custom-select-trigger:hover{ border-color:var(--accent-soft); }
+  .custom-select.open .custom-select-trigger{ border-color:var(--accent-soft); }
+  .custom-select-trigger svg{
+    flex-shrink:0;
+    transition: transform 0.25s var(--ease);
+  }
+  .custom-select.open .custom-select-trigger svg{ transform:rotate(180deg); }
+
+  .custom-select-options{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0; right:0;
+    background: rgba(10,9,16,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:12px;
+    padding:6px;
+    z-index:30;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition: max-height 0.25s var(--ease), opacity 0.2s var(--ease);
+  }
+  .custom-select.open .custom-select-options{
+    max-height:320px;
+    opacity:1;
+    pointer-events:auto;
+  }
+  .custom-select-option{
+    padding:11px 14px;
+    border-radius:8px;
+    font-size:14px;
+    color:rgba(245,244,240,0.8);
+    cursor:pointer;
+    transition: background 0.15s var(--ease), color 0.15s var(--ease);
+  }
+  .custom-select-option:hover{
+    background: rgba(124,92,252,0.18);
+    color:var(--text);
+  }
+  .custom-select-option.selected{
+    background: var(--accent);
+    color:#FFFFFF;
+  }
+
 </style>
 </head>
 <body>
@@ -1066,16 +1138,22 @@
             <input id="home-negocio" type="text" placeholder="Your business or company name">
           </div>
           <div class="form-row">
-            <label for="home-tipo">What do you need?</label>
-            <select id="home-tipo">
-              <option value="">Choose an option</option>
-              <option value="contenido">Content creation</option>
-              <option value="campanas">Campaign management</option>
-              <option value="branding">Branding &amp; design</option>
-              <option value="analisis">Metrics analysis</option>
-              <option value="laboral">Job offer</option>
-              <option value="otro">Other / not sure</option>
-            </select>
+            <label for="home-tipo-trigger">What do you need?</label>
+            <div class="custom-select" id="home-tipo-select">
+              <button type="button" class="custom-select-trigger" id="home-tipo-trigger">
+                <span class="cst-label">Choose an option</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="custom-select-options">
+                <div class="custom-select-option" data-value="contenido">Content creation</div>
+                <div class="custom-select-option" data-value="campanas">Campaign management</div>
+                <div class="custom-select-option" data-value="branding">Branding &amp; design</div>
+                <div class="custom-select-option" data-value="analisis">Metrics analysis</div>
+                <div class="custom-select-option" data-value="laboral">Job offer</div>
+                <div class="custom-select-option" data-value="otro">Other / not sure</div>
+              </div>
+              <input type="hidden" id="home-tipo" name="tipo" value="">
+            </div>
           </div>
           <div class="form-row">
             <label for="home-mensaje">Message</label>
@@ -1137,6 +1215,34 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // Custom dropdown
+  document.querySelectorAll('.custom-select').forEach(wrap => {
+    const trigger = wrap.querySelector('.custom-select-trigger');
+    const label = trigger.querySelector('.cst-label');
+    const hidden = wrap.querySelector('input[type="hidden"]');
+    const options = wrap.querySelectorAll('.custom-select-option');
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.custom-select.open').forEach(o => { if (o !== wrap) o.classList.remove('open'); });
+      wrap.classList.toggle('open');
+    });
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        label.textContent = opt.textContent;
+        hidden.value = opt.dataset.value;
+        trigger.classList.add('filled');
+        wrap.classList.remove('open');
+      });
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.custom-select.open').forEach(o => o.classList.remove('open'));
+  });
 </script>
 
 </body>
