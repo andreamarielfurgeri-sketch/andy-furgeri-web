@@ -656,6 +656,106 @@
     .color-panel{ padding:32px 24px; border-radius:20px; }
   }
 
+
+  /* ---- Servicios teaser (Home) ---- */
+  .services-teaser-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  @media (max-width: 760px){
+    .services-teaser-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---- Cómo trabajo (Home) ---- */
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:32px;
+  }
+  @media (max-width: 760px){
+    .process-grid{ grid-template-columns:1fr; gap:28px; }
+  }
+  .process-item{
+    border-top:1px solid var(--line);
+    padding-top:22px;
+  }
+  .process-num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:13px;
+    color:var(--accent-soft);
+    display:block;
+    margin-bottom:14px;
+  }
+  .process-item h3{ font-size:17px; margin-bottom:8px; }
+  .process-item p{ font-size:14px; color:var(--text-2); line-height:1.6; }
+
+  /* ---- Portfolio preview con fotos reales (Home) ---- */
+  .portfolio-preview-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  @media (max-width: 760px){
+    .portfolio-preview-grid{ grid-template-columns:1fr; }
+  }
+  .portfolio-preview-card{
+    position:relative;
+    border-radius:18px;
+    overflow:hidden;
+    aspect-ratio:4/3;
+    display:block;
+    border:1px solid var(--line);
+  }
+  .portfolio-preview-card img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform 0.4s var(--ease);
+  }
+  .portfolio-preview-card:hover img{ transform:scale(1.06); }
+  .ppc-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 35%, rgba(5,4,8,0.9) 100%);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:20px;
+  }
+  .ppc-overlay span{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--accent-soft);
+    margin-bottom:4px;
+  }
+  .ppc-overlay h3{ font-size:17px; color:#FFFFFF; }
+
+  /* ---- Skill tags en Sobre mí (Home) ---- */
+  .about-skill-groups{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin:28px 0;
+  }
+  .skill-group-label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-2);
+    display:block;
+    margin-bottom:10px;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-chip{
+    font-size:13px;
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:7px 14px;
+    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .skill-chip:hover{ border-color:var(--accent-soft); color:var(--accent-soft); }
+
 </style>
 </head>
 <body>
@@ -729,7 +829,100 @@
     </div>
   </div>
 
-  <!-- QUIÉN SOY EDITORIAL -->
+  <!-- SERVICIOS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-label">Servicios</span>
+        <h2 class="display-serif">En qué te puedo ayudar</h2>
+      </div>
+      <div class="services-teaser-grid reveal">
+        <a href="andy-furgeri-servicios.html" class="ed-card ed-fill-1" style="min-height:200px;">
+          <span class="ed-num">01</span>
+          <h3>Creación de contenido</h3>
+          <p>Contenido para redes sociales pensado para generar clientes, no solo alcance.</p>
+        </a>
+        <a href="andy-furgeri-servicios.html" class="ed-card ed-fill-2" style="min-height:200px;">
+          <span class="ed-num">02</span>
+          <h3>Gestión de campañas</h3>
+          <p>Meta Ads y Google Ads con foco en conseguir consultas y ventas reales.</p>
+        </a>
+        <a href="andy-furgeri-servicios.html" class="ed-card ed-fill-3" style="min-height:200px;">
+          <span class="ed-num">03</span>
+          <h3>Branding y diseño</h3>
+          <p>Identidad visual y piezas coherentes con la imagen de tu negocio.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJO -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-label">Cómo trabajo</span>
+        <h2 class="display-serif">De la idea al resultado, en cuatro pasos</h2>
+      </div>
+      <div class="process-grid reveal">
+        <div class="process-item">
+          <span class="process-num">01</span>
+          <h3>Diagnóstico</h3>
+          <p>Entiendo tu negocio real, tu competencia local y dónde se están perdiendo oportunidades.</p>
+        </div>
+        <div class="process-item">
+          <span class="process-num">02</span>
+          <h3>Estrategia</h3>
+          <p>Defino qué contenido, qué campaña y qué inversión tienen sentido para vos.</p>
+        </div>
+        <div class="process-item">
+          <span class="process-num">03</span>
+          <h3>Ejecución</h3>
+          <p>Produzco el contenido, gestiono las campañas y diseño las piezas necesarias.</p>
+        </div>
+        <div class="process-item">
+          <span class="process-num">04</span>
+          <h3>Medición</h3>
+          <p>Reviso qué funcionó y qué no, y ajusto — sin reportes de veinte páginas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO PREVIEW -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-label">Portfolio</span>
+        <h2 class="display-serif">Proyectos reales, resultados concretos</h2>
+      </div>
+      <div class="portfolio-preview-grid reveal">
+        <a href="andy-furgeri-portfolio-chapa.html" class="portfolio-preview-card">
+          <img src="assets/portfolio/emporio-chapa-01.png" alt="El Gran Emporio de la Chapa" loading="lazy">
+          <div class="ppc-overlay">
+            <span>Cliente</span>
+            <h3>El Gran Emporio de la Chapa</h3>
+          </div>
+        </a>
+        <a href="andy-furgeri-portfolio-rach.html" class="portfolio-preview-card">
+          <img src="assets/portfolio/rach-01.png" alt="Rach" loading="lazy">
+          <div class="ppc-overlay">
+            <span>Cliente</span>
+            <h3>Rach</h3>
+          </div>
+        </a>
+        <a href="andy-furgeri-portfolio-merimat.html" class="portfolio-preview-card">
+          <img src="assets/portfolio/merimat-01.png" alt="Merimat del Sur" loading="lazy">
+          <div class="ppc-overlay">
+            <span>Cliente</span>
+            <h3>Merimat del Sur</h3>
+          </div>
+        </a>
+      </div>
+      <a href="andy-furgeri-portfolio.html" class="case-link" style="margin-top:32px; display:inline-flex;">Ver todo el portfolio →</a>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
   <section class="ed-about">
     <div class="wrap">
       <div class="ed-about-grid">
@@ -740,46 +933,30 @@
           <p class="ed-pull-quote">Soy comunicadora. Y curiosa.</p>
           <p>Me gusta investigar, resolver problemas y aprender algo nuevo todo el tiempo — sobre una marca, sobre un dato, o sobre mí misma.</p>
           <p>Estudié en la Universidad Nacional de Quilmes. Hoy trabajo como Marketing Manager, pero este portfolio va más allá de un cargo: producción de TV, redacción, diseño y datos, todo en la misma persona.</p>
+
+          <div class="about-skill-groups">
+            <div>
+              <span class="skill-group-label">Comunicación &amp; Marketing</span>
+              <div class="tag-row">
+                <span class="skill-chip">Contenido para redes</span>
+                <span class="skill-chip">Meta Ads</span>
+                <span class="skill-chip">Google Ads</span>
+                <span class="skill-chip">Branding</span>
+              </div>
+            </div>
+            <div>
+              <span class="skill-group-label">Herramientas</span>
+              <div class="tag-row">
+                <span class="skill-chip">Power BI</span>
+                <span class="skill-chip">Análisis de datos</span>
+                <span class="skill-chip">IA generativa</span>
+                <span class="skill-chip">Automatización</span>
+              </div>
+            </div>
+          </div>
+
           <a href="andy-furgeri-sobre-mi.html" class="case-link">Conocé más sobre mí →</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENTO -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-label">Portfolio</span>
-        <h2 class="display-serif">Y esto es solo una parte.</h2>
-      </div>
-
-      <div class="ed-bento reveal">
-        <a href="andy-furgeri-portfolio.html" class="ed-card ed-card-xl ed-fill-1">
-          <span class="ed-num">01</span>
-          <h3>Portfolio</h3>
-          <p>Trabajo real, marca por marca — con el detrás de escena, no solo el resultado final.</p>
-        </a>
-        <a href="andy-furgeri-servicios.html" class="ed-card ed-card-md ed-fill-2">
-          <span class="ed-num">02</span>
-          <h3>Servicios</h3>
-          <p>Contenido, campañas y branding</p>
-        </a>
-        <a href="andy-furgeri-produccion-tv.html" class="ed-card ed-card-sm ed-fill-3 ed-card-tilt">
-          <span class="ed-num">03</span>
-          <h3>Producción TV</h3>
-          <p>Experiencia práctica universitaria</p>
-        </a>
-        <a href="andy-furgeri-notas.html" class="ed-card ed-card-sm ed-fill-4">
-          <span class="ed-num">04</span>
-          <h3>Notas</h3>
-          <p>Redacción y publicaciones</p>
-        </a>
-        <a href="andy-furgeri-sobre-mi.html" class="ed-card ed-card-xl ed-fill-outline">
-          <span class="ed-num">05</span>
-          <h3>Sobre mí</h3>
-          <p>Formación y trayectoria — de dónde vengo y hacia dónde voy.</p>
-        </a>
       </div>
     </div>
   </section>
