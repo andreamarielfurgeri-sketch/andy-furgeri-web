@@ -790,6 +790,27 @@
     border-radius:6px;
   }
 
+
+
+  /* ---- Selector de idioma ---- */
+  .lang-switch{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    color:var(--text-2);
+  }
+  .lang-switch a{
+    padding:4px 6px;
+    transition:color 0.25s var(--ease);
+  }
+  .lang-switch a:hover{ color:var(--text); }
+  .lang-switch a.active{ color:var(--text); font-weight:600; }
+  .lang-switch span{ opacity:0.4; }
+  @media (max-width: 1080px){
+    .lang-switch{ order:-1; margin-right:auto; }
+  }
+
 </style>
 </head>
 <body>
@@ -827,6 +848,7 @@
         <a href="andy-furgeri-sobre-mi.html">Sobre mí</a>
         <a href="andy-furgeri-contacto.html" class="nav-contact-mobile">Contacto</a>
       </div>
+      <div class="lang-switch"><a href="#" class="active">ES</a><span>/</span><a href="en/andy-furgeri-servicios.html">EN</a></div>
       <a href="andy-furgeri-contacto.html" class="btn btn-primary">Conversemos</a>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú" aria-expanded="false">
         <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
