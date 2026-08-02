@@ -1,0 +1,8 @@
+{
+  "slug": "ejemplo-primera-nota",
+  "title": "Cómo publicar tu primera nota desde el panel",
+  "date": "2026-08-01",
+  "tags": ["Guía"],
+  "excerpt": "Esta es una nota de ejemplo. Desde ahora, para publicar una nueva, usá el botón '+ Notas del blog' en el panel de administración.",
+  "content": "Entrá al panel en /admin, elegí la colección \"Notas del blog\" y hacé click en el botón \"+ Notas del blog\" arriba a la derecha.\n\nCompletá el título, la fecha, los tags, el resumen y el contenido, y guardá. Eso crea un archivo nuevo directo en el repositorio — no hace falta tocar código ni pedirme ayuda."
+}

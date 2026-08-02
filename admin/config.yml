@@ -5,25 +5,27 @@ backend:
   base_url: https://netlify-cms-oauth-a1ivq2srz.vercel.app
   auth_endpoint: auth
 
+site_url: https://andreamarielfurgeri-sketch.github.io/andy-furgeri-web/
+display_url: https://andreamarielfurgeri-sketch.github.io/andy-furgeri-web/
+
 media_folder: "assets/notas"
 public_folder: "/assets/notas"
 
 collections:
   - name: "notas"
     label: "Notas del blog"
-    files:
-      - file: "data/blog-posts.json"
-        label: "Todas las notas"
-        name: "notas"
-        fields:
-          - label: "Notas"
-            name: "notas"
-            widget: "list"
-            summary: "{{title}} — {{date}}"
-            fields:
-              - { label: "Slug (sin espacios, sin tildes)", name: "slug", widget: "string" }
-              - { label: "Título", name: "title", widget: "string" }
-              - { label: "Fecha", name: "date", widget: "date", format: "YYYY-MM-DD" }
-              - { label: "Tags", name: "tags", widget: "list", default: ["General"] }
-              - { label: "Resumen (aparece en la lista)", name: "excerpt", widget: "text" }
-              - { label: "Contenido (párrafos separados por línea en blanco)", name: "content", widget: "text" }
+    label_singular: "Nota"
+    folder: "content/notas"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: "json"
+    format: "json"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Slug (sin espacios ni tildes, ej: mi-primera-nota)", name: "slug", widget: "string" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["General"] }
+      - { label: "Resumen (aparece en la lista)", name: "excerpt", widget: "text" }
+      - { label: "Contenido (párrafos separados por línea en blanco)", name: "content", widget: "text" }
