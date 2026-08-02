@@ -2,7 +2,7 @@ backend:
   name: github
   repo: andreamarielfurgeri-sketch/andy-furgeri-web
   branch: main
-  base_url: https://REEMPLAZAR-CON-TU-PROXY-OAUTH.vercel.app
+  base_url: https://netlify-cms-oauth-a1ivq2srz.vercel.app
   auth_endpoint: auth
 
 media_folder: "assets/notas"
