@@ -5,8 +5,8 @@ backend:
   base_url: https://netlify-cms-oauth-a1ivq2srz.vercel.app
   auth_endpoint: auth
 
-site_url: https://andreamarielfurgeri-sketch.github.io/andy-furgeri-web/
-display_url: https://andreamarielfurgeri-sketch.github.io/andy-furgeri-web/
+site_url: https://andreafurgeri.com/
+display_url: https://andreafurgeri.com/
 
 media_folder: "assets/notas"
 public_folder: "/assets/notas"
