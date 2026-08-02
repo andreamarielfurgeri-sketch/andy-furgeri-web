@@ -1173,6 +1173,52 @@
 
   #giscus-container{ margin-top:56px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.16); }
 
+  .note-cover-img{
+    width:100%;
+    border-radius:16px;
+    margin-bottom:28px;
+    border:1px solid rgba(255,255,255,0.16);
+  }
+  .note-video{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    margin-bottom:28px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.16);
+  }
+  .note-video iframe{
+    width:100%; height:100%;
+    border:none;
+  }
+  .note-detail #detailContent h2{ font-size:22px; margin:28px 0 14px; }
+  .note-detail #detailContent h3{ font-size:18px; margin:24px 0 12px; }
+  .note-detail #detailContent a{ color:var(--accent-soft); text-decoration:underline; }
+  .note-detail #detailContent blockquote{
+    border-left:2px solid var(--accent);
+    padding-left:16px;
+    color:var(--text-2);
+    margin:20px 0;
+  }
+  .note-detail #detailContent ul, .note-detail #detailContent ol{ padding-left:22px; margin-bottom:16px; color:var(--text-2); }
+  .note-detail #detailContent img{ max-width:100%; border-radius:12px; margin:16px 0; }
+
+  .note-attachments-title{ font-size:14px; color:var(--text-2); margin:32px 0 12px; }
+  .note-attachment-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+    color:var(--accent-soft);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:10px;
+    padding:10px 14px;
+    margin:0 8px 8px 0;
+    text-decoration:none;
+  }
+  .note-attachment-link:hover{ border-color:var(--accent-soft); }
+
 
 
   /* ---- Sistema visual unificado (paneles, flotantes, Fraunces) ---- */
@@ -1329,7 +1375,11 @@
         <button class="note-back" onclick="showList()">← Volver a Notas</button>
         <span class="note-date" id="detailDate"></span>
         <h1 id="detailTitle"></h1>
+        <div id="detailCover"></div>
+        <div id="detailVideo"></div>
         <div id="detailContent"></div>
+        <div id="detailAttachments"></div>
+        <div id="detailCustomHtml"></div>
 
         <div id="giscus-container"></div>
       </div>
@@ -1339,6 +1389,7 @@
 
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
   let notesData = [];
 
@@ -1385,6 +1436,21 @@
     return date.toLocaleDateString('es-AR', { day:'numeric', month:'long', year:'numeric' });
   }
 
+  function youtubeOrVimeoEmbed(url){
+    if(!url) return '';
+    let m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
+    if(m) return `<div class="note-video"><iframe src="https://www.youtube.com/embed/${m[1]}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`;
+    m = url.match(/vimeo\.com\/(\d+)/);
+    if(m) return `<div class="note-video"><iframe src="https://player.vimeo.com/video/${m[1]}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`;
+    return '';
+  }
+
+  function resolveMediaPath(path){
+    if(!path) return '';
+    if(path.startsWith('http')) return path;
+    return path.startsWith('/') ? path.slice(1) : path;
+  }
+
   function showDetail(slug){
     const note = notesData.find(n => n.slug === slug);
     if(!note) return;
@@ -1392,10 +1458,32 @@
     document.getElementById('noteDetailView').style.display = 'block';
     document.getElementById('detailDate').textContent = formatDate(note.date);
     document.getElementById('detailTitle').textContent = note.title;
-    document.getElementById('detailContent').innerHTML = note.content
-      .split('\n\n')
-      .map(p => `<p>${p}</p>`)
-      .join('');
+
+    const coverEl = document.getElementById('detailCover');
+    coverEl.innerHTML = note.cover_image
+      ? `<img src="${resolveMediaPath(note.cover_image)}" alt="${note.title}" class="note-cover-img" loading="lazy">`
+      : '';
+
+    document.getElementById('detailVideo').innerHTML = youtubeOrVimeoEmbed(note.video_url);
+
+    document.getElementById('detailContent').innerHTML = window.marked
+      ? marked.parse(note.content || '')
+      : (note.content || '').split('\n\n').map(p => `<p>${p}</p>`).join('');
+
+    const attEl = document.getElementById('detailAttachments');
+    if(note.attachments && note.attachments.length){
+      attEl.innerHTML = '<h4 class="note-attachments-title">Archivos adjuntos</h4>' +
+        note.attachments.map(a => {
+          const url = resolveMediaPath(a.file);
+          const name = url.split('/').pop();
+          return `<a href="${url}" target="_blank" rel="noopener" class="note-attachment-link">📎 ${name}</a>`;
+        }).join('');
+    } else {
+      attEl.innerHTML = '';
+    }
+
+    document.getElementById('detailCustomHtml').innerHTML = note.custom_html || '';
+
     history.pushState({}, '', `?post=${slug}`);
     loadGiscus(slug);
     window.scrollTo(0,0);

@@ -26,6 +26,11 @@ collections:
       - { label: "Slug (sin espacios ni tildes, ej: mi-primera-nota)", name: "slug", widget: "string" }
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Imagen de portada (opcional)", name: "cover_image", widget: "image", required: false }
       - { label: "Tags", name: "tags", widget: "list", default: ["General"] }
+      - { label: "Palabras clave (SEO)", name: "keywords", widget: "list", required: false, hint: "Términos que la gente buscaría para encontrar esta nota" }
       - { label: "Resumen (aparece en la lista)", name: "excerpt", widget: "text" }
-      - { label: "Contenido (párrafos separados por línea en blanco)", name: "content", widget: "text" }
+      - { label: "Contenido", name: "content", widget: "markdown", buttons: ["bold", "italic", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"], editor_components: ["image"] }
+      - { label: "Video embebido (opcional — pegá el link de YouTube o Vimeo)", name: "video_url", widget: "string", required: false }
+      - { label: "Archivos adjuntos (opcional)", name: "attachments", widget: "list", required: false, field: { label: "Archivo", name: "file", widget: "file" } }
+      - { label: "HTML personalizado (opcional, avanzado)", name: "custom_html", widget: "code", required: false, default_language: "html", allow_language_selection: false, output_code_only: true }
