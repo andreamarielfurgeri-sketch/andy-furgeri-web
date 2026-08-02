@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: andreamarielfurgeri-sketch/andy-furgeri-web
+  branch: main
+  base_url: https://REEMPLAZAR-CON-TU-PROXY-OAUTH.vercel.app
+  auth_endpoint: auth
+
+media_folder: "assets/notas"
+public_folder: "/assets/notas"
+
+collections:
+  - name: "notas"
+    label: "Notas del blog"
+    files:
+      - file: "data/blog-posts.json"
+        label: "Todas las notas"
+        name: "notas"
+        fields:
+          - label: "Notas"
+            name: "notas"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "Slug (sin espacios, sin tildes)", name: "slug", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Fecha", name: "date", widget: "date", format: "YYYY-MM-DD" }
+              - { label: "Tags", name: "tags", widget: "list", default: ["General"] }
+              - { label: "Resumen (aparece en la lista)", name: "excerpt", widget: "text" }
+              - { label: "Contenido (párrafos separados por línea en blanco)", name: "content", widget: "text" }

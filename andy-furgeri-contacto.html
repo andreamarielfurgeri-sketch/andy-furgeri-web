@@ -986,7 +986,7 @@
           </a>
         </div>
 
-        <form class="reveal" onsubmit="event.preventDefault(); alert('Formulario de ejemplo — conectar a un servicio de envío real (Formspree, Resend, etc.)');">
+        <form class="reveal" id="contactForm" action="https://formspree.io/f/REEMPLAZAR" method="POST">
           <div class="form-row">
             <label for="nombre">Nombre</label>
             <input id="nombre" type="text" placeholder="Tu nombre" required>
@@ -1077,6 +1077,36 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // Envío de formulario de contacto vía Formspree (AJAX, sin recargar la página)
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.innerHTML = '<p style="color:var(--text); font-size:16px;">¡Gracias! Recibí tu mensaje y te voy a responder pronto.</p>';
+        } else {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
+        }
+      } catch (err) {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
+      }
+    });
+  }
 
   // Desplegable personalizado
   document.querySelectorAll('.custom-select').forEach(wrap => {
