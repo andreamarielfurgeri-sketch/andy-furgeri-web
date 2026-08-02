@@ -25,10 +25,10 @@ collections:
     fields:
       - { label: "Slug (sin espacios ni tildes, ej: mi-primera-nota)", name: "slug", widget: "string" }
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Fecha", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
       - { label: "Imagen de portada (opcional)", name: "cover_image", widget: "image", required: false }
-      - { label: "Tags", name: "tags", widget: "list", default: ["General"] }
-      - { label: "Palabras clave (SEO)", name: "keywords", widget: "list", required: false, hint: "Términos que la gente buscaría para encontrar esta nota" }
+      - { label: "Tags — escribí una palabra y apretá ENTER antes de escribir la siguiente", name: "tags", widget: "list", default: ["General"], hint: "Importante: apretá Enter después de cada tag para que quede separado" }
+      - { label: "Palabras clave (SEO) — escribí una palabra y apretá ENTER antes de escribir la siguiente", name: "keywords", widget: "list", required: false, hint: "Apretá Enter después de cada palabra clave" }
       - { label: "Resumen (aparece en la lista)", name: "excerpt", widget: "text" }
       - { label: "Contenido", name: "content", widget: "markdown", buttons: ["bold", "italic", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"], editor_components: ["image"] }
       - { label: "Video embebido (opcional — pegá el link de YouTube o Vimeo)", name: "video_url", widget: "string", required: false }
