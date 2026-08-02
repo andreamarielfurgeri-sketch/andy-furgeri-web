@@ -1173,6 +1173,30 @@
 
   #giscus-container{ margin-top:56px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.16); }
 
+  .note-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:32px;
+  }
+  .note-filter-btn{
+    font-size:13px;
+    color:var(--text-2);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:8px 16px;
+    cursor:pointer;
+    background:none;
+    font-family:'Inter', sans-serif;
+    transition: all 0.25s var(--ease);
+  }
+  .note-filter-btn:hover{ border-color:var(--accent-soft); color:var(--text); }
+  .note-filter-btn.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#FFFFFF;
+  }
+
   .note-cover-img{
     width:100%;
     border-radius:16px;
@@ -1366,6 +1390,7 @@
     <div class="wrap">
 
       <div id="notesListView">
+        <div class="note-filters" id="noteFilters"></div>
         <div class="notes-grid reveal" id="notesGrid">
           <p style="color:var(--text-2);">Cargando notas...</p>
         </div>
@@ -1403,6 +1428,7 @@
         jsonFiles.map(f => fetch(f.download_url).then(r => r.json()))
       );
       notesData = notes;
+      renderFilters();
       renderList();
       checkUrlForPost();
     }catch(err){
@@ -1411,10 +1437,32 @@
     }
   }
 
-  function renderList(){
+  function renderFilters(){
+    const filtersEl = document.getElementById('noteFilters');
+    const allTags = new Set();
+    notesData.forEach(n => (n.tags || []).forEach(t => allTags.add(t)));
+    if(allTags.size === 0){ filtersEl.innerHTML = ''; return; }
+
+    let html = '<button class="note-filter-btn active" data-tag="">Todas</button>';
+    allTags.forEach(t => {
+      html += `<button class="note-filter-btn" data-tag="${t}">${t}</button>`;
+    });
+    filtersEl.innerHTML = html;
+
+    filtersEl.querySelectorAll('.note-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        filtersEl.querySelectorAll('.note-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderList(btn.dataset.tag);
+      });
+    });
+  }
+
+  function renderList(filterTag){
     const grid = document.getElementById('notesGrid');
     grid.innerHTML = '';
     notesData
+      .filter(n => !filterTag || (n.tags || []).includes(filterTag))
       .slice()
       .sort((a,b) => new Date(b.date) - new Date(a.date))
       .forEach(note => {
