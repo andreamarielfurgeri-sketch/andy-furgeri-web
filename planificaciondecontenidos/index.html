@@ -3,22 +3,1909 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirigiendo… Planificador de Reels</title>
-<meta http-equiv="refresh" content="0; url=https://andreamarielfurgeri-sketch.github.io/planificadordecontenido/">
-<link rel="canonical" href="https://andreamarielfurgeri-sketch.github.io/planificadordecontenido/">
-<meta name="robots" content="noindex">
-<script>location.replace("https://andreamarielfurgeri-sketch.github.io/planificadordecontenido/");</script>
+<title>Planificador de Reels</title>
+<script>
+  (function(){
+    var t = localStorage.getItem('cp_theme');
+    if(t === 'light') document.documentElement.classList.add('light-theme');
+  })();
+</script>
 <style>
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:#0b0b10;color:#eee;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:20px;text-align:center;}
-  a{color:#b48cff;}
+  :root{
+    --bg:#08080c;
+    --bg-soft:#121218;
+    --card:#18181f;
+    --card-hover:#212129;
+    --border:#2b2b36;
+    --text:#f4f2f9;
+    --text-dim:#9d99ab;
+    --accent:#b48cff;
+    --accent-2:#7c5cff;
+    --accent-soft:rgba(180,140,255,0.16);
+    --ok:#5fd08a;
+    --warn:#ffcc4d;
+    --danger:#ff5c6c;
+    --radius:14px;
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  }
+  html.light-theme{
+    --bg:#f8f6fc;
+    --bg-soft:#efe8fa;
+    --card:#ffffff;
+    --card-hover:#f5f0fc;
+    --border:#e1d9f1;
+    --text:#211f2c;
+    --text-dim:#6c6579;
+    --accent:#8b5cf6;
+    --accent-2:#7c3aed;
+    --accent-soft:rgba(139,92,246,0.12);
+    --ok:#1f9d5c;
+    --warn:#b8860b;
+    --danger:#dc2645;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% -10%, var(--accent-soft) 0%, transparent 45%),
+      var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    transition:background .2s,color .2s;
+  }
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    border-radius:10px;
+    background:var(--card);
+    color:var(--text);
+    padding:9px 14px;
+    font-size:14px;
+    transition:.15s;
+    border:1px solid transparent;
+  }
+  button:hover{background:var(--card-hover);}
+  button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:600;}
+  button.primary:hover{filter:brightness(1.1);}
+  button.ghost{background:transparent;border:1px solid var(--border);}
+  button.danger{background:var(--danger);color:#fff;}
+  button.small{padding:5px 10px;font-size:12px;}
+  button:disabled{opacity:.5;cursor:not-allowed;}
+  input,textarea,select{
+    width:100%;
+    background:var(--bg-soft);
+    border:1px solid var(--border);
+    color:var(--text);
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:14px;
+    font-family:inherit;
+  }
+  textarea{resize:vertical;min-height:70px;}
+  input:focus,textarea:focus,select:focus{outline:1px solid var(--accent);}
+  input:disabled,textarea:disabled,select:disabled{opacity:.7;}
+  label{font-size:12px;color:var(--text-dim);display:block;margin:0 0 6px 2px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;}
+  .field{margin-bottom:14px;}
+  .hidden{display:none !important;}
+  a{color:var(--accent);}
+
+  /* role gating */
+  body:not(.role-admin) .admin-only{display:none !important;}
+  body:not(.role-content-admin) .content-admin-only{display:none !important;}
+
+  /* LOADING */
+  #loadingScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px;}
+
+  /* LOGIN */
+  #loginScreen{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  .login-card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:36px 32px;width:100%;max-width:400px;
+  }
+  .login-card h1{font-size:20px;margin:0 0 4px;}
+  .login-card p.sub{color:var(--text-dim);font-size:13px;margin:0 0 24px;}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+  .brand .logo{
+    width:36px;height:36px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand strong{font-size:16px;}
+  .error-msg{color:var(--danger);font-size:13px;margin-top:8px;min-height:16px;}
+  .link-btn{background:none;border:none;color:var(--accent);text-decoration:underline;padding:0;font-size:13px;cursor:pointer;}
+
+  /* APP SHELL */
+  #app{display:none;}
+  header.topbar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(8,8,12,0.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+    padding:14px 20px 0;
+  }
+  html.light-theme header.topbar{background:rgba(248,246,252,0.9);}
+  .topbar-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+  .topbar-row .brand{margin-bottom:0;}
+  .topbar-actions{display:flex;gap:8px;align-items:center;}
+  .whoami{font-size:12px;color:var(--text-dim);margin-right:4px;}
+  nav.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin;}
+  nav.tabs::-webkit-scrollbar{height:5px;}
+  nav.tabs::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px;}
+  .tab-empresa{
+    white-space:nowrap;padding:8px 14px;border-radius:20px;border:1px solid var(--border);
+    background:var(--card);color:var(--text-dim);font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;
+  }
+  .tab-empresa .dot{width:8px;height:8px;border-radius:50%;}
+  .tab-empresa.active{background:var(--accent-soft);color:var(--text);border-color:var(--accent);}
+  .tab-add{border-style:dashed;color:var(--text-dim);}
+
+  nav.sections{display:flex;gap:4px;padding:0;margin-top:2px;}
+  .section-btn{
+    padding:10px 16px;border-radius:10px 10px 0 0;background:transparent;color:var(--text-dim);font-weight:600;font-size:13px;border-bottom:2px solid transparent;
+  }
+  .section-btn.active{color:var(--text);border-bottom:2px solid var(--accent);background:var(--bg-soft);}
+
+  main{max-width:1080px;margin:0 auto;padding:24px 20px 80px;}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .toolbar .filters{display:flex;gap:8px;flex-wrap:wrap;}
+  .toolbar select{width:auto;min-width:140px;}
+  .toolbar input[type=search]{width:220px;}
+
+  .empty-state{text-align:center;padding:60px 20px;color:var(--text-dim);border:1px dashed var(--border);border-radius:var(--radius);}
+  .empty-state .big{font-size:34px;margin-bottom:10px;}
+
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .card-top h3{margin:0;font-size:15px;display:flex;align-items:center;gap:6px;}
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.03em;white-space:nowrap;color:#1a1305;}
+  .badge-empresa{background:var(--bg-soft);border:1px solid var(--border);color:var(--text);}
+  .card .meta{font-size:12px;color:var(--text-dim);display:flex;gap:10px;flex-wrap:wrap;}
+  .card .gancho-preview{font-size:13px;background:var(--bg-soft);border-left:3px solid var(--accent);padding:8px 10px;border-radius:6px;color:var(--text);}
+  .card .kw{font-size:11px;color:var(--text-dim);}
+  .card-actions{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+
+  /* MODAL / FORM */
+  .modal-overlay{position:fixed;inset:0;background:rgba(5,5,8,0.7);backdrop-filter:blur(2px);display:flex;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto;z-index:50;}
+  .modal{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);width:100%;max-width:660px;padding:26px;max-height:calc(100vh - 60px);overflow-y:auto;overscroll-behavior:contain;}
+  .modal h2{margin-top:0;font-size:18px;}
+  .modal-close{float:right;}
+  .form-section{border:1px solid var(--border);border-radius:12px;padding:14px 14px 4px;margin-bottom:16px;background:var(--bg-soft);}
+  .form-section .sec-title{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;margin-bottom:10px;}
+  .sec-title .tag{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  @media(max-width:560px){.row2,.row3{grid-template-columns:1fr;}}
+  .modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:10px;flex-wrap:wrap;}
+
+  .sug-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;margin-bottom:10px;}
+  .sug-item{background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:13px;}
+  .sug-item .who{font-size:11px;color:var(--accent);font-weight:700;display:flex;justify-content:space-between;gap:8px;}
+  .sug-empty{font-size:12px;color:var(--text-dim);}
+
+  /* CALENDAR */
+  #calModeMes.active,#calModeSemana.active{background:var(--accent-soft);color:var(--text);border-color:var(--accent);}
+  .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .cal-dow{font-size:11px;text-align:center;color:var(--text-dim);padding-bottom:4px;}
+  .cal-day{min-height:88px;border:1px solid var(--border);border-radius:10px;padding:6px;background:var(--card);font-size:12px;position:relative;cursor:pointer;display:flex;flex-direction:column;gap:3px;}
+  .cal-day:hover{background:var(--card-hover);}
+  .cal-day.other-month{opacity:.35;}
+  .cal-day.today{border-color:var(--accent);}
+  .cal-day.selected{outline:2px solid var(--accent);}
+  .cal-day .num{font-weight:700;}
+  .cal-chip{font-size:9.5px;padding:2px 5px;border-radius:5px;border-left:3px solid var(--accent);background:var(--bg-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .cal-chip.pub{border-left-color:var(--accent-2);}
+  .cal-more{font-size:9.5px;color:var(--text-dim);}
+  .day-panel{margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+  .day-panel h3{margin:0 0 10px;font-size:14px;}
+  .day-panel-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+  .day-panel-item:last-child{border-bottom:none;}
+
+  /* GANCHOS */
+  .hook-form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;margin-bottom:20px;}
+  @media(max-width:700px){.hook-form{grid-template-columns:1fr;}}
+  .hook-list{display:flex;flex-direction:column;gap:10px;}
+  .hook-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+  .hook-item .txt{font-size:14px;flex:1;min-width:220px;}
+  .hook-item .cat{font-size:10px;color:var(--accent);text-transform:uppercase;font-weight:700;display:block;margin-bottom:3px;letter-spacing:.04em;}
+  .hook-actions{display:flex;gap:6px;}
+
+  /* TOAST */
+  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--border);padding:12px 20px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:100;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.4);}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .config-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+  .config-block h3{margin-top:0;font-size:15px;}
+  .config-block p{color:var(--text-dim);font-size:13px;}
+  .swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;}
+  .swatch.selected{border-color:var(--text);}
+  .person-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+  .person-row:last-child{border-bottom:none;}
+  .person-row .pname{flex:1;}
+  .role-pill{font-size:10px;padding:2px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:700;text-transform:uppercase;}
 </style>
 </head>
 <body>
-  <div>
-    <p>Redirigiendo al Planificador de Reels…</p>
-    <p>Si no te lleva solo, <a href="https://andreamarielfurgeri-sketch.github.io/planificadordecontenido/">hacé clic acá</a>.</p>
+
+<div id="loadingScreen">Cargando…</div>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="hidden">
+  <div class="login-card">
+    <div class="brand"><div class="logo">🎬</div><strong>Planificador de Reels</strong></div>
+    <h1 id="loginTitle">Iniciar sesión</h1>
+    <p class="sub" id="loginSub">Ingresá tu correo y contraseña.</p>
+
+    <div class="field">
+      <label>Correo</label>
+      <input id="loginUser" type="email" autocomplete="username">
+    </div>
+    <div class="field">
+      <label>Contraseña</label>
+      <input id="loginPass" type="password" autocomplete="current-password">
+    </div>
+    <div class="field hidden" id="confirmPassField">
+      <label>Confirmar contraseña</label>
+      <input id="loginPassConfirm" type="password">
+    </div>
+    <div class="field hidden" id="nombreField">
+      <label>Tu nombre</label>
+      <input id="loginNombre" placeholder="ej: Andy">
+    </div>
+    <button class="primary" style="width:100%" id="loginBtn">Entrar</button>
+    <div class="error-msg" id="loginError"></div>
+    <div style="margin-top:16px;text-align:center;">
+      <button class="link-btn hidden" id="toggleSignup"></button>
+    </div>
   </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><div class="logo">🎬</div><strong>Planificador de Reels</strong></div>
+      <div class="topbar-actions">
+        <span class="whoami" id="whoami"></span>
+        <button class="ghost small" id="btnToggleTheme" title="Cambiar tema">🌙</button>
+        <button class="primary small content-admin-only" id="btnNuevoGuion">+ Nuevo guion</button>
+        <button class="ghost small" id="btnLogout">Cerrar sesión</button>
+      </div>
+    </div>
+    <nav class="tabs" id="empresaTabs"></nav>
+    <nav class="sections">
+      <button class="section-btn" data-view="guiones">📋 Guiones</button>
+      <button class="section-btn" data-view="calendario">📅 Calendario</button>
+      <button class="section-btn" data-view="ganchos">🪝 Ganchos</button>
+      <button class="section-btn" data-view="ideas">💡 Ideas</button>
+      <button class="section-btn" data-view="config" id="navConfig">⚙️ Config</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- GUIONES -->
+    <section class="view" id="view-guiones">
+      <nav class="tabs" id="asignacionTabs" style="margin-bottom:12px;"></nav>
+      <div class="toolbar">
+        <div class="filters">
+          <select id="filterEstado">
+            <option value="">Todos los estados</option>
+            <option>Idea</option>
+            <option>Guion listo</option>
+            <option>Grabado</option>
+            <option>Programar publicación</option>
+            <option>Publicado</option>
+          </select>
+          <select id="filterTipo">
+            <option value="">Todos los tipos</option>
+            <option>Reel</option>
+            <option>Carrusel</option>
+            <option>Historia</option>
+          </select>
+          <select id="filterVendedor" class="admin-only">
+            <option value="">Todos los vendedores</option>
+          </select>
+          <input type="date" id="filterFecha" title="Filtrar por fecha exacta (grabación o publicación)">
+          <button class="ghost small hidden" id="btnClearFiltros">✕ Limpiar filtros</button>
+          <input type="search" id="searchGuion" placeholder="Buscar por título o palabra clave...">
+        </div>
+      </div>
+      <div id="guionesContainer"></div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section class="view" id="view-calendario">
+      <div class="cal-header">
+        <button class="ghost small" id="calPrev">← Anterior</button>
+        <h2 id="calTitle" style="margin:0;"></h2>
+        <button class="ghost small" id="calNext">Siguiente →</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <div style="font-size:12px;color:var(--text-dim);">🎥 = grabación &nbsp; 📤 = publicación en redes</div>
+        <div style="display:flex;gap:6px;">
+          <button class="ghost small" id="calModeMes">Mes</button>
+          <button class="ghost small" id="calModeSemana">Semana</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div id="dayPanel"></div>
+    </section>
+
+    <!-- GANCHOS -->
+    <section class="view" id="view-ganchos">
+      <div class="form-section">
+        <div class="sec-title">🪝 Generador de ganchos <span class="tag">por palabras clave</span></div>
+        <div class="hook-form">
+          <div class="field" style="margin:0;">
+            <label>Palabras clave</label>
+            <input id="hookKeywords" placeholder="ej: pérgola, chapa">
+          </div>
+          <div class="field" style="margin:0;">
+            <label>Tema / beneficio (opcional)</label>
+            <input id="hookTema" placeholder="ej: renovar tu patio">
+          </div>
+          <div class="field" style="margin:0;">
+            <label>Categoría</label>
+            <select id="hookCategoria">
+              <option value="">Todas</option>
+              <option>Curiosidad</option>
+              <option>Secreto</option>
+              <option>Guía</option>
+              <option>Urgencia</option>
+              <option>Motivación</option>
+              <option>Incredulidad</option>
+            </select>
+          </div>
+          <button class="primary" id="btnGenerarGanchos">Generar ganchos</button>
+        </div>
+      </div>
+      <div class="hook-list" id="hookResults"></div>
+    </section>
+
+    <!-- IDEAS (CHAT INTERNO) -->
+    <section class="view" id="view-ideas">
+      <div class="form-section">
+        <div class="sec-title">💡 Ideas para contenido <span class="tag">visible para todo el equipo</span></div>
+        <p style="font-size:12px;color:var(--text-dim);margin:-4px 0 12px;">Tirá una idea, o pegá el link de un reel/carrusel que viste y te gustó para inspirarte.</p>
+        <div class="row2">
+          <div class="field" style="margin:0;"><label>Idea / comentario</label><textarea id="ideaTexto" style="min-height:60px;" placeholder="ej: Vi un reel de antes/después de un porch que la rompió, podríamos hacer uno con..."></textarea></div>
+          <div class="field" style="margin:0;"><label>Link (opcional)</label><input id="ideaUrl" type="url" placeholder="https://instagram.com/reel/..."></div>
+        </div>
+        <button class="primary small" id="btnEnviarIdea" style="margin-top:10px;">Enviar idea</button>
+      </div>
+      <div class="hook-list" id="ideasList"></div>
+    </section>
+
+    <!-- CONFIG / MI CUENTA -->
+    <section class="view" id="view-config">
+      <div class="config-block admin-only">
+        <h3>🏢 Empresas / Marcas</h3>
+        <p>Administrá las empresas que aparecen como pestañas arriba.</p>
+        <div id="empresasList" style="margin-bottom:12px;"></div>
+        <div class="row2">
+          <div class="field" style="margin:0;"><label>Nombre de la empresa</label><input id="newEmpresaName" placeholder="ej: Emporio de la Chapa"></div>
+          <div class="field" style="margin:0;"><label>Color</label><div class="swatches" id="colorSwatches"></div></div>
+        </div>
+        <button class="primary small" id="btnAddEmpresa" style="margin-top:10px;">+ Agregar empresa</button>
+      </div>
+
+      <div class="config-block admin-only">
+        <h3>👥 Cuentas del equipo</h3>
+        <p>Creá accesos para tus asesores/vendedores. Solo pueden ver y sugerir, no editar ni eliminar.</p>
+        <div id="vendedoresList" style="margin-bottom:12px;"></div>
+        <div class="row3">
+          <div class="field" style="margin:0;"><label>Nombre</label><input id="newVendedorNombre" placeholder="ej: Cesar"></div>
+          <div class="field" style="margin:0;"><label>Correo</label><input id="newVendedorEmail" type="email" placeholder="cesar@correo.com"></div>
+          <div class="field" style="margin:0;"><label>Contraseña temporal</label><input id="newVendedorPass" type="text" placeholder="mínimo 6 caracteres"></div>
+        </div>
+        <div class="field" style="margin:10px 0 0;">
+          <label>Empresas que puede ver</label>
+          <label style="display:flex;align-items:center;gap:6px;font-weight:400;text-transform:none;font-size:13px;color:var(--text);margin-bottom:8px;">
+            <input type="checkbox" id="newVendedorTodasEmpresas" checked style="width:auto;"> Puede ver todas las empresas
+          </label>
+          <div id="newVendedorEmpresasBox" class="hidden" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:4px;"></div>
+        </div>
+        <button class="primary small" id="btnAddVendedor" style="margin-top:10px;">+ Crear cuenta de vendedor</button>
+      </div>
+
+      <div class="config-block admin-only">
+        <h3>🛡️ Administradoras</h3>
+        <p>Admin general: ve y edita todo. Admin de empresa: puede crear, editar y borrar guiones, pero solo en las empresas que le asignes; no ve la gestión de cuentas ni de empresas.</p>
+        <div id="adminsList"></div>
+      </div>
+
+      <div class="config-block">
+        <h3>👤 Mi cuenta</h3>
+        <p id="miCuentaInfo"></p>
+        <div class="row2">
+          <div class="field"><label>Nueva contraseña</label><input id="cfgPass" type="password" placeholder="mínimo 6 caracteres"></div>
+          <div class="field" style="display:flex;align-items:flex-end;"><button class="primary small" id="btnSaveCreds" style="width:100%;">Actualizar contraseña</button></div>
+        </div>
+      </div>
+
+      <div class="config-block admin-only">
+        <h3>💾 Backup de datos</h3>
+        <p>Descarga una copia de seguridad de empresas y guiones actuales.</p>
+        <button class="ghost small" id="btnExport">Exportar backup (.json)</button>
+      </div>
+
+      <div class="config-block admin-only" style="border-color:var(--danger);">
+        <h3 style="color:var(--danger)">⚠️ Zona de peligro</h3>
+        <p>Borra TODOS los guiones y empresas (no borra cuentas de usuarios). Escribí <strong>BORRAR TODO</strong> para habilitar el botón.</p>
+        <div class="row2">
+          <input id="confirmDanger" placeholder="Escribí BORRAR TODO">
+          <button class="danger small" id="btnReset" disabled>Borrar todos los datos</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- MODAL GUION -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal">
+    <button class="ghost small modal-close" id="btnCloseModal">✕ Cerrar</button>
+    <h2 id="modalTitle">Nuevo guion</h2>
+    <input type="hidden" id="guionId">
+
+    <div class="row3">
+      <div class="field">
+        <label>Empresa</label>
+        <select id="fEmpresa"></select>
+      </div>
+      <div class="field">
+        <label>Tipo de contenido</label>
+        <select id="fTipo"><option>Reel</option><option>Carrusel</option><option>Historia</option></select>
+      </div>
+      <div class="field">
+        <label>Estado</label>
+        <select id="fEstado">
+          <option>Idea</option>
+          <option>Guion listo</option>
+          <option>Grabado</option>
+          <option>Programar publicación</option>
+          <option>Publicado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Título del contenido</label>
+      <input id="fTitulo" placeholder="ej: 3 errores al elegir pérgola de policarbonato">
+    </div>
+
+    <div class="row3">
+      <div class="field"><label>Asignado a (vendedor/a)</label><input id="fGrabaCon" list="vendedoresDatalist" placeholder="Empezá a escribir un nombre..."><datalist id="vendedoresDatalist"></datalist>
+        <p style="font-size:11px;color:var(--text-dim);margin:4px 2px 0;">Si coincide con una cuenta de vendedor, solo esa persona va a poder ver este guion.</p>
+      </div>
+      <div class="field"><label>Fecha de grabación</label><input id="fFecha" type="date"></div>
+      <div class="field"><label>Hora</label><input id="fHora" type="time"></div>
+    </div>
+
+    <div class="field">
+      <label>Fecha de publicación en redes</label>
+      <input id="fFechaPublicacion" type="date">
+      <p style="font-size:11px;color:var(--text-dim);margin:4px 2px 0;">Completala cuando el guion pase a "Programar publicación".</p>
+    </div>
+
+    <div class="field">
+      <label>Palabras clave (separadas por coma)</label>
+      <input id="fKeywords" placeholder="ej: pérgola, policarbonato">
+    </div>
+
+    <div class="form-section">
+      <div class="sec-title">🪝 GANCHO <span class="tag">primeros 2-3 segundos</span></div>
+      <textarea id="fGancho" placeholder="La frase que engancha apenas empieza el video..."></textarea>
+      <button class="ghost small content-admin-only" id="btnSugerirDesdeForm" style="margin:8px 0 12px;">Sugerir ganchos con estas palabras clave</button>
+    </div>
+
+    <div class="form-section">
+      <div class="sec-title">📝 CUERPO / SLIDES <span class="tag">desarrollo</span></div>
+      <textarea id="fCuerpo" style="min-height:130px;" placeholder="Si es reel: guion o esquema. Si es carrusel: 1 línea por slide."></textarea>
+    </div>
+
+    <div class="form-section">
+      <div class="sec-title">📣 CTA <span class="tag">cierre / llamado a la acción</span></div>
+      <textarea id="fCta" placeholder="ej: Comentá 'INFO' y te paso la guía gratis"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Notas (opcional)</label>
+      <textarea id="fNotas" placeholder="Vestuario, locación, props, etc."></textarea>
+    </div>
+
+    <div class="form-section">
+      <div class="sec-title">💬 SUGERENCIAS DEL EQUIPO</div>
+      <div class="sug-list" id="sugList"></div>
+      <div class="field" style="margin:0 0 8px;">
+        <textarea id="sugInput" style="min-height:50px;" placeholder="Escribí una sugerencia o comentario..."></textarea>
+      </div>
+      <button class="ghost small" id="btnAddSugerencia">Agregar sugerencia</button>
+    </div>
+
+    <div class="modal-footer">
+      <button class="ghost small" id="btnExportarTxt">⬇️ Exportar .txt</button>
+      <button class="ghost small" id="btnImprimir">🖨️ Imprimir</button>
+      <button class="ghost content-admin-only" id="btnDescartar">Cancelar</button>
+      <button class="primary content-admin-only" id="btnGuardarGuion">Guardar guion</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= FIREBASE CONFIG ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyB-2h3TAs7KvTpNeOyivXjuSoGWd1-w0IM",
+  authDomain: "planificador-reels.firebaseapp.com",
+  projectId: "planificador-reels",
+  storageBucket: "planificador-reels.firebasestorage.app",
+  messagingSenderId: "219720801828",
+  appId: "1:219720801828:web:875a0f1d8001194c41c2b1"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const FieldValue = firebase.firestore.FieldValue;
+
+/* ================= STATE ================= */
+let state = {
+  role: null,
+  uid: null,
+  nombre: '',
+  email: '',
+  empresas: [],
+  guiones: [],
+  vendedores: [],
+  admins: [],
+  empresasAsignadas: null,
+  selectedEmpresa: localStorage.getItem('cp_last_tab') || 'all',
+  currentView: 'guiones',
+  calMonth: new Date().getMonth(),
+  calYear: new Date().getFullYear(),
+  calSelectedDay: null,
+  calViewMode: 'mes',
+  calWeekStart: null,
+  filterAsignacion: 'todos',
+  bootstrapExists: null,
+  showSignup: false,
+  unsubEmpresas: null,
+  unsubGuiones: null,
+  unsubVendedores: null,
+  unsubAdmins: null,
+  unsubIdeas: null,
+  ideas: []
+};
+
+/* Roles: 'admin' (general, ve y edita todo), 'admin_empresa' (edita todo pero solo en sus empresas), 'vendedor' (solo ve/sugiere lo suyo) */
+function isFullAdmin(){ return state.role === 'admin'; }
+function isEmpresaAdmin(){ return state.role === 'admin_empresa'; }
+function isContentAdmin(){ return isFullAdmin() || isEmpresaAdmin(); }
+function roleLabel(role){
+  if(role==='admin') return 'Administradora general';
+  if(role==='admin_empresa') return 'Administradora de empresa';
+  return 'Vendedor/a';
+}
+function empresasVisiblesParaUsuario(){
+  if((state.role==='vendedor' || state.role==='admin_empresa') && Array.isArray(state.empresasAsignadas)){
+    return state.empresas.filter(e=>state.empresasAsignadas.includes(e.id));
+  }
+  return state.empresas;
+}
+function renderMiCuentaInfo(){
+  const el = document.getElementById('miCuentaInfo');
+  if(!el || !state.role) return;
+  let extra = '';
+  if(state.role==='admin_empresa'){
+    const nombres = Array.isArray(state.empresasAsignadas) ? state.empresasAsignadas.map(id=>empresaById(id)?.nombre).filter(Boolean).join(', ') : '';
+    extra = ' (empresas: ' + (nombres || 'ninguna asignada todavía') + ')';
+  }
+  el.textContent = `Conectada como ${state.nombre} (${state.email}) — rol: ${roleLabel(state.role)}${extra}.`;
+}
+
+const COLORS = ['#b48cff','#ff6b57','#ffb347','#5fd08a','#7fd4ff','#ff8fd8','#8aa0ff','#ffe08a'];
+const ESTADOS = ['Idea','Guion listo','Grabado','Programar publicación','Publicado'];
+const ESTADO_COLORS = {
+  'Idea':'#8aa0ff',
+  'Guion listo':'#ffb347',
+  'Grabado':'#5fd08a',
+  'Programar publicación':'#7fd4ff',
+  'Publicado':'#b48cff'
+};
+const TIPO_ICON = { 'Reel':'🎬', 'Carrusel':'🖼️', 'Historia':'⚡' };
+
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+function escapeHtml(str){ return String(str==null?'':str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function fmtFecha(iso){ if(!iso) return 'Sin fecha'; const [y,m,d] = iso.split('-'); return `${d}/${m}/${y}`; }
+
+/* ================= TOAST ================= */
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+/* ================= THEME ================= */
+document.getElementById('btnToggleTheme').addEventListener('click', ()=>{
+  const isLight = document.documentElement.classList.toggle('light-theme');
+  localStorage.setItem('cp_theme', isLight ? 'light' : 'dark');
+  document.getElementById('btnToggleTheme').textContent = isLight ? '☀️' : '🌙';
+});
+document.getElementById('btnToggleTheme').textContent = document.documentElement.classList.contains('light-theme') ? '☀️' : '🌙';
+
+/* ================= AUTH SCREENS ================= */
+const loadingScreen = document.getElementById('loadingScreen');
+const loginScreen = document.getElementById('loginScreen');
+const appRoot = document.getElementById('app');
+const loginUser = document.getElementById('loginUser');
+const loginPass = document.getElementById('loginPass');
+const loginPassConfirm = document.getElementById('loginPassConfirm');
+const loginNombre = document.getElementById('loginNombre');
+const confirmPassField = document.getElementById('confirmPassField');
+const nombreField = document.getElementById('nombreField');
+const loginError = document.getElementById('loginError');
+const loginTitle = document.getElementById('loginTitle');
+const loginSub = document.getElementById('loginSub');
+const toggleSignupBtn = document.getElementById('toggleSignup');
+
+function renderLoginMode(){
+  if(state.showSignup){
+    loginTitle.textContent = 'Crear acceso de administradora';
+    loginSub.textContent = 'Es la primera vez que se usa esta herramienta: creá la cuenta principal.';
+    confirmPassField.classList.remove('hidden');
+    nombreField.classList.remove('hidden');
+    document.getElementById('loginBtn').textContent = 'Crear acceso y entrar';
+    toggleSignupBtn.textContent = '← Ya tengo una cuenta, iniciar sesión';
+    toggleSignupBtn.classList.remove('hidden');
+  } else {
+    loginTitle.textContent = 'Iniciar sesión';
+    loginSub.textContent = 'Ingresá tu correo y contraseña.';
+    confirmPassField.classList.add('hidden');
+    nombreField.classList.add('hidden');
+    document.getElementById('loginBtn').textContent = 'Entrar';
+    if(state.bootstrapExists === false){
+      toggleSignupBtn.textContent = '¿Primera vez? Crear cuenta de administradora';
+      toggleSignupBtn.classList.remove('hidden');
+    } else {
+      toggleSignupBtn.classList.add('hidden');
+    }
+  }
+  loginError.textContent = '';
+}
+toggleSignupBtn.addEventListener('click', ()=>{ state.showSignup = !state.showSignup; renderLoginMode(); });
+
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+  const email = loginUser.value.trim();
+  const pass = loginPass.value;
+  loginError.textContent = '';
+  if(!email || !pass){ loginError.textContent = 'Completá correo y contraseña.'; return; }
+
+  if(state.showSignup){
+    const nombre = loginNombre.value.trim();
+    if(!nombre){ loginError.textContent = 'Ingresá tu nombre.'; return; }
+    if(pass.length < 6){ loginError.textContent = 'La contraseña debe tener al menos 6 caracteres.'; return; }
+    if(pass !== loginPassConfirm.value){ loginError.textContent = 'Las contraseñas no coinciden.'; return; }
+    auth.createUserWithEmailAndPassword(email, pass).then(cred=>{
+      const u = cred.user.uid;
+      const batch = db.batch();
+      batch.set(db.collection('users').doc(u), { role:'admin', nombre, email, createdAt: FieldValue.serverTimestamp() });
+      batch.set(db.collection('meta').doc('bootstrap'), { createdAt: FieldValue.serverTimestamp(), adminUid: u });
+      return batch.commit();
+    }).catch(err=>{ loginError.textContent = traducirError(err); });
+    return;
+  }
+
+  auth.signInWithEmailAndPassword(email, pass).catch(err=>{ loginError.textContent = traducirError(err); });
+});
+
+function traducirError(err){
+  const c = err && err.code;
+  if(c==='auth/invalid-email') return 'El correo no es válido.';
+  if(c==='auth/user-not-found' || c==='auth/wrong-password' || c==='auth/invalid-credential') return 'Correo o contraseña incorrectos.';
+  if(c==='auth/email-already-in-use') return 'Ese correo ya tiene una cuenta.';
+  if(c==='auth/weak-password') return 'La contraseña es muy débil (mínimo 6 caracteres).';
+  if(c==='auth/requires-recent-login') return 'Por seguridad, cerrá sesión y volvé a entrar antes de cambiar la contraseña.';
+  return 'Ocurrió un error: ' + (err && err.message ? err.message : 'desconocido');
+}
+
+[loginUser, loginPass, loginPassConfirm, loginNombre].forEach(el=>{
+  el.addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('loginBtn').click(); });
+});
+
+document.getElementById('btnLogout').addEventListener('click', ()=>{ auth.signOut(); });
+
+/* ================= AUTH STATE ================= */
+db.collection('meta').doc('bootstrap').get().then(doc=>{
+  state.bootstrapExists = doc.exists;
+  if(!state.bootstrapExists) state.showSignup = true;
+  renderLoginMode();
+}).catch(()=>{ state.bootstrapExists = true; renderLoginMode(); });
+
+auth.onAuthStateChanged(user=>{
+  detachListeners();
+  if(!user){
+    loadingScreen.classList.add('hidden');
+    appRoot.style.display = 'none';
+    loginScreen.classList.remove('hidden');
+    return;
+  }
+  db.collection('users').doc(user.uid).get().then(doc=>{
+    if(!doc.exists){
+      loginError.textContent = 'Tu cuenta no tiene un acceso asignado. Consultá a la administradora.';
+      auth.signOut();
+      return;
+    }
+    const data = doc.data();
+    state.role = data.role;
+    state.uid = user.uid;
+    state.nombre = data.nombre || data.email || 'Usuario';
+    state.email = data.email || user.email || '';
+    state.empresasAsignadas = Array.isArray(data.empresasAsignadas) ? data.empresasAsignadas : null;
+    document.body.classList.toggle('role-admin', state.role === 'admin');
+    document.body.classList.toggle('role-content-admin', isContentAdmin());
+    loadingScreen.classList.add('hidden');
+    loginScreen.classList.add('hidden');
+    appRoot.style.display = 'block';
+    document.getElementById('navConfig').textContent = state.role==='admin' ? '⚙️ Config' : '👤 Mi cuenta';
+    document.getElementById('whoami').textContent = `${state.nombre} · ${roleLabel(state.role)}`;
+    renderMiCuentaInfo();
+    initApp();
+  }).catch(err=>{
+    loginError.textContent = 'No se pudo cargar tu perfil: ' + err.message;
+  });
+});
+
+function detachListeners(){
+  if(state.unsubEmpresas){ state.unsubEmpresas(); state.unsubEmpresas=null; }
+  if(state.unsubGuiones){ state.unsubGuiones(); state.unsubGuiones=null; }
+  if(state.unsubVendedores){ state.unsubVendedores(); state.unsubVendedores=null; }
+  if(state.unsubAdmins){ state.unsubAdmins(); state.unsubAdmins=null; }
+  if(state.unsubIdeas){ state.unsubIdeas(); state.unsubIdeas=null; }
+}
+
+/* ================= FIRESTORE LISTENERS =================
+   OJO: Firestore no filtra reglas de seguridad "documento por documento" en una consulta
+   sin where(). Si la regla varía según el documento (por ejemplo, según empresaId o
+   asignadoA) y la consulta no tiene un where() que Firestore pueda validar contra esa
+   regla, la consulta ENTERA se rechaza (no devuelve "los que sí puede ver", devuelve
+   error). Por eso acá armamos queries distintas según el rol en vez de escuchar la
+   colección entera siempre. */
+function startListeners(){
+  // ---- EMPRESAS ----
+  const empresasRestringidas = (state.role==='vendedor' || state.role==='admin_empresa') && Array.isArray(state.empresasAsignadas);
+  if(empresasRestringidas && state.empresasAsignadas.length===0){
+    state.empresas = [];
+    renderEmpresaTabs(); renderEmpresasConfigList(); renderEmpresaSelectOptions();
+    renderVendedorEmpresaCheckboxes(); renderVendedoresList(); renderMiCuentaInfo();
+    renderGuiones(); renderCalendar();
+  } else {
+    const empresasQuery = empresasRestringidas
+      ? db.collection('empresas').where(firebase.firestore.FieldPath.documentId(), 'in', state.empresasAsignadas.slice(0,10))
+      : db.collection('empresas');
+    state.unsubEmpresas = empresasQuery.onSnapshot(snap=>{
+      state.empresas = snap.docs.map(d=>({id:d.id, ...d.data()})).sort((a,b)=>(a.nombre||'').localeCompare(b.nombre||''));
+      renderEmpresaTabs(); renderEmpresasConfigList(); renderEmpresaSelectOptions();
+      renderVendedorEmpresaCheckboxes(); renderVendedoresList(); renderMiCuentaInfo();
+      renderGuiones(); renderCalendar();
+    }, err=>toast('Error cargando empresas: '+err.message));
+  }
+
+  // ---- GUIONES ----
+  if(isFullAdmin() || (isEmpresaAdmin() && state.empresasAsignadas===null)){
+    // admin ve todo; admin_empresa sin restricción (empresasAsignadas null) también ve todo
+    state.unsubGuiones = db.collection('guiones').onSnapshot(snap=>{
+      state.guiones = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      renderGuiones(); renderCalendar();
+    }, err=>toast('Error cargando guiones: '+err.message));
+  } else if(isEmpresaAdmin()){
+    if(state.empresasAsignadas.length===0){
+      state.guiones = []; renderGuiones(); renderCalendar();
+    } else {
+      state.unsubGuiones = db.collection('guiones').where('empresaId','in', state.empresasAsignadas.slice(0,10)).onSnapshot(snap=>{
+        state.guiones = snap.docs.map(d=>({id:d.id, ...d.data()}));
+        renderGuiones(); renderCalendar();
+      }, err=>toast('Error cargando guiones: '+err.message));
+    }
+  } else if(state.role==='vendedor'){
+    // dos consultas separadas (los míos + el pool de sin asignar) porque Firestore no puede
+    // combinar "asignadoA == mi_uid OR (asignadoA == null Y empresa permitida)" en una sola.
+    let guionesMios = {};
+    let guionesLibres = {};
+    const combinarYRenderizar = ()=>{
+      const combinados = {...guionesLibres, ...guionesMios};
+      state.guiones = Object.values(combinados);
+      renderGuiones(); renderCalendar();
+    };
+    const unsubMios = db.collection('guiones').where('asignadoA','==', state.uid).onSnapshot(snap=>{
+      guionesMios = {};
+      snap.docs.forEach(d=>{ guionesMios[d.id] = {id:d.id, ...d.data()}; });
+      combinarYRenderizar();
+    }, err=>toast('Error cargando tus guiones: '+err.message));
+    let unsubLibres = null;
+    if(state.empresasAsignadas===null){
+      unsubLibres = db.collection('guiones').where('asignadoA','==', null).onSnapshot(snap=>{
+        guionesLibres = {};
+        snap.docs.forEach(d=>{ guionesLibres[d.id] = {id:d.id, ...d.data()}; });
+        combinarYRenderizar();
+      }, err=>toast('Error cargando guiones sin asignar: '+err.message));
+    } else if(state.empresasAsignadas.length>0){
+      unsubLibres = db.collection('guiones').where('asignadoA','==', null).where('empresaId','in', state.empresasAsignadas.slice(0,10)).onSnapshot(snap=>{
+        guionesLibres = {};
+        snap.docs.forEach(d=>{ guionesLibres[d.id] = {id:d.id, ...d.data()}; });
+        combinarYRenderizar();
+      }, err=>toast('Error cargando guiones sin asignar: '+err.message));
+    }
+    state.unsubGuiones = ()=>{ unsubMios(); if(unsubLibres) unsubLibres(); };
+  }
+
+  if(state.role === 'admin'){
+    state.unsubVendedores = db.collection('users').where('role','==','vendedor').onSnapshot(snap=>{
+      state.vendedores = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      renderVendedoresList();
+      renderVendedorEmpresaCheckboxes();
+    }, err=>toast('Error cargando cuentas: '+err.message));
+    state.unsubAdmins = db.collection('users').where('role','in',['admin','admin_empresa']).onSnapshot(snap=>{
+      state.admins = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      renderAdminsList();
+    }, err=>toast('Error cargando administradoras: '+err.message));
+  }
+
+  state.unsubIdeas = db.collection('ideas').orderBy('createdAt','desc').onSnapshot(snap=>{
+    state.ideas = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    renderIdeas();
+  }, err=>toast('Error cargando ideas: '+err.message));
+}
+
+/* ================= IDEAS (CHAT) ================= */
+function renderIdeas(){
+  const box = document.getElementById('ideasList');
+  if(!box) return;
+  if(state.ideas.length===0){ box.innerHTML = '<div class="empty-state"><div class="big">💡</div><p>Todavía no hay ideas. ¡Sé el primero en tirar una!</p></div>'; return; }
+  box.innerHTML = '';
+  state.ideas.forEach(idea=>{
+    const fecha = idea.createdAt && idea.createdAt.toDate ? idea.createdAt.toDate().toLocaleString('es-AR') : '';
+    const canDelete = isContentAdmin() || idea.autorId===state.uid;
+    const item = document.createElement('div');
+    item.className = 'hook-item';
+    item.innerHTML = `<div class="txt">
+        <span class="cat">${escapeHtml(idea.autorNombre||'—')} · ${fecha}</span>
+        ${escapeHtml(idea.texto||'')}
+        ${idea.url ? `<br><a href="${escapeHtml(idea.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(idea.url)}</a>` : ''}
+      </div>
+      ${canDelete ? `<div class="hook-actions"><button class="ghost small" data-idea-del="${idea.id}">Eliminar</button></div>` : ''}
+    `;
+    box.appendChild(item);
+  });
+  box.querySelectorAll('[data-idea-del]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(!confirm('¿Eliminar esta idea?')) return;
+      db.collection('ideas').doc(btn.dataset.ideaDel).delete().catch(err=>toast('Error: '+err.message));
+    });
+  });
+}
+
+document.getElementById('btnEnviarIdea').addEventListener('click', ()=>{
+  const texto = document.getElementById('ideaTexto').value.trim();
+  const url = document.getElementById('ideaUrl').value.trim();
+  if(!texto && !url){ toast('Escribí una idea o pegá un link.'); return; }
+  db.collection('ideas').add({
+    texto, url, autorId: state.uid, autorNombre: state.nombre, autorRole: state.role, createdAt: FieldValue.serverTimestamp()
+  }).then(()=>{
+    document.getElementById('ideaTexto').value = '';
+    document.getElementById('ideaUrl').value = '';
+    toast('Idea enviada.');
+  }).catch(err=>toast('Error: '+err.message));
+});
+
+/* ================= EMPRESAS ================= */
+function renderColorSwatches(){
+  const box = document.getElementById('colorSwatches');
+  box.innerHTML = '';
+  let selected = COLORS[state.empresas.length % COLORS.length];
+  COLORS.forEach(c=>{
+    const s = document.createElement('div');
+    s.className = 'swatch' + (c===selected?' selected':'');
+    s.style.background = c;
+    s.dataset.color = c;
+    s.addEventListener('click', ()=>{
+      box.querySelectorAll('.swatch').forEach(x=>x.classList.remove('selected'));
+      s.classList.add('selected');
+    });
+    box.appendChild(s);
+  });
+}
+
+document.getElementById('btnAddEmpresa').addEventListener('click', ()=>{
+  const name = document.getElementById('newEmpresaName').value.trim();
+  if(!name){ toast('Ponele un nombre a la empresa.'); return; }
+  const sel = document.querySelector('#colorSwatches .swatch.selected');
+  const color = sel ? sel.dataset.color : COLORS[0];
+  db.collection('empresas').add({ nombre:name, color, createdAt: FieldValue.serverTimestamp() })
+    .then(()=>{ document.getElementById('newEmpresaName').value=''; renderColorSwatches(); toast('Empresa agregada.'); })
+    .catch(err=>toast('Error: '+err.message));
+});
+
+function renderEmpresasConfigList(){
+  const box = document.getElementById('empresasList');
+  if(state.empresas.length === 0){ box.innerHTML = '<p style="color:var(--text-dim);font-size:13px;">Todavía no agregaste ninguna empresa.</p>'; return; }
+  box.innerHTML = '';
+  state.empresas.forEach(emp=>{
+    const row = document.createElement('div');
+    row.className = 'person-row';
+    row.innerHTML = `
+      <span class="dot" style="width:12px;height:12px;border-radius:50%;background:${emp.color};display:inline-block;"></span>
+      <span class="pname">${escapeHtml(emp.nombre)}</span>
+      <button class="ghost small" data-del-empresa="${emp.id}">Eliminar</button>
+    `;
+    box.appendChild(row);
+  });
+  box.querySelectorAll('[data-del-empresa]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.delEmpresa;
+      const empresa = state.empresas.find(e=>e.id===id);
+      if(!confirm(`¿Eliminar "${empresa.nombre}"? Los guiones asociados quedarán sin empresa.`)) return;
+      db.collection('empresas').doc(id).delete().then(()=>{
+        if(state.selectedEmpresa === id){ state.selectedEmpresa = 'all'; localStorage.setItem('cp_last_tab','all'); }
+      }).catch(err=>toast('Error: '+err.message));
+    });
+  });
+}
+
+function renderEmpresaTabs(){
+  const box = document.getElementById('empresaTabs');
+  box.innerHTML = '';
+  const allTab = document.createElement('button');
+  allTab.className = 'tab-empresa' + (state.selectedEmpresa==='all' ? ' active':'');
+  allTab.textContent = 'Todas';
+  allTab.addEventListener('click', ()=>{ state.selectedEmpresa='all'; localStorage.setItem('cp_last_tab','all'); renderEmpresaTabs(); renderGuiones(); renderCalendar(); });
+  box.appendChild(allTab);
+
+  empresasVisiblesParaUsuario().forEach(emp=>{
+    const tab = document.createElement('button');
+    tab.className = 'tab-empresa' + (state.selectedEmpresa===emp.id ? ' active':'');
+    tab.innerHTML = `<span class="dot" style="background:${emp.color}"></span>${escapeHtml(emp.nombre)}`;
+    tab.addEventListener('click', ()=>{ state.selectedEmpresa=emp.id; localStorage.setItem('cp_last_tab', emp.id); renderEmpresaTabs(); renderGuiones(); renderCalendar(); });
+    box.appendChild(tab);
+  });
+
+  if(state.role==='admin'){
+    const addTab = document.createElement('button');
+    addTab.className = 'tab-empresa tab-add';
+    addTab.textContent = '+ Empresa';
+    addTab.addEventListener('click', ()=>{ switchView('config'); document.getElementById('newEmpresaName').focus(); });
+    box.appendChild(addTab);
+  }
+}
+
+function renderEmpresaSelectOptions(){
+  const sel = document.getElementById('fEmpresa');
+  const opciones = isFullAdmin() ? state.empresas : empresasVisiblesParaUsuario();
+  sel.innerHTML = '<option value="">Sin empresa</option>' + opciones.map(e=>`<option value="${e.id}">${escapeHtml(e.nombre)}</option>`).join('');
+}
+function empresaById(id){ return state.empresas.find(e=>e.id===id); }
+
+/* ================= CUENTAS DE VENDEDORES ================= */
+function renderVendedorEmpresaCheckboxes(){
+  const box = document.getElementById('newVendedorEmpresasBox');
+  if(!box) return;
+  box.innerHTML = state.empresas.map(e=>`
+    <label style="display:flex;align-items:center;gap:6px;font-weight:400;text-transform:none;font-size:13px;color:var(--text);">
+      <input type="checkbox" class="new-vend-emp-cb" value="${e.id}" style="width:auto;">
+      <span class="dot" style="background:${e.color}"></span>${escapeHtml(e.nombre)}
+    </label>`).join('') || '<p style="color:var(--text-dim);font-size:12px;">Todavía no creaste empresas.</p>';
+}
+const todasEmpresasCb = document.getElementById('newVendedorTodasEmpresas');
+if(todasEmpresasCb){
+  todasEmpresasCb.addEventListener('change', ()=>{
+    document.getElementById('newVendedorEmpresasBox').classList.toggle('hidden', todasEmpresasCb.checked);
+  });
+}
+
+document.getElementById('btnAddVendedor').addEventListener('click', ()=>{
+  const nombre = document.getElementById('newVendedorNombre').value.trim();
+  const email = document.getElementById('newVendedorEmail').value.trim();
+  const pass = document.getElementById('newVendedorPass').value;
+  if(!nombre || !email || !pass){ toast('Completá nombre, correo y contraseña.'); return; }
+  if(pass.length < 6){ toast('La contraseña debe tener al menos 6 caracteres.'); return; }
+  const verTodas = document.getElementById('newVendedorTodasEmpresas').checked;
+  const empresasAsignadas = verTodas ? null : Array.from(document.querySelectorAll('.new-vend-emp-cb:checked')).map(cb=>cb.value);
+  const btn = document.getElementById('btnAddVendedor');
+  btn.disabled = true;
+  const secName = 'sec-' + Date.now();
+  const secondary = firebase.initializeApp(firebaseConfig, secName);
+  secondary.auth().createUserWithEmailAndPassword(email, pass).then(cred=>{
+    const newUid = cred.user.uid;
+    const userDoc = { role:'vendedor', nombre, email, createdAt: FieldValue.serverTimestamp() };
+    if(empresasAsignadas) userDoc.empresasAsignadas = empresasAsignadas;
+    return db.collection('users').doc(newUid).set(userDoc)
+      .then(()=> secondary.auth().signOut());
+  }).then(()=>{
+    secondary.delete();
+    document.getElementById('newVendedorNombre').value='';
+    document.getElementById('newVendedorEmail').value='';
+    document.getElementById('newVendedorPass').value='';
+    document.getElementById('newVendedorTodasEmpresas').checked = true;
+    document.getElementById('newVendedorEmpresasBox').classList.add('hidden');
+    document.querySelectorAll('.new-vend-emp-cb').forEach(cb=>cb.checked=false);
+    toast('Cuenta de vendedor creada.');
+  }).catch(err=>{
+    toast('Error: ' + traducirError(err));
+    secondary.delete();
+  }).finally(()=>{ btn.disabled = false; });
+});
+
+function renderVendedoresList(){
+  const box = document.getElementById('vendedoresList');
+  if(state.vendedores.length===0){ box.innerHTML = '<p style="color:var(--text-dim);font-size:13px;">Todavía no creaste cuentas de vendedores.</p>'; }
+  else{
+    box.innerHTML = '';
+    state.vendedores.forEach(v=>{
+      const wrap = document.createElement('div');
+      const empresasLabel = Array.isArray(v.empresasAsignadas)
+        ? (v.empresasAsignadas.length ? v.empresasAsignadas.map(id=>empresaById(id)?.nombre).filter(Boolean).join(', ') : '(ninguna)')
+        : 'Todas';
+      const row = document.createElement('div');
+      row.className = 'person-row';
+      row.innerHTML = `<span class="pname">${escapeHtml(v.nombre)} <span style="color:var(--text-dim);font-size:12px;">(${escapeHtml(v.email||'')}) · ve: ${escapeHtml(empresasLabel)}</span></span>
+        <span class="role-pill">vendedor</span>
+        <button class="ghost small" data-editemp="${v.id}">✏️ Empresas</button>
+        <button class="ghost small" data-promoteemp="${v.id}">🏢 Admin de sus empresas</button>
+        <button class="ghost small" data-promote="${v.id}">⭐ Admin general</button>
+        <button class="ghost small" data-deact="${v.id}">Desactivar acceso</button>`;
+      wrap.appendChild(row);
+      const editBox = document.createElement('div');
+      editBox.className = 'hidden';
+      editBox.id = 'empEdit-' + v.id;
+      editBox.style.cssText = 'padding:10px 0 14px;border-bottom:1px solid var(--border);';
+      const current = Array.isArray(v.empresasAsignadas) ? v.empresasAsignadas : null;
+      editBox.innerHTML = `
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:13px;color:var(--text);margin-bottom:8px;">
+          <input type="checkbox" class="edit-todas-cb" ${current===null?'checked':''} style="width:auto;"> Puede ver todas las empresas
+        </label>
+        <div class="edit-emp-box" style="display:${current===null?'none':'flex'};flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+          ${state.empresas.map(e=>`<label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:13px;color:var(--text);">
+            <input type="checkbox" class="edit-emp-cb" value="${e.id}" ${current && current.includes(e.id)?'checked':''} style="width:auto;">
+            <span class="dot" style="background:${e.color}"></span>${escapeHtml(e.nombre)}</label>`).join('')}
+        </div>
+        <button class="primary small" data-saveemp="${v.id}">Guardar</button>
+        <button class="ghost small" data-cancelemp="${v.id}">Cancelar</button>`;
+      wrap.appendChild(editBox);
+      box.appendChild(wrap);
+    });
+    box.querySelectorAll('[data-deact]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        if(!confirm('¿Desactivar el acceso de esta persona? Ya no va a poder ver ni sugerir contenido (su cuenta de acceso sigue existiendo en Firebase Authentication; para eliminarla del todo hay que hacerlo desde ahí).')) return;
+        db.collection('users').doc(btn.dataset.deact).delete().then(()=>toast('Acceso desactivado.')).catch(err=>toast('Error: '+err.message));
+      });
+    });
+    box.querySelectorAll('[data-promote]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        if(!confirm('¿Convertir a esta persona en administradora general? Va a poder ver y editar TODO, de todas las empresas, sin restricción.')) return;
+        db.collection('users').doc(btn.dataset.promote).update({ role:'admin', empresasAsignadas: FieldValue.delete() }).then(()=>toast('Ahora es administradora general.')).catch(err=>toast('Error: '+err.message));
+      });
+    });
+    box.querySelectorAll('[data-promoteemp]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const v = state.vendedores.find(x=>x.id===btn.dataset.promoteemp);
+        const empresas = Array.isArray(v && v.empresasAsignadas) ? v.empresasAsignadas : null;
+        if(!empresas || empresas.length===0){
+          toast('Primero elegí con "✏️ Empresas" cuáles puede ver (no puede quedar en "todas" ni vacío).');
+          document.getElementById('empEdit-' + btn.dataset.promoteemp).classList.remove('hidden');
+          return;
+        }
+        if(!confirm('¿Convertir a esta persona en administradora de sus empresas asignadas (' + empresas.map(id=>empresaById(id)?.nombre).filter(Boolean).join(', ') + ')? Va a poder crear, editar y borrar guiones ahí, pero no va a ver el resto de las empresas ni la gestión de cuentas.')) return;
+        db.collection('users').doc(btn.dataset.promoteemp).update({ role:'admin_empresa' }).then(()=>toast('Ahora es administradora de sus empresas.')).catch(err=>toast('Error: '+err.message));
+      });
+    });
+    box.querySelectorAll('[data-editemp]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.getElementById('empEdit-' + btn.dataset.editemp).classList.toggle('hidden');
+      });
+    });
+    box.querySelectorAll('[data-cancelemp]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.getElementById('empEdit-' + btn.dataset.cancelemp).classList.add('hidden');
+      });
+    });
+    box.querySelectorAll('.edit-todas-cb').forEach(cb=>{
+      cb.addEventListener('change', ()=>{
+        const container = cb.closest('[id^="empEdit-"]');
+        if(container) container.querySelector('.edit-emp-box').style.display = cb.checked ? 'none' : 'flex';
+      });
+    });
+    box.querySelectorAll('[data-saveemp]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const uid = btn.dataset.saveemp;
+        const editBox = document.getElementById('empEdit-' + uid);
+        const todas = editBox.querySelector('.edit-todas-cb').checked;
+        const seleccion = Array.from(editBox.querySelectorAll('.edit-emp-cb:checked')).map(cb=>cb.value);
+        const payload = todas ? { empresasAsignadas: FieldValue.delete() } : { empresasAsignadas: seleccion };
+        db.collection('users').doc(uid).update(payload).then(()=>{
+          toast('Empresas actualizadas.');
+          editBox.classList.add('hidden');
+        }).catch(err=>toast('Error: '+err.message));
+      });
+    });
+  }
+  renderVendedorAuxLists();
+}
+
+function renderAdminsList(){
+  const box = document.getElementById('adminsList');
+  if(!box) return;
+  if(state.admins.length===0){ box.innerHTML = '<p style="color:var(--text-dim);font-size:13px;">No hay administradoras cargadas.</p>'; return; }
+  box.innerHTML = '';
+  state.admins.forEach(a=>{
+    const wrap = document.createElement('div');
+    const row = document.createElement('div');
+    row.className = 'person-row';
+    const esVos = a.id === state.uid;
+    const esGeneral = a.role === 'admin';
+    const empresasLabel = Array.isArray(a.empresasAsignadas)
+      ? (a.empresasAsignadas.length ? a.empresasAsignadas.map(id=>empresaById(id)?.nombre).filter(Boolean).join(', ') : '(ninguna)')
+      : 'Todas';
+    let botones = '';
+    if(!esVos){
+      botones += `<button class="ghost small" data-demote="${a.id}">Volver a vendedor/a</button>`;
+      if(!esGeneral){
+        botones += `<button class="ghost small" data-editemp="${a.id}">✏️ Empresas</button>`;
+        botones += `<button class="ghost small" data-upgrade="${a.id}">⭐ Subir a admin general</button>`;
+      }
+    }
+    row.innerHTML = `<span class="pname">${escapeHtml(a.nombre||a.email||'')} <span style="color:var(--text-dim);font-size:12px;">(${escapeHtml(a.email||'')})${esGeneral ? '' : ' · ve: '+escapeHtml(empresasLabel)}</span>${esVos?' <span style="color:var(--text-dim);font-size:12px;">(vos)</span>':''}</span>
+      <span class="role-pill">${esGeneral ? 'admin' : 'admin de empresa'}</span>
+      ${botones}`;
+    wrap.appendChild(row);
+    if(!esGeneral){
+      const editBox = document.createElement('div');
+      editBox.className = 'hidden';
+      editBox.id = 'empEdit-' + a.id;
+      editBox.style.cssText = 'padding:10px 0 14px;border-bottom:1px solid var(--border);';
+      const current = Array.isArray(a.empresasAsignadas) ? a.empresasAsignadas : null;
+      editBox.innerHTML = `
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:13px;color:var(--text);margin-bottom:8px;">
+          <input type="checkbox" class="edit-todas-cb" ${current===null?'checked':''} style="width:auto;"> Puede ver todas las empresas
+        </label>
+        <div class="edit-emp-box" style="display:${current===null?'none':'flex'};flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+          ${state.empresas.map(e=>`<label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:13px;color:var(--text);">
+            <input type="checkbox" class="edit-emp-cb" value="${e.id}" ${current && current.includes(e.id)?'checked':''} style="width:auto;">
+            <span class="dot" style="background:${e.color}"></span>${escapeHtml(e.nombre)}</label>`).join('')}
+        </div>
+        <button class="primary small" data-saveemp="${a.id}">Guardar</button>
+        <button class="ghost small" data-cancelemp="${a.id}">Cancelar</button>`;
+      wrap.appendChild(editBox);
+    }
+    box.appendChild(wrap);
+  });
+  box.querySelectorAll('[data-demote]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(!confirm('¿Volver a esta persona vendedora? Va a perder el acceso de administradora.')) return;
+      db.collection('users').doc(btn.dataset.demote).update({ role:'vendedor' }).then(()=>toast('Ahora es vendedor/a.')).catch(err=>toast('Error: '+err.message));
+    });
+  });
+  box.querySelectorAll('[data-upgrade]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(!confirm('¿Subir a esta persona a administradora general? Va a poder ver y editar TODO, de todas las empresas, sin restricción.')) return;
+      db.collection('users').doc(btn.dataset.upgrade).update({ role:'admin', empresasAsignadas: FieldValue.delete() }).then(()=>toast('Ahora es administradora general.')).catch(err=>toast('Error: '+err.message));
+    });
+  });
+  box.querySelectorAll('[data-editemp]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.getElementById('empEdit-' + btn.dataset.editemp).classList.toggle('hidden');
+    });
+  });
+  box.querySelectorAll('[data-cancelemp]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.getElementById('empEdit-' + btn.dataset.cancelemp).classList.add('hidden');
+    });
+  });
+  box.querySelectorAll('.edit-todas-cb').forEach(cb=>{
+    cb.addEventListener('change', ()=>{
+      const container = cb.closest('[id^="empEdit-"]');
+      if(container) container.querySelector('.edit-emp-box').style.display = cb.checked ? 'none' : 'flex';
+    });
+  });
+  box.querySelectorAll('[data-saveemp]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const uid = btn.dataset.saveemp;
+      const editBox = document.getElementById('empEdit-' + uid);
+      const todas = editBox.querySelector('.edit-todas-cb').checked;
+      const seleccion = Array.from(editBox.querySelectorAll('.edit-emp-cb:checked')).map(cb=>cb.value);
+      if(!todas && seleccion.length===0){ toast('Elegí al menos una empresa (o tildá "todas").'); return; }
+      const payload = todas ? { empresasAsignadas: FieldValue.delete() } : { empresasAsignadas: seleccion };
+      db.collection('users').doc(uid).update(payload).then(()=>{
+        toast('Empresas actualizadas.');
+        editBox.classList.add('hidden');
+      }).catch(err=>toast('Error: '+err.message));
+    });
+  });
+}
+
+function renderVendedorAuxLists(){
+  const dl = document.getElementById('vendedoresDatalist');
+  if(dl) dl.innerHTML = state.vendedores.map(v=>`<option value="${escapeHtml(v.nombre)}">`).join('');
+  const sel = document.getElementById('filterVendedor');
+  if(sel){
+    const current = sel.value;
+    sel.innerHTML = '<option value="">Todos los vendedores</option>' + state.vendedores.map(v=>`<option value="${v.id}">${escapeHtml(v.nombre)}</option>`).join('');
+    if(state.vendedores.some(v=>v.id===current)) sel.value = current;
+  }
+}
+
+/* ================= MI CUENTA ================= */
+document.getElementById('btnSaveCreds').addEventListener('click', ()=>{
+  const p = document.getElementById('cfgPass').value;
+  if(!p || p.length < 6){ toast('La contraseña debe tener al menos 6 caracteres.'); return; }
+  auth.currentUser.updatePassword(p).then(()=>{
+    document.getElementById('cfgPass').value='';
+    toast('Contraseña actualizada.');
+  }).catch(err=>toast(traducirError(err)));
+});
+
+/* ================= VIEW SWITCHING ================= */
+function switchView(view){
+  state.currentView = view;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  document.querySelectorAll('.section-btn').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
+  if(view==='calendario') renderCalendar();
+  if(view==='guiones') renderGuiones();
+}
+document.querySelectorAll('.section-btn').forEach(btn=>{ btn.addEventListener('click', ()=>switchView(btn.dataset.view)); });
+
+/* ================= PESTAÑAS DE ASIGNACIÓN ================= */
+function renderAsignacionTabs(){
+  const box = document.getElementById('asignacionTabs');
+  const tabs = [{k:'todos', label:'Todos'}];
+  if(state.role==='vendedor') tabs.push({k:'mios', label:'🙋 Asignados a mí'});
+  tabs.push({k:'sinasignar', label:'🆓 Sin asignar'});
+  box.innerHTML = '';
+  tabs.forEach(t=>{
+    const btn = document.createElement('button');
+    btn.className = 'tab-empresa' + (state.filterAsignacion===t.k ? ' active':'');
+    btn.textContent = t.label;
+    btn.addEventListener('click', ()=>{ state.filterAsignacion = t.k; renderAsignacionTabs(); renderGuiones(); });
+    box.appendChild(btn);
+  });
+}
+
+/* ================= GUIONES: RENDER ================= */
+function getFilteredGuiones(){
+  let list = state.guiones.slice();
+  if(state.selectedEmpresa !== 'all') list = list.filter(g=>g.empresaId === state.selectedEmpresa);
+  if(state.filterAsignacion === 'sinasignar') list = list.filter(g=>!g.asignadoA);
+  else if(state.filterAsignacion === 'mios') list = list.filter(g=>g.asignadoA === state.uid);
+  const estado = document.getElementById('filterEstado').value;
+  if(estado) list = list.filter(g=>g.estado===estado);
+  const tipo = document.getElementById('filterTipo').value;
+  if(tipo) list = list.filter(g=>g.tipo===tipo);
+  const vendedorSel = document.getElementById('filterVendedor');
+  const vendedorId = vendedorSel ? vendedorSel.value : '';
+  if(vendedorId) list = list.filter(g=>g.asignadoA===vendedorId);
+  const fechaFiltro = document.getElementById('filterFecha').value;
+  if(fechaFiltro) list = list.filter(g=>g.fecha===fechaFiltro || g.fechaPublicacion===fechaFiltro);
+  const q = document.getElementById('searchGuion').value.trim().toLowerCase();
+  if(q){
+    list = list.filter(g=>(g.titulo||'').toLowerCase().includes(q) || (g.keywords||'').toLowerCase().includes(q) || (g.gancho||'').toLowerCase().includes(q));
+  }
+  list.sort((a,b)=> (a.fecha||'9999').localeCompare(b.fecha||'9999'));
+  return list;
+}
+
+function actualizarBotonLimpiar(){
+  const activo = document.getElementById('filterEstado').value || document.getElementById('filterTipo').value ||
+    (document.getElementById('filterVendedor') && document.getElementById('filterVendedor').value) ||
+    document.getElementById('filterFecha').value || document.getElementById('searchGuion').value.trim();
+  document.getElementById('btnClearFiltros').classList.toggle('hidden', !activo);
+}
+
+function renderGuiones(){
+  const container = document.getElementById('guionesContainer');
+  const list = getFilteredGuiones();
+  if(list.length===0){
+    container.innerHTML = `<div class="empty-state"><div class="big">🎬</div><p>No hay guiones todavía${isContentAdmin() ? '. Creá el primero con "+ Nuevo guion".' : '.'}</p></div>`;
+    return;
+  }
+  const grid = document.createElement('div');
+  grid.className = 'cards-grid';
+  list.forEach(g=>{
+    const emp = empresaById(g.empresaId);
+    const card = document.createElement('div');
+    card.className = 'card';
+    const estadoColor = ESTADO_COLORS[g.estado] || '#8aa0ff';
+    const tipoIcon = TIPO_ICON[g.tipo] || '🎬';
+    const estadoTag = isContentAdmin()
+      ? `<select class="badge" data-estado-select="${g.id}" style="background:${estadoColor};border:none;appearance:none;cursor:pointer;">${ESTADOS.map(es=>`<option value="${es}" ${es===(g.estado||'Idea')?'selected':''}>${es}</option>`).join('')}</select>`
+      : `<span class="badge" style="background:${estadoColor}">${escapeHtml(g.estado||'Idea')}</span>`;
+    card.innerHTML = `
+      <div class="card-top">
+        <h3>${tipoIcon} ${escapeHtml(g.titulo || '(sin título)')}</h3>
+        ${estadoTag}
+      </div>
+      <div class="meta">
+        ${emp ? `<span class="badge badge-empresa"><span style="color:${emp.color}">●</span> ${escapeHtml(emp.nombre)}</span>` : ''}
+        <span>📅 ${fmtFecha(g.fecha)}${g.hora ? ' · '+g.hora : ''}</span>
+        ${g.grabaCon ? `<span>🎥 ${escapeHtml(g.grabaCon)}</span>` : (!g.asignadoA ? `<span>🆓 Sin asignar</span>` : '')}
+        ${g.fechaPublicacion ? `<span>📤 ${fmtFecha(g.fechaPublicacion)}</span>` : ''}
+      </div>
+      ${g.gancho ? `<div class="gancho-preview">🪝 ${escapeHtml(g.gancho)}</div>` : ''}
+      ${g.keywords ? `<div class="kw">🔑 ${escapeHtml(g.keywords)}</div>` : ''}
+      <div class="card-actions">
+        <button class="ghost small" data-open="${g.id}">${isContentAdmin() ? 'Ver / Editar' : 'Ver guion'}</button>
+        <button class="ghost small" data-ics="${g.id}">📅 Calendario</button>
+        ${state.role==='vendedor' && !g.asignadoA ? `<button class="primary small" data-claim="${g.id}">🙋 Asignarme este guion</button>` : ''}
+        ${state.role==='vendedor' && g.asignadoA===state.uid ? `<button class="ghost small" data-unclaim="${g.id}">↩️ Dejar de estar asignado</button>` : ''}
+        <button class="danger small content-admin-only" data-del="${g.id}">Eliminar</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  container.innerHTML = '';
+  container.appendChild(grid);
+
+  container.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click', ()=>openGuionModal(b.dataset.open)));
+  container.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click', ()=>{
+    if(!confirm('¿Eliminar este guion? También se van a borrar sus sugerencias.')) return;
+    deleteGuionCascade(b.dataset.del).then(()=>toast('Guion eliminado.')).catch(err=>toast('Error: '+err.message));
+  }));
+  container.querySelectorAll('[data-ics]').forEach(b=>b.addEventListener('click', ()=>downloadIcs(b.dataset.ics)));
+  container.querySelectorAll('[data-claim]').forEach(b=>b.addEventListener('click', ()=>{
+    db.collection('guiones').doc(b.dataset.claim).update({ asignadoA: state.uid, grabaCon: state.nombre, updatedAt: FieldValue.serverTimestamp() })
+      .then(()=>toast('¡Listo, te asignaste este guion!')).catch(err=>toast('Error: '+err.message));
+  }));
+  container.querySelectorAll('[data-unclaim]').forEach(b=>b.addEventListener('click', ()=>{
+    if(!confirm('¿Dejar este guion sin asignar? Otro vendedor va a poder tomarlo.')) return;
+    db.collection('guiones').doc(b.dataset.unclaim).update({ asignadoA: null, updatedAt: FieldValue.serverTimestamp() })
+      .then(()=>toast('Guion liberado.')).catch(err=>toast('Error: '+err.message));
+  }));
+  container.querySelectorAll('[data-estado-select]').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      sel.style.background = ESTADO_COLORS[sel.value] || '#8aa0ff';
+      db.collection('guiones').doc(sel.dataset.estadoSelect).update({ estado: sel.value, updatedAt: FieldValue.serverTimestamp() })
+        .then(()=>toast('Estado actualizado.')).catch(err=>toast('Error: '+err.message));
+    });
+  });
+}
+
+function onFilterChange(){ actualizarBotonLimpiar(); renderGuiones(); }
+document.getElementById('filterEstado').addEventListener('change', onFilterChange);
+document.getElementById('filterTipo').addEventListener('change', onFilterChange);
+document.getElementById('filterVendedor').addEventListener('change', onFilterChange);
+document.getElementById('filterFecha').addEventListener('change', onFilterChange);
+document.getElementById('searchGuion').addEventListener('input', onFilterChange);
+document.getElementById('btnClearFiltros').addEventListener('click', ()=>{
+  document.getElementById('filterEstado').value = '';
+  document.getElementById('filterTipo').value = '';
+  document.getElementById('filterVendedor').value = '';
+  document.getElementById('filterFecha').value = '';
+  document.getElementById('searchGuion').value = '';
+  onFilterChange();
+});
+
+function deleteGuionCascade(id){
+  return db.collection('guiones').doc(id).collection('sugerencias').get().then(snap=>{
+    const batch = db.batch();
+    snap.forEach(d=>batch.delete(d.ref));
+    batch.delete(db.collection('guiones').doc(id));
+    return batch.commit();
+  });
+}
+
+/* ================= MODAL GUION ================= */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalFieldIds = ['fEmpresa','fTipo','fEstado','fTitulo','fGrabaCon','fFecha','fHora','fFechaPublicacion','fKeywords','fGancho','fCuerpo','fCta','fNotas'];
+
+function setModalReadOnly(readOnly){
+  modalFieldIds.forEach(id=>{ document.getElementById(id).disabled = readOnly; });
+  document.getElementById('sugInput').disabled = false;
+  document.getElementById('btnExportarTxt').classList.remove('hidden');
+  document.getElementById('btnImprimir').classList.remove('hidden');
+}
+
+function openGuionModal(id){
+  renderEmpresaSelectOptions();
+  document.getElementById('modalTitle').textContent = id ? (isContentAdmin() ? 'Editar guion' : 'Ver guion') : 'Nuevo guion';
+  document.getElementById('guionId').value = id || '';
+  if(id){
+    const g = state.guiones.find(x=>x.id===id);
+    document.getElementById('fEmpresa').value = g.empresaId || '';
+    document.getElementById('fTipo').value = g.tipo || 'Reel';
+    document.getElementById('fEstado').value = g.estado || 'Idea';
+    document.getElementById('fTitulo').value = g.titulo || '';
+    document.getElementById('fGrabaCon').value = g.grabaCon || '';
+    document.getElementById('fFecha').value = g.fecha || '';
+    document.getElementById('fHora').value = g.hora || '';
+    document.getElementById('fFechaPublicacion').value = g.fechaPublicacion || '';
+    document.getElementById('fKeywords').value = g.keywords || '';
+    document.getElementById('fGancho').value = g.gancho || '';
+    document.getElementById('fCuerpo').value = g.cuerpo || '';
+    document.getElementById('fCta').value = g.cta || '';
+    document.getElementById('fNotas').value = g.notas || '';
+    loadSugerencias(id);
+  } else {
+    modalFieldIds.forEach(fid=>{ if(fid!=='fEmpresa' && fid!=='fTipo' && fid!=='fEstado') document.getElementById(fid).value=''; });
+    document.getElementById('fEmpresa').value = state.selectedEmpresa !== 'all' ? state.selectedEmpresa : '';
+    document.getElementById('fEstado').value = 'Idea';
+    document.getElementById('fTipo').value = 'Reel';
+    document.getElementById('sugList').innerHTML = '<p class="sug-empty">Guardá el guion primero para poder agregar sugerencias.</p>';
+  }
+  setModalReadOnly(!isContentAdmin());
+  modalOverlay.classList.remove('hidden');
+  modalOverlay.scrollTop = 0;
+  const modalBox = modalOverlay.querySelector('.modal');
+  if(modalBox) modalBox.scrollTop = 0;
+}
+function closeModal(){ modalOverlay.classList.add('hidden'); }
+document.getElementById('btnCloseModal').addEventListener('click', closeModal);
+document.getElementById('btnDescartar').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', e=>{ if(e.target===modalOverlay) closeModal(); });
+document.getElementById('btnNuevoGuion').addEventListener('click', ()=>openGuionModal(null));
+
+document.getElementById('btnGuardarGuion').addEventListener('click', ()=>{
+  const titulo = document.getElementById('fTitulo').value.trim();
+  if(!titulo){ toast('Ponele un título al guion.'); return; }
+  const id = document.getElementById('guionId').value;
+  const grabaConTxt = document.getElementById('fGrabaCon').value.trim();
+  const vendedorMatch = state.vendedores.find(v=>(v.nombre||'').trim().toLowerCase() === grabaConTxt.toLowerCase());
+  if(grabaConTxt && !vendedorMatch){
+    toast('Ojo: "'+grabaConTxt+'" no coincide con ningún vendedor registrado, así que solo vos vas a ver este guion.');
+  }
+  const data = {
+    empresaId: document.getElementById('fEmpresa').value,
+    tipo: document.getElementById('fTipo').value,
+    titulo,
+    grabaCon: grabaConTxt,
+    asignadoA: vendedorMatch ? vendedorMatch.id : null,
+    estado: document.getElementById('fEstado').value,
+    fecha: document.getElementById('fFecha').value,
+    hora: document.getElementById('fHora').value,
+    fechaPublicacion: document.getElementById('fFechaPublicacion').value,
+    keywords: document.getElementById('fKeywords').value.trim(),
+    gancho: document.getElementById('fGancho').value.trim(),
+    cuerpo: document.getElementById('fCuerpo').value.trim(),
+    cta: document.getElementById('fCta').value.trim(),
+    notas: document.getElementById('fNotas').value.trim()
+  };
+  const promise = id
+    ? db.collection('guiones').doc(id).set({...data, updatedAt: FieldValue.serverTimestamp()}, {merge:true})
+    : db.collection('guiones').add({...data, createdAt: FieldValue.serverTimestamp(), createdBy: state.uid});
+  promise.then(()=>{ closeModal(); toast('Guion guardado.'); }).catch(err=>toast('Error: '+err.message));
+});
+
+document.getElementById('btnSugerirDesdeForm').addEventListener('click', ()=>{
+  const kw = document.getElementById('fKeywords').value.trim();
+  if(!kw){ toast('Escribí palabras clave primero.'); return; }
+  switchView('ganchos');
+  document.getElementById('hookKeywords').value = kw;
+  document.getElementById('btnGenerarGanchos').click();
+  closeModal();
+});
+
+/* ================= SUGERENCIAS ================= */
+function loadSugerencias(guionId){
+  const box = document.getElementById('sugList');
+  box.innerHTML = '<p class="sug-empty">Cargando…</p>';
+  db.collection('guiones').doc(guionId).collection('sugerencias').orderBy('createdAt','desc').get().then(snap=>{
+    if(snap.empty){ box.innerHTML = '<p class="sug-empty">Todavía no hay sugerencias.</p>'; return; }
+    box.innerHTML = '';
+    snap.forEach(d=>{
+      const s = d.data();
+      const fecha = s.createdAt && s.createdAt.toDate ? s.createdAt.toDate().toLocaleString('es-AR') : '';
+      const canDelete = isContentAdmin() || s.autorId===state.uid;
+      const item = document.createElement('div');
+      item.className = 'sug-item';
+      item.innerHTML = `<div class="who"><span>${escapeHtml(s.autorNombre||'—')} · ${fecha}</span>${canDelete ? `<button class="ghost small" data-sug-del="${d.id}" style="padding:2px 6px;">✕</button>` : ''}</div>
+        <div>${escapeHtml(s.texto)}</div>`;
+      box.appendChild(item);
+    });
+    box.querySelectorAll('[data-sug-del]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        db.collection('guiones').doc(guionId).collection('sugerencias').doc(btn.dataset.sugDel).delete()
+          .then(()=>loadSugerencias(guionId)).catch(err=>toast('Error: '+err.message));
+      });
+    });
+  }).catch(err=>{ box.innerHTML = '<p class="sug-empty">Error al cargar.</p>'; toast('Error: '+err.message); });
+}
+
+document.getElementById('btnAddSugerencia').addEventListener('click', ()=>{
+  const guionId = document.getElementById('guionId').value;
+  if(!guionId){ toast('Guardá el guion primero.'); return; }
+  const texto = document.getElementById('sugInput').value.trim();
+  if(!texto){ toast('Escribí algo primero.'); return; }
+  db.collection('guiones').doc(guionId).collection('sugerencias').add({
+    texto, autorId: state.uid, autorNombre: state.nombre, autorRole: state.role, createdAt: FieldValue.serverTimestamp()
+  }).then(()=>{ document.getElementById('sugInput').value=''; loadSugerencias(guionId); toast('Sugerencia agregada.'); })
+  .catch(err=>toast('Error: '+err.message));
+});
+
+/* ================= EXPORTAR / IMPRIMIR ================= */
+function currentGuionSnapshot(){
+  return {
+    empresa: (empresaById(document.getElementById('fEmpresa').value)||{}).nombre || 'Sin empresa',
+    tipo: document.getElementById('fTipo').value,
+    estado: document.getElementById('fEstado').value,
+    titulo: document.getElementById('fTitulo').value,
+    grabaCon: document.getElementById('fGrabaCon').value,
+    fecha: document.getElementById('fFecha').value,
+    hora: document.getElementById('fHora').value,
+    fechaPublicacion: document.getElementById('fFechaPublicacion').value,
+    keywords: document.getElementById('fKeywords').value,
+    gancho: document.getElementById('fGancho').value,
+    cuerpo: document.getElementById('fCuerpo').value,
+    cta: document.getElementById('fCta').value,
+    notas: document.getElementById('fNotas').value
+  };
+}
+
+function buildTexto(g){
+  return `PLANIFICADOR DE REELS
+========================
+Título: ${g.titulo}
+Empresa: ${g.empresa}
+Tipo: ${g.tipo}
+Estado: ${g.estado}
+Fecha de grabación: ${fmtFecha(g.fecha)} ${g.hora||''}
+Con quién: ${g.grabaCon||'-'}
+Fecha de publicación: ${g.fechaPublicacion ? fmtFecha(g.fechaPublicacion) : '-'}
+Palabras clave: ${g.keywords||'-'}
+
+GANCHO
+------
+${g.gancho||'-'}
+
+CUERPO / SLIDES
+----------------
+${g.cuerpo||'-'}
+
+CTA
+---
+${g.cta||'-'}
+
+NOTAS
+-----
+${g.notas||'-'}
+`;
+}
+
+document.getElementById('btnExportarTxt').addEventListener('click', ()=>{
+  const g = currentGuionSnapshot();
+  const blob = new Blob([buildTexto(g)], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `guion-${(g.titulo||'reel').slice(0,30).replace(/[^a-z0-9]+/gi,'-')}.txt`;
+  a.click();
+  toast('Guion exportado.');
+});
+
+document.getElementById('btnImprimir').addEventListener('click', ()=>{
+  const g = currentGuionSnapshot();
+  const win = window.open('', '_blank');
+  if(!win){ toast('Habilitá las ventanas emergentes para imprimir.'); return; }
+  win.document.write(`<html><head><title>${escapeHtml(g.titulo)}</title><style>
+    body{font-family:Arial,sans-serif;padding:30px;color:#111;} h1{font-size:20px;} h2{font-size:14px;margin-top:20px;border-bottom:1px solid #ccc;padding-bottom:4px;}
+    p{white-space:pre-wrap;font-size:13px;line-height:1.5;} .meta{font-size:12px;color:#555;margin-bottom:16px;}
+  </style></head><body>
+    <h1>${escapeHtml(g.titulo)}</h1>
+    <div class="meta">${escapeHtml(g.empresa)} · ${escapeHtml(g.tipo)} · ${escapeHtml(g.estado)}<br>
+    Grabación: ${fmtFecha(g.fecha)} ${escapeHtml(g.hora||'')} — Con: ${escapeHtml(g.grabaCon||'-')}<br>
+    Publicación: ${g.fechaPublicacion?fmtFecha(g.fechaPublicacion):'-'}</div>
+    <h2>Gancho</h2><p>${escapeHtml(g.gancho||'-')}</p>
+    <h2>Cuerpo / Slides</h2><p>${escapeHtml(g.cuerpo||'-')}</p>
+    <h2>CTA</h2><p>${escapeHtml(g.cta||'-')}</p>
+    <h2>Notas</h2><p>${escapeHtml(g.notas||'-')}</p>
+  </body></html>`);
+  win.document.close();
+  win.focus();
+  setTimeout(()=>win.print(), 300);
+});
+
+/* ================= ICS EXPORT ================= */
+function downloadIcs(id){
+  const g = state.guiones.find(x=>x.id===id);
+  if(!g){ return; }
+  if(!g.fecha){ toast('Este guion no tiene fecha de grabación.'); return; }
+  const dateStr = g.fecha.replace(/-/g,'');
+  const timeStr = (g.hora || '10:00').replace(':','') + '00';
+  const dtStart = `${dateStr}T${timeStr}`;
+  const startDate = new Date(`${g.fecha}T${g.hora||'10:00'}:00`);
+  const endDate = new Date(startDate.getTime() + 60*60*1000);
+  const dtEnd = endDate.toISOString().replace(/[-:]/g,'').split('.')[0];
+  const emp = empresaById(g.empresaId);
+  const descParts = [];
+  if(g.grabaCon) descParts.push('Con quién: ' + g.grabaCon);
+  if(g.gancho) descParts.push('Gancho: ' + g.gancho);
+  if(g.cta) descParts.push('CTA: ' + g.cta);
+  if(g.notas) descParts.push('Notas: ' + g.notas);
+  const desc = descParts.join('\\n').replace(/\n/g,'\\n');
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Planificador de Reels//ES','BEGIN:VEVENT',
+    'UID:' + id + '@planificador-reels',
+    'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+    'DTSTART:' + dtStart,
+    'DTEND:' + dtEnd,
+    'SUMMARY:Grabar: ' + (g.titulo||'').replace(/\n/g,' ') + (emp? ' ('+emp.nombre+')':''),
+    'DESCRIPTION:' + desc,
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  const blob = new Blob([ics], {type:'text/calendar'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `grabacion-${(g.titulo||'reel').slice(0,30).replace(/[^a-z0-9]+/gi,'-')}.ics`;
+  a.click();
+  toast('Evento descargado. Abrilo para agregarlo a tu calendario.');
+}
+
+/* ================= CALENDAR ================= */
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DOW = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+
+function isoOf(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+function buildEntryMaps(){
+  let list = state.guiones.slice();
+  if(state.selectedEmpresa !== 'all') list = list.filter(g=>g.empresaId===state.selectedEmpresa);
+  const byGrab = {}, byPub = {};
+  list.forEach(g=>{
+    if(g.fecha) (byGrab[g.fecha] = byGrab[g.fecha] || []).push(g);
+    if(g.fechaPublicacion) (byPub[g.fechaPublicacion] = byPub[g.fechaPublicacion] || []).push(g);
+  });
+  return {list, byGrab, byPub};
+}
+
+function buildDayCell(cellDate, otherMonth, todayIso, byGrab, byPub, maxChips){
+  const iso = isoOf(cellDate);
+  const cell = document.createElement('div');
+  cell.className = 'cal-day' + (otherMonth?' other-month':'') + (iso===todayIso?' today':'') + (iso===state.calSelectedDay?' selected':'');
+  const grabEntries = byGrab[iso] || [];
+  const pubEntries = byPub[iso] || [];
+  const allEntries = grabEntries.map(g=>({g,type:'grab'})).concat(pubEntries.map(g=>({g,type:'pub'})));
+  let chipsHtml = '<div class="num">' + cellDate.getDate() + '</div>';
+  allEntries.slice(0,maxChips).forEach(({g,type})=>{
+    const label = type==='grab' ? `🎥 ${g.titulo}${g.grabaCon ? ' · '+g.grabaCon : ''}` : `📤 ${g.titulo}`;
+    chipsHtml += `<div class="cal-chip${type==='pub'?' pub':''}" title="${escapeHtml(label)}">${escapeHtml(label)}</div>`;
+  });
+  if(allEntries.length > maxChips) chipsHtml += `<div class="cal-more">+${allEntries.length-maxChips} más</div>`;
+  cell.innerHTML = chipsHtml;
+  cell.addEventListener('click', ()=>{ state.calSelectedDay = iso; renderCalendar(); renderDayPanel(iso, allEntries); });
+  return cell;
+}
+
+function renderCalendar(){
+  document.getElementById('calModeMes').classList.toggle('active', state.calViewMode==='mes');
+  document.getElementById('calModeSemana').classList.toggle('active', state.calViewMode==='semana');
+  if(state.calViewMode === 'semana') renderCalendarSemana();
+  else renderCalendarMes();
+}
+
+function renderCalendarMes(){
+  const grid = document.getElementById('calGrid');
+  document.getElementById('calTitle').textContent = `${MESES[state.calMonth]} ${state.calYear}`;
+  grid.innerHTML = '';
+  DOW.forEach(d=>{ const el = document.createElement('div'); el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el); });
+
+  const first = new Date(state.calYear, state.calMonth, 1);
+  let startOffset = first.getDay() - 1;
+  if(startOffset < 0) startOffset = 6;
+  const daysInMonth = new Date(state.calYear, state.calMonth+1, 0).getDate();
+  const daysInPrevMonth = new Date(state.calYear, state.calMonth, 0).getDate();
+  const todayIso = isoOf(new Date());
+
+  const {list, byGrab, byPub} = buildEntryMaps();
+
+  const totalCells = Math.ceil((startOffset + daysInMonth)/7)*7;
+  for(let i=0;i<totalCells;i++){
+    const dayNum = i - startOffset + 1;
+    let cellDate, otherMonth=false;
+    if(dayNum < 1){ cellDate = new Date(state.calYear, state.calMonth-1, daysInPrevMonth + dayNum); otherMonth = true; }
+    else if(dayNum > daysInMonth){ cellDate = new Date(state.calYear, state.calMonth+1, dayNum - daysInMonth); otherMonth = true; }
+    else { cellDate = new Date(state.calYear, state.calMonth, dayNum); }
+    grid.appendChild(buildDayCell(cellDate, otherMonth, todayIso, byGrab, byPub, 2));
+  }
+  finishCalendarRender(list);
+}
+
+function renderCalendarSemana(){
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+  DOW.forEach(d=>{ const el = document.createElement('div'); el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el); });
+
+  if(!state.calWeekStart){
+    const ref = state.calSelectedDay ? new Date(state.calSelectedDay+'T00:00:00') : new Date();
+    let dow = ref.getDay() - 1; if(dow<0) dow = 6;
+    const monday = new Date(ref); monday.setDate(ref.getDate()-dow);
+    state.calWeekStart = isoOf(monday);
+  }
+  const start = new Date(state.calWeekStart+'T00:00:00');
+  const end = new Date(start); end.setDate(start.getDate()+6);
+  const fmtShort = d => `${d.getDate()} ${MESES[d.getMonth()].slice(0,3)}`;
+  document.getElementById('calTitle').textContent = `${fmtShort(start)} – ${fmtShort(end)} ${end.getFullYear()}`;
+
+  const todayIso = isoOf(new Date());
+  const {list, byGrab, byPub} = buildEntryMaps();
+  for(let i=0;i<7;i++){
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    const cell = buildDayCell(d, false, todayIso, byGrab, byPub, 6);
+    cell.style.minHeight = '160px';
+    grid.appendChild(cell);
+  }
+  finishCalendarRender(list);
+}
+
+function finishCalendarRender(list){
+  if(state.calSelectedDay){
+    let sel = list.filter(g=>g.fecha===state.calSelectedDay).map(g=>({g,type:'grab'}))
+      .concat(list.filter(g=>g.fechaPublicacion===state.calSelectedDay).map(g=>({g,type:'pub'})));
+    renderDayPanel(state.calSelectedDay, sel);
+  } else {
+    document.getElementById('dayPanel').innerHTML = '';
+  }
+}
+
+function renderDayPanel(iso, entries){
+  const panel = document.getElementById('dayPanel');
+  if(entries.length===0){
+    panel.innerHTML = `<div class="day-panel"><h3>${fmtFecha(iso)}</h3><p class="sug-empty">No hay nada planificado este día.</p></div>`;
+    return;
+  }
+  panel.innerHTML = `<div class="day-panel"><h3>${fmtFecha(iso)}</h3><div id="dayPanelItems"></div></div>`;
+  const box = document.getElementById('dayPanelItems');
+  entries.forEach(({g,type})=>{
+    const emp = empresaById(g.empresaId);
+    const row = document.createElement('div');
+    row.className = 'day-panel-item';
+    row.innerHTML = `<span>${type==='grab'?'🎥':'📤'} <strong>${escapeHtml(g.titulo)}</strong> ${emp?`· ${escapeHtml(emp.nombre)}`:''} ${type==='grab' && g.grabaCon ? `· con ${escapeHtml(g.grabaCon)}`:''}</span>
+      <button class="ghost small" data-view-guion="${g.id}">Ver</button>`;
+    box.appendChild(row);
+  });
+  box.querySelectorAll('[data-view-guion]').forEach(b=>b.addEventListener('click', ()=>openGuionModal(b.dataset.viewGuion)));
+}
+
+document.getElementById('calPrev').addEventListener('click', ()=>{
+  if(state.calViewMode==='semana'){
+    const d = new Date((state.calWeekStart||isoOf(new Date()))+'T00:00:00'); d.setDate(d.getDate()-7);
+    state.calWeekStart = isoOf(d);
+  } else {
+    state.calMonth--; if(state.calMonth<0){state.calMonth=11; state.calYear--;}
+  }
+  renderCalendar();
+});
+document.getElementById('calNext').addEventListener('click', ()=>{
+  if(state.calViewMode==='semana'){
+    const d = new Date((state.calWeekStart||isoOf(new Date()))+'T00:00:00'); d.setDate(d.getDate()+7);
+    state.calWeekStart = isoOf(d);
+  } else {
+    state.calMonth++; if(state.calMonth>11){state.calMonth=0; state.calYear++;}
+  }
+  renderCalendar();
+});
+document.getElementById('calModeMes').addEventListener('click', ()=>{ state.calViewMode='mes'; renderCalendar(); });
+document.getElementById('calModeSemana').addEventListener('click', ()=>{ state.calViewMode='semana'; state.calWeekStart=null; renderCalendar(); });
+
+/* ================= HOOK GENERATOR ================= */
+const HOOK_BANK = {
+  'Curiosidad': [
+    "Descubrí cómo lograr {tema} con este truco de {kw}.",
+    "¿Sabías que podés mejorar {kw} con un solo cambio?"
+  ],
+  'Secreto': [
+    "Te voy a revelar el secreto detrás de {kw} que casi nadie conoce.",
+    "La clave para lograr {tema} está en este simple paso con {kw}.",
+    "La regla número uno para {tema} tiene que ver con {kw}."
+  ],
+  'Guía': [
+    "Imaginate empezar desde cero con {kw}. Este es mi consejo para vos.",
+    "La guía definitiva para {kw}.",
+    "Te muestro cómo hacer {kw} de forma fácil y rápida.",
+    "Te muestro cómo hacer {kw}, algo que parece difícil, de forma sencilla."
+  ],
+  'Urgencia': [
+    "¡Atención! Esto es lo que tenés que saber antes de {kw}.",
+    "¡Atención! Este es el primer paso para lograr {tema}.",
+    "Si querés lograr {tema}, necesitás probar esta técnica con {kw}."
+  ],
+  'Motivación': [
+    "¿Querés destacarte con {kw}? Seguí estos consejos.",
+    "Este simple cambio en {kw} puede marcar la diferencia.",
+    "¿Querés un truco que te ahorre tiempo con {kw}? Acá está."
+  ],
+  'Incredulidad': [
+    "¡No vas a creer lo fácil que es {kw} con este truco!"
+  ]
+};
+
+function generarGanchos(kwRaw, tema, categoria){
+  const keywords = kwRaw.split(',').map(k=>k.trim()).filter(Boolean);
+  if(keywords.length===0) keywords.push(kwRaw.trim() || 'tu tema');
+  const temaTxt = tema.trim() || keywords[0];
+  const cats = categoria ? [categoria] : Object.keys(HOOK_BANK);
+  const results = [];
+  cats.forEach(cat=>{
+    HOOK_BANK[cat].forEach(tpl=>{
+      const kw = keywords[Math.floor(Math.random()*keywords.length)];
+      const txt = tpl.split('{kw}').join(kw).split('{tema}').join(temaTxt);
+      results.push({cat, txt});
+    });
+  });
+  for(let i=results.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [results[i],results[j]] = [results[j],results[i]]; }
+  return results;
+}
+
+document.getElementById('btnGenerarGanchos').addEventListener('click', ()=>{
+  const kw = document.getElementById('hookKeywords').value.trim();
+  if(!kw){ toast('Escribí al menos una palabra clave.'); return; }
+  const tema = document.getElementById('hookTema').value.trim();
+  const cat = document.getElementById('hookCategoria').value;
+  const results = generarGanchos(kw, tema, cat);
+  const box = document.getElementById('hookResults');
+  box.innerHTML = '';
+  results.forEach(r=>{
+    const item = document.createElement('div');
+    item.className = 'hook-item';
+    item.innerHTML = `<div class="txt"><span class="cat">${r.cat}</span>${escapeHtml(r.txt)}</div>
+      <div class="hook-actions">
+        <button class="ghost small" data-copy>Copiar</button>
+        <button class="primary small content-admin-only" data-use>Usar en nuevo guion</button>
+      </div>`;
+    item.querySelector('[data-copy]').addEventListener('click', ()=>{ navigator.clipboard.writeText(r.txt).then(()=>toast('Gancho copiado.')); });
+    const useBtn = item.querySelector('[data-use]');
+    if(useBtn){ useBtn.addEventListener('click', ()=>{ openGuionModal(null); document.getElementById('fGancho').value = r.txt; document.getElementById('fKeywords').value = kw; }); }
+    box.appendChild(item);
+  });
+});
+
+/* ================= BACKUP ================= */
+document.getElementById('btnExport').addEventListener('click', ()=>{
+  const backup = { empresas: state.empresas, guiones: state.guiones, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(backup,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `backup-planificador-reels-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  toast('Backup descargado.');
+});
+
+document.getElementById('confirmDanger').addEventListener('input', function(){
+  document.getElementById('btnReset').disabled = this.value.trim() !== 'BORRAR TODO';
+});
+document.getElementById('btnReset').addEventListener('click', ()=>{
+  if(!confirm('Esto borra TODOS los guiones y empresas de forma permanente. ¿Confirmás?')) return;
+  const batch = db.batch();
+  state.guiones.forEach(g=> batch.delete(db.collection('guiones').doc(g.id)));
+  state.empresas.forEach(e=> batch.delete(db.collection('empresas').doc(e.id)));
+  batch.commit().then(()=>{ toast('Datos borrados.'); document.getElementById('confirmDanger').value=''; document.getElementById('btnReset').disabled=true; })
+    .catch(err=>toast('Error: '+err.message));
+});
+
+/* ================= INIT ================= */
+function initApp(){
+  renderColorSwatches();
+  renderEmpresaTabs();
+  renderEmpresasConfigList();
+  renderEmpresaSelectOptions();
+  renderAsignacionTabs();
+  startListeners();
+  switchView('guiones');
+}
+
+})();
+</script>
 </body>
 </html>
-<!-- trigger redeploy 1786016817 -->
-<!-- retry 1786017536 -->
