@@ -1152,10 +1152,19 @@
       const originalText = submitBtn.textContent;
       submitBtn.textContent = 'Enviando...';
       submitBtn.disabled = true;
+
+      const tipoField = document.getElementById('necesidad');
+      const tipoValor = tipoField ? tipoField.value : '';
+      const asunto = tipoValor === 'laboral'
+        ? 'Propuesta de empleo — andreafurgeri.com'
+        : 'Solicitud de servicios — andreafurgeri.com';
+      const formData = new FormData(contactForm);
+      formData.set('_subject', asunto);
+
       try {
         const res = await fetch(contactForm.action, {
           method: 'POST',
-          body: new FormData(contactForm),
+          body: formData,
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
