@@ -889,6 +889,134 @@
     .header-social{ display:none; }
   }
 
+
+
+  /* ---- Formulario de contacto (agregado a Sobre mi) ---- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+    .contact-grid{ grid-template-columns:1fr; gap:40px; }
+  .direct-channel{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:20px 0;
+    border-top:1px solid rgba(255,255,255,0.16);
+  }
+  .direct-channel:last-child{ border-bottom:1px solid rgba(255,255,255,0.16); }
+  .direct-channel .ch-icon{
+    width:40px; height:40px;
+    border-radius:10px;
+    background:var(--bg-2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.16);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .direct-channel span{ display:block; font-size:12px; color:var(--text-2); margin-bottom:2px; }
+  .direct-channel strong{ font-size:15px; font-weight:500; }
+  form{ display:flex; flex-direction:column; gap:20px; }
+  .form-row{ display:flex; flex-direction:column; gap:8px; }
+  .form-row label{ font-size:13px; color:var(--accent-soft); font-weight:500; }
+  .form-row input, .form-row select, .form-row textarea{
+    background: rgba(5,4,8,0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px;
+    padding:13px 16px;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:14.5px;
+    transition: border-color 0.25s var(--ease);
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+  }
+  form .btn-primary{
+    align-self:flex-start;
+    border:none;
+    cursor:pointer;
+    font-family:'Inter', sans-serif;
+    margin-top:8px;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder{
+    color:rgba(245,244,240,0.4);
+  }
+  .form-row select{ color:rgba(245,244,240,0.75); }
+  .custom-select{
+    position:relative;
+  }
+  .custom-select-trigger{
+    width:100%;
+    text-align:left;
+    background: rgba(5,4,8,0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px;
+    padding:13px 16px;
+    color:rgba(245,244,240,0.75);
+    font-family:'Inter', sans-serif;
+    font-size:14.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    transition: border-color 0.25s var(--ease);
+  }
+  .custom-select-trigger.filled{ color:var(--text); }
+  .custom-select-trigger:hover{ border-color:var(--accent-soft); }
+  .custom-select.open .custom-select-trigger{ border-color:var(--accent-soft); }
+  .custom-select-trigger svg{
+    flex-shrink:0;
+    transition: transform 0.25s var(--ease);
+  }
+  .custom-select.open .custom-select-trigger svg{ transform:rotate(180deg); }
+  .custom-select-options{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0; right:0;
+    background: rgba(10,9,16,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:12px;
+    padding:6px;
+    z-index:30;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition: max-height 0.25s var(--ease), opacity 0.2s var(--ease);
+  }
+  .custom-select.open .custom-select-options{
+    max-height:320px;
+    opacity:1;
+    pointer-events:auto;
+  }
+  .custom-select-option{
+    padding:11px 14px;
+    border-radius:8px;
+    font-size:14px;
+    color:rgba(245,244,240,0.8);
+    cursor:pointer;
+    transition: background 0.15s var(--ease), color 0.15s var(--ease);
+  }
+  .custom-select-option:hover{
+    background: rgba(124,92,252,0.18);
+    color:var(--text);
+  }
+  .custom-select-option.selected{
+    background: var(--accent);
+    color:#FFFFFF;
+  }
 </style>
 </head>
 <body>
@@ -989,11 +1117,90 @@
             </div>
             <a href="assets/cv/andrea-furgeri-cv.pdf" target="_blank" class="btn btn-ghost">Descargar CV</a>
           </div>
+
+          <div class="social-icons reveal" style="margin-top:24px;">
+            <a href="https://www.linkedin.com/in/andrea-furgeri/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 10.5v6.5M7.5 7.2v.01M11.5 17v-3.8a2.3 2.3 0 014.6 0V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </a>
+            <a href="https://www.instagram.com/andyfurgeri/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCSkAmM7W50IZ5B-ttLFsvjQ" target="_blank" rel="noopener" class="social-icon-btn" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.3v5.4l5-2.7z" fill="currentColor"/></svg>
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
+
+
+  <!-- CONTACTO -->
+  <section id="contacto-sobre-mi">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-label">Contacto</span>
+        <h2 class="display-serif">¿Hablamos?</h2>
+        <p>Para una propuesta laboral, un proyecto, o simplemente para conectar.</p>
+      </div>
+
+      <div class="contact-grid color-panel">
+        <div class="reveal">
+          <h3 style="font-size:18px; margin-bottom:8px;">Contacto directo</h3>
+          <p style="color:var(--text-2); font-size:14.5px; margin-bottom:8px;">Si preferís no llenar un formulario, escribime directo:</p>
+
+          <a href="mailto:andreamariel.furgeri@gmail.com" class="direct-channel" style="text-decoration:none;">
+            <div class="ch-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 8l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" stroke="#C4B5FD" stroke-width="1.5"/></svg>
+            </div>
+            <div><span>Email</span><strong>andreamariel.furgeri@gmail.com</strong></div>
+          </a>
+          <a href="https://wa.me/5491122899249" target="_blank" rel="noopener" class="direct-channel" style="text-decoration:none;">
+            <div class="ch-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.4A10 10 0 1012 2z" stroke="#C4B5FD" stroke-width="1.5"/></svg>
+            </div>
+            <div><span>WhatsApp · Argentina</span><strong>+54 9 11 2289-9249</strong></div>
+          </a>
+        </div>
+
+        <form class="reveal" id="contactFormSobreMi" action="https://formspree.io/f/xzdnnbod" method="POST">
+          <div class="form-row">
+            <label for="sm-nombre">Nombre</label>
+            <input id="sm-nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-row">
+            <label for="sm-email">Email</label>
+            <input id="sm-email" name="email" type="email" placeholder="tu@email.com" required>
+          </div>
+          <div class="form-row">
+            <label for="sm-tipo-trigger">¿Qué necesitás?</label>
+            <div class="custom-select" id="sm-tipo-select">
+              <button type="button" class="custom-select-trigger" id="sm-tipo-trigger">
+                <span class="cst-label">Elegí una opción</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="custom-select-options">
+                <div class="custom-select-option" data-value="contenido">Creación de contenido</div>
+                <div class="custom-select-option" data-value="campanas">Gestión de campañas</div>
+                <div class="custom-select-option" data-value="branding">Branding y diseño</div>
+                <div class="custom-select-option" data-value="analisis">Análisis de métricas</div>
+                <div class="custom-select-option" data-value="laboral">Propuesta laboral</div>
+                <div class="custom-select-option" data-value="otro">Otro / no estoy segura</div>
+              </div>
+              <input type="hidden" id="sm-tipo" name="tipo" value="">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="sm-mensaje">Mensaje</label>
+            <textarea id="sm-mensaje" name="mensaje" rows="4" placeholder="Contame sobre tu propuesta"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
 
 </main>
 
@@ -1054,6 +1261,73 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // Desplegable personalizado
+  document.querySelectorAll('.custom-select').forEach(wrap => {
+    const trigger = wrap.querySelector('.custom-select-trigger');
+    const label = trigger.querySelector('.cst-label');
+    const hidden = wrap.querySelector('input[type="hidden"]');
+    const options = wrap.querySelectorAll('.custom-select-option');
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.custom-select.open').forEach(o => { if (o !== wrap) o.classList.remove('open'); });
+      wrap.classList.toggle('open');
+    });
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        label.textContent = opt.textContent;
+        hidden.value = opt.dataset.value;
+        trigger.classList.add('filled');
+        wrap.classList.remove('open');
+      });
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.custom-select.open').forEach(o => o.classList.remove('open'));
+  });
+
+  // Envío de formulario de contacto vía Formspree
+  const contactFormSobreMi = document.getElementById('contactFormSobreMi');
+  if (contactFormSobreMi) {
+    contactFormSobreMi.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = contactFormSobreMi.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+
+      const tipoField = document.getElementById('sm-tipo');
+      const tipoValor = tipoField ? tipoField.value : '';
+      const asunto = tipoValor === 'laboral'
+        ? 'Propuesta de empleo — andreafurgeri.com'
+        : 'Solicitud de servicios — andreafurgeri.com';
+      const formData = new FormData(contactFormSobreMi);
+      formData.set('_subject', asunto);
+
+      try {
+        const res = await fetch(contactFormSobreMi.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactFormSobreMi.innerHTML = '<p style="color:var(--text); font-size:16px;">¡Gracias! Recibí tu mensaje y te voy a responder pronto.</p>';
+        } else {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
+        }
+      } catch (err) {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
+      }
+    });
+  }
 </script>
 
 </body>
