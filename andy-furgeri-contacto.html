@@ -927,6 +927,29 @@
     background:rgba(124,92,252,0.12);
   }
 
+
+  /* ---- Íconos de redes en el header ---- */
+  .header-social{
+    display:flex;
+    gap:8px;
+  }
+  .header-social-btn{
+    width:34px; height:34px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#FFFFFF;
+    background:rgba(255,255,255,0.12);
+    transition: all 0.25s var(--ease);
+  }
+  .header-social-btn:hover{
+    background:rgba(255,255,255,0.24);
+  }
+  @media (max-width: 1080px){
+    .header-social{ display:none; }
+  }
+
 </style>
 </head>
 <body>
@@ -965,6 +988,17 @@
         <a href="andy-furgeri-contacto.html" class="nav-contact-mobile">Contacto</a>
       </div>
       <div class="lang-switch"><a href="#" class="active">ES</a><span>/</span><a href="en/andy-furgeri-contacto.html">EN</a></div>
+            <div class="header-social">
+        <a href="https://www.linkedin.com/in/andrea-furgeri/" target="_blank" rel="noopener" class="header-social-btn" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 10.5v6.5M7.5 7.2v.01M11.5 17v-3.8a2.3 2.3 0 014.6 0V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://www.instagram.com/andyfurgeri/" target="_blank" rel="noopener" class="header-social-btn" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCSkAmM7W50IZ5B-ttLFsvjQ" target="_blank" rel="noopener" class="header-social-btn" aria-label="YouTube">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.3v5.4l5-2.7z" fill="currentColor"/></svg>
+        </a>
+      </div>
       <a href="andy-furgeri-contacto.html" class="btn btn-primary">Conversemos</a>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú" aria-expanded="false">
         <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -1061,10 +1095,10 @@
       <a href="mailto:andreamariel.furgeri@gmail.com">andreamariel.furgeri@gmail.com</a>
     </div>
     <div class="social-icons">
-      <a href="#" target="_blank" rel="noopener" class="social-icon-btn" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/andrea-furgeri/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="LinkedIn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 10.5v6.5M7.5 7.2v.01M11.5 17v-3.8a2.3 2.3 0 014.6 0V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </a>
-      <a href="#" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram">
+      <a href="https://www.instagram.com/andyfurgeri/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg>
       </a>
       <a href="https://www.youtube.com/channel/UCSkAmM7W50IZ5B-ttLFsvjQ" target="_blank" rel="noopener" class="social-icon-btn" aria-label="YouTube">
