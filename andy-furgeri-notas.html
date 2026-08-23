@@ -204,6 +204,12 @@
   }
 
   @media (max-width: 1080px){
+    nav{ gap:10px; }
+    .logo{ font-size:14px; white-space:nowrap; }
+    nav > .btn-primary{ display:none; }
+    .lang-switch{ padding:3px; }
+    .lang-switch a{ padding:5px 9px; font-size:12px; }
+    .header-social{ display:none; }
     .nav-links{
       display:none;
       position:fixed;
@@ -1447,7 +1453,7 @@
 
       <div id="notesListView">
         <div class="note-filters" id="noteFilters"></div>
-        <div class="notes-grid reveal" id="notesGrid">
+        <div class="notes-grid" id="notesGrid">
           <p style="color:var(--text-2);">Cargando notas...</p>
         </div>
       </div>
