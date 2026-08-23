@@ -1164,7 +1164,7 @@
           </a>
         </div>
 
-        <form class="reveal" id="contactFormSobreMi" action="https://formspree.io/f/xzdnnbod" method="POST">
+        <form class="reveal" id="contactFormSobreMi">
           <div class="form-row">
             <label for="sm-nombre">Nombre</label>
             <input id="sm-nombre" name="nombre" type="text" placeholder="Tu nombre" required>
@@ -1293,39 +1293,21 @@
   // Envío de formulario de contacto vía Formspree
   const contactFormSobreMi = document.getElementById('contactFormSobreMi');
   if (contactFormSobreMi) {
-    contactFormSobreMi.addEventListener('submit', async (e) => {
+    contactFormSobreMi.addEventListener('submit', (e) => {
       e.preventDefault();
-      const submitBtn = contactFormSobreMi.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Enviando...';
-      submitBtn.disabled = true;
+      const nombre = document.getElementById('sm-nombre').value.trim();
+      const email = document.getElementById('sm-email').value.trim();
+      const tipoLabelEl = document.querySelector('#sm-tipo-select .cst-label');
+      const tipoLabel = tipoLabelEl ? tipoLabelEl.textContent.trim() : '';
+      const mensaje = document.getElementById('sm-mensaje').value.trim();
 
-      const tipoField = document.getElementById('sm-tipo');
-      const tipoValor = tipoField ? tipoField.value : '';
-      const asunto = tipoValor === 'laboral'
-        ? 'Propuesta de empleo — andreafurgeri.com'
-        : 'Solicitud de servicios — andreafurgeri.com';
-      const formData = new FormData(contactFormSobreMi);
-      formData.set('_subject', asunto);
+      let texto = 'Hola Andy! Te escribo desde tu web (andreafurgeri.com).\n\n';
+      texto += `*Nombre:* ${nombre}\n`;
+      texto += `*Email:* ${email}\n`;
+      if (tipoLabel && tipoLabel !== 'Elegí una opción') texto += `*Qué necesita:* ${tipoLabel}\n`;
+      if (mensaje) texto += `*Mensaje:* ${mensaje}\n`;
 
-      try {
-        const res = await fetch(contactFormSobreMi.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          contactFormSobreMi.innerHTML = '<p style="color:var(--text); font-size:16px;">¡Gracias! Recibí tu mensaje y te voy a responder pronto.</p>';
-        } else {
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
-        }
-      } catch (err) {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
-      }
+      window.open(`https://wa.me/5491122899249?text=${encodeURIComponent(texto)}`, '_blank');
     });
   }
 </script>

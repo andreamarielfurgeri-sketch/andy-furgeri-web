@@ -1042,7 +1042,7 @@
           </a>
         </div>
 
-        <form class="reveal" id="contactForm" action="https://formspree.io/f/xzdnnbod" method="POST">
+        <form class="reveal" id="contactForm">
           <div class="form-row">
             <label for="nombre">Nombre</label>
             <input id="nombre" type="text" placeholder="Tu nombre" required>
@@ -1143,42 +1143,26 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
-  // Envío de formulario de contacto vía Formspree (AJAX, sin recargar la página)
+  // Envío de formulario de contacto directo a WhatsApp
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+    contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Enviando...';
-      submitBtn.disabled = true;
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const negocio = document.getElementById('negocio').value.trim();
+      const tipoLabelEl = document.querySelector('#necesidad-select .cst-label');
+      const tipoLabel = tipoLabelEl ? tipoLabelEl.textContent.trim() : '';
+      const mensaje = document.getElementById('mensaje').value.trim();
 
-      const tipoField = document.getElementById('necesidad');
-      const tipoValor = tipoField ? tipoField.value : '';
-      const asunto = tipoValor === 'laboral'
-        ? 'Propuesta de empleo — andreafurgeri.com'
-        : 'Solicitud de servicios — andreafurgeri.com';
-      const formData = new FormData(contactForm);
-      formData.set('_subject', asunto);
+      let texto = 'Hola Andy! Te escribo desde tu web (andreafurgeri.com).\n\n';
+      texto += `*Nombre:* ${nombre}\n`;
+      texto += `*Email:* ${email}\n`;
+      if (negocio) texto += `*Negocio/Empresa:* ${negocio}\n`;
+      if (tipoLabel && tipoLabel !== 'Elegí una opción') texto += `*Qué necesita:* ${tipoLabel}\n`;
+      if (mensaje) texto += `*Mensaje:* ${mensaje}\n`;
 
-      try {
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          contactForm.innerHTML = '<p style="color:var(--text); font-size:16px;">¡Gracias! Recibí tu mensaje y te voy a responder pronto.</p>';
-        } else {
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
-        }
-      } catch (err) {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        alert('Hubo un problema al enviar. Probá de nuevo o escribime por WhatsApp/email.');
-      }
+      window.open(`https://wa.me/5491122899249?text=${encodeURIComponent(texto)}`, '_blank');
     });
   }
 
