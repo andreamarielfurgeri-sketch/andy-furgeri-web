@@ -622,6 +622,10 @@
   .ed-fill-4 h3, .ed-fill-4 .ed-num{ color:#0B0A10; opacity:1; }
   .ed-fill-4 p{ color:rgba(11,10,16,0.65); }
 
+  .ed-fill-5{ background:var(--c-teal); border:1px solid var(--c-teal); }
+  .ed-fill-5 h3, .ed-fill-5 .ed-num{ color:#0B0A10; opacity:1; }
+  .ed-fill-5 p{ color:rgba(11,10,16,0.75); }
+
   .ed-fill-outline{ background:var(--accent); border:1px solid var(--accent); }
   .ed-fill-outline h3, .ed-fill-outline .ed-num{ color:#FFFFFF; opacity:1; }
   .ed-fill-outline p{ color:rgba(255,255,255,0.85); }
@@ -677,8 +681,13 @@
     gap:18px;
   }
   .services-teaser-4{ grid-template-columns:repeat(4, 1fr); }
+  .services-teaser-5{ grid-template-columns:repeat(5, 1fr); }
+  @media (max-width: 1180px){
+    .services-teaser-5{ grid-template-columns:repeat(3, 1fr); }
+  }
   @media (max-width: 960px){
     .services-teaser-4{ grid-template-columns:repeat(2, 1fr); }
+    .services-teaser-5{ grid-template-columns:repeat(2, 1fr); }
   }
   @media (max-width: 760px){
     .services-teaser-grid{ grid-template-columns:1fr; }
@@ -1112,7 +1121,7 @@
         <span class="section-label">Servicios</span>
         <h2 class="display-serif">En qué te puedo ayudar</h2>
       </div>
-      <div class="services-teaser-grid services-teaser-4">
+      <div class="services-teaser-grid services-teaser-5">
         <a href="andy-furgeri-servicios.html" class="ed-card ed-fill-1" style="min-height:200px;">
           <span class="ed-num">01</span>
           <h3>Creación de contenido</h3>
@@ -1132,6 +1141,11 @@
           <span class="ed-num">04</span>
           <h3>Análisis de métricas</h3>
           <p>Estudio de tendencias y competencia para tomar mejores decisiones.</p>
+        </a>
+        <a href="https://elgranemporiodelachapa.com.ar/" target="_blank" rel="noopener" class="ed-card ed-fill-5" style="min-height:200px;">
+          <span class="ed-num">05</span>
+          <h3>Diseño web</h3>
+          <p>Diseño y desarrollo de sitios web a medida, pensados para convertir visitas en clientes.</p>
         </a>
       </div>
     </div>
