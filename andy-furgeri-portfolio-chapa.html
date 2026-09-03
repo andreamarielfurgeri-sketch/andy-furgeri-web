@@ -926,6 +926,71 @@
     .brand-card-cta{ margin-top:4px; }
   }
 
+  /* ---- Web project cards (estilo portfolio flowit, adaptado) ---- */
+  .webproj-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:22px;
+  }
+  @media (max-width: 760px){
+    .webproj-grid{ grid-template-columns:1fr; }
+  }
+  .webproj-card{
+    display:block;
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .webproj-card:hover{ transform:translateY(-4px); border-color:var(--accent); }
+  .webproj-eyebrow{
+    display:block;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:12.5px;
+    color:var(--accent-soft);
+    padding:16px 22px 0;
+    letter-spacing:0.01em;
+  }
+  .webproj-visual{
+    margin:14px 22px 0;
+    border-radius:12px;
+    aspect-ratio:16/10;
+    background-size:cover;
+    background-position:center;
+    border:1px solid var(--line);
+  }
+  .webproj-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:18px 22px 0;
+  }
+  .webproj-tags span{
+    font-size:11.5px;
+    font-family:'Space Grotesk', sans-serif;
+    padding:5px 12px;
+    border-radius:100px;
+    background:rgba(124,92,252,0.14);
+    color:var(--accent-soft);
+    border:1px solid rgba(124,92,252,0.3);
+  }
+  .webproj-card:nth-child(2n) .webproj-tags span{
+    background:rgba(45,212,191,0.14);
+    color:var(--accent-teal);
+    border-color:rgba(45,212,191,0.3);
+  }
+  .webproj-card h3{
+    font-size:19px;
+    padding:14px 22px 0;
+  }
+  .webproj-card p{
+    font-size:14px;
+    color:var(--text-2);
+    padding:8px 22px 22px;
+    line-height:1.55;
+  }
+
   .brand-page-back{
     display:inline-flex;
     align-items:center;
@@ -1447,9 +1512,34 @@
         <div class="article-section">
           <h2>Sitio web</h2>
           <p>Además de la estrategia de contenidos y pauta, diseñé y desarrollé el sitio web de la marca, pensado como catálogo digital de productos y canal de contacto directo con clientes de la zona.</p>
-          <a href="https://elgranemporiodelachapa.com.ar/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; margin-top:8px; font-weight:600; color:var(--c-teal, #2DD4BF); text-decoration:none;">
-            Ver sitio en vivo → elgranemporiodelachapa.com.ar
-          </a>
+
+          <div class="webproj-grid" style="margin-top:24px;">
+
+            <a class="webproj-card" href="https://elgranemporiodelachapa.com.ar/" target="_blank" rel="noopener">
+              <span class="webproj-eyebrow">elgranemporiodelachapa.com.ar</span>
+              <div class="webproj-visual" style="background-image:url('assets/portfolio/emporio-chapa-01.jpg');"></div>
+              <div class="webproj-tags">
+                <span>Landing Page</span>
+                <span>Branding</span>
+                <span>UX/UI</span>
+              </div>
+              <h3>El Gran Emporio de la Chapa</h3>
+              <p>Diseño de marca y sitio de presentación para distribuidor de materiales de construcción. Cotizador integrado, soluciones por sistema de techo y contacto directo por WhatsApp.</p>
+            </a>
+
+            <a class="webproj-card" href="https://elgranemporiodelachapa.com.ar/catalogo.html" target="_blank" rel="noopener">
+              <span class="webproj-eyebrow">elgranemporiodelachapa.com.ar/catalogo</span>
+              <div class="webproj-visual" style="background-image:url('assets/portfolio/emporio-catalogo-cover.jpg');"></div>
+              <div class="webproj-tags">
+                <span>Catálogo online</span>
+                <span>UX/UI</span>
+                <span>E-commerce</span>
+              </div>
+              <h3>Catálogo web</h3>
+              <p>Catálogo digital de productos organizado por categoría, con ficha, imagen y consulta directa de precio por WhatsApp para cada material.</p>
+            </a>
+
+          </div>
         </div>
 
         <div class="article-section" style="margin-bottom:0;">
