@@ -734,10 +734,13 @@
   /* ---- Portfolio preview con fotos reales (Home) ---- */
   .portfolio-preview-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(4, 1fr);
     gap:18px;
   }
-  @media (max-width: 760px){
+  @media (max-width: 980px){
+    .portfolio-preview-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width: 520px){
     .portfolio-preview-grid{ grid-template-columns:1fr; }
   }
   .portfolio-preview-card{
@@ -1201,7 +1204,8 @@
             <h3>El Gran Emporio de la Chapa</h3>
           </div>
         </a>
-        <a href="andy-furgeri-portfolio-timat.html" class="portfolio-preview-card ppc-placeholder">
+        <a href="andy-furgeri-portfolio-timat.html" class="portfolio-preview-card" style="background:#F0EEF5; display:flex; align-items:center; justify-content:center;">
+          <img src="assets/portfolio/timat-logo.png" alt="Timat Argentina" style="width:70%; height:70%; object-fit:contain;">
           <div class="ppc-overlay">
             <span>Cliente</span>
             <h3>Timat Argentina</h3>
@@ -1211,6 +1215,13 @@
           <div class="ppc-overlay">
             <span>Cliente</span>
             <h3>Tecno Construcciones</h3>
+          </div>
+        </a>
+        <a href="andy-furgeri-portfolio-merimat.html" class="portfolio-preview-card">
+          <img src="assets/portfolio/merimat-01.jpg" alt="Merimat del Sur SRL" loading="lazy">
+          <div class="ppc-overlay">
+            <span>Cliente</span>
+            <h3>Merimat del Sur SRL</h3>
           </div>
         </a>
       </div>
