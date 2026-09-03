@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #0B0A10;
-    --bg-deep: #050408;
+    --bg: #0A0A0C;
+    --bg-deep: #050505;
     --bg-2: rgba(255,255,255,0.06);
     --text: #F5F4F0;
     --text-2: #9799A6;
@@ -47,7 +47,10 @@
     inset:0;
     z-index:-2;
     background:
-      linear-gradient(180deg, #2DD4BF 0%, #4FA8DD 10%, #6C5CE7 20%, #4A3D9E 32%, #2A2260 42%, #14121B 52%, #0C0A12 65%, var(--bg-deep) 100%);
+      radial-gradient(620px circle at 12% -8%, rgba(124,92,252,0.38), transparent 62%),
+      radial-gradient(520px circle at 92% 6%, rgba(45,212,191,0.32), transparent 60%),
+      radial-gradient(680px circle at 50% 115%, rgba(240,85,92,0.24), transparent 62%),
+      var(--bg);
   }
 
   h1,h2,h3,.display{
