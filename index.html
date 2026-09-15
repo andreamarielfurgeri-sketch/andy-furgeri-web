@@ -7,7 +7,7 @@
 <meta name="description" content="Portfolio profesional de Andy Furgeri — Licenciada en Comunicación Social, Marketing Manager. Campañas, contenido, producción de TV y redacción.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:wght@600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:wght@600;700;900&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #0A0A0C;
@@ -23,6 +23,8 @@
     --c-green: #2ECC71;
     --c-white: #F0EEF5;
     --c-teal: #2DD4BF;
+    --g-pink: #FF5D8F;
+    --g-blue: #3E8FD6;
     --line: rgba(245,244,240,0.12);
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -167,13 +169,13 @@
   }
 
   .btn-primary{
-    background:var(--accent);
+    background:linear-gradient(135deg, #FF5D8F, #FF8FB3);
     color:#FFFFFF;
   }
 
   .btn-primary:hover{
-    background:var(--accent-soft);
-    box-shadow: 0 0 24px rgba(139,92,246,0.4);
+    background:linear-gradient(135deg, #FF7BA3, #FFA5C2);
+    box-shadow: 0 0 24px rgba(255,93,143,0.4);
     transform:translateY(-1px);
   }
 
@@ -462,19 +464,27 @@
     background:var(--text-2);
   }
   .ed-hero h1{
+    font-family:'Fredoka', sans-serif;
     font-size:clamp(30px, 4.8vw, 58px);
-    line-height:1.1;
-    letter-spacing:-0.02em;
+    line-height:1.15;
+    letter-spacing:-0.01em;
     font-weight:700;
   }
-  .ed-hero h1 .ln1{ display:block; }
+  .ed-hero h1 .ln1{
+    display:block;
+    text-shadow:
+      0 1px 0 #e3dcee, 0 2px 0 #d2c7e2, 0 3px 0 #c1b1d6, 0 4px 0 #b09bca, 0 5px 0 #9f85be,
+      0 6px 1px rgba(0,0,0,.15), 0 0 8px rgba(0,0,0,.15),
+      0 2px 5px rgba(0,0,0,.35), 0 5px 10px rgba(0,0,0,.28), 0 9px 18px rgba(0,0,0,.28);
+  }
   .ed-hero h1 .ln2{
     display:block;
     margin-top:6px;
-    background:linear-gradient(90deg, var(--c-teal) 0%, var(--accent) 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    color:var(--g-pink);
+    text-shadow:
+      0 1px 0 #e0567f, 0 2px 0 #d14a72, 0 3px 0 #c23f66, 0 4px 0 #b3345a, 0 5px 0 #a4294e,
+      0 6px 1px rgba(0,0,0,.15), 0 0 8px rgba(0,0,0,.15),
+      0 2px 5px rgba(0,0,0,.35), 0 5px 10px rgba(0,0,0,.28), 0 9px 18px rgba(0,0,0,.28);
   }
   .ed-hero-sub{
     margin-top:28px;
@@ -1051,15 +1061,7 @@
 <header id="header">
   <div class="wrap">
     <a href="index.html" class="logo">
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-        <path d="M4 20L11 6L15 15L22 4" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <defs>
-          <linearGradient id="logoGrad" x1="4" y1="4" x2="22" y2="20">
-            <stop stop-color="#8B5CF6"/>
-            <stop offset="1" stop-color="#C4B5FD"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img src="assets/branding/guindata-logo.png" alt="Guindata" style="width:32px; height:32px; object-fit:contain;">
       <div class="logo-names">
         Andy Furgeri
         <span class="logo-sub">Guindata — Productora de contenidos</span>
