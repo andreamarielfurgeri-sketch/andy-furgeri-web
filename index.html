@@ -92,14 +92,12 @@
   .brand-more{ text-align:center; margin-top:22px; }
   .brand-more a{ font-family:'Fredoka', sans-serif; font-size:13.5px; color:var(--blue); text-decoration:none; }
 
-  /* Video carrusel */
-  .video-scroll{ display:flex; gap:14px; overflow-x:auto; padding:4px 4px 20px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-  .video-scroll::-webkit-scrollbar{ display:none; }
-  .video-card{ flex:0 0 auto; width:150px; aspect-ratio:9/16; border-radius:16px; overflow:hidden; position:relative; scroll-snap-align:start; text-decoration:none; background:#1a1626; }
-  .video-card img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .video-card .play{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.9); display:flex; align-items:center; justify-content:center; font-size:13px; color:#0C0A12; }
-  @media (max-width:640px){ .video-card{ width:128px; } }
-  .scroll-hint{ text-align:center; font-family:'Fredoka', sans-serif; font-size:12px; color:var(--text-2); margin-top:-6px; }
+  /* Video en grilla */
+  .video-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  @media (max-width:900px){ .video-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:600px){ .video-grid{ grid-template-columns:repeat(2,1fr); } }
+  .video-card{ aspect-ratio:9/16; border-radius:16px; overflow:hidden; background:#1a1626; }
+  .video-card iframe{ width:100%; height:100%; border:0; display:block; }
 
   /* Paid Media */
   .paidmedia-box{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:24px; padding:40px; }
@@ -237,22 +235,19 @@
   <div class="wrap">
     <div class="section-label">Producción y edición de video</div>
     <div class="section-title">Trabajos audiovisuales</div>
-    <div class="video-scroll">
-      <a class="video-card" href="https://youtube.com/shorts/EnTrW0Kp7G4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/EnTrW0Kp7G4/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/TeIl-06IqdE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/TeIl-06IqdE/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/LyEUw03leP8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/LyEUw03leP8/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/Zmix1Zz-tQs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Zmix1Zz-tQs/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/d-TJBBSsKec" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/d-TJBBSsKec/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/PZ4J0ITKVTw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/PZ4J0ITKVTw/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/JgM9o95209s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/JgM9o95209s/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/9p3m7ZDXwPU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/9p3m7ZDXwPU/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/ehg3bRwTSO4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ehg3bRwTSO4/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://youtube.com/shorts/BCYn19CQ2WU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/BCYn19CQ2WU/hqdefault.jpg" loading="lazy" alt=""><div class="play">▶</div></a>
-      <a class="video-card" href="https://www.instagram.com/reel/DblVKHXRVvM/" target="_blank" rel="noopener" style="background:linear-gradient(160deg,#4B21C4,#E31C79); display:flex; align-items:flex-end; padding:10px;">
-        <span style="font-family:'Fredoka',sans-serif; font-size:12px; color:#fff; font-weight:600;">Video de producto (IG)</span>
-      </a>
+    <div class="video-grid">
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/EnTrW0Kp7G4" title="Reel 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/TeIl-06IqdE" title="Reel 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/LyEUw03leP8" title="Reel 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/Zmix1Zz-tQs" title="Reel 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/d-TJBBSsKec" title="Reel 5" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/PZ4J0ITKVTw" title="Reel 6" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/JgM9o95209s" title="Reel 7" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/9p3m7ZDXwPU" title="Reel 8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/ehg3bRwTSO4" title="Reel 9" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.youtube.com/embed/BCYn19CQ2WU" title="Reel 10" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="video-card"><iframe src="https://www.instagram.com/reel/DblVKHXRVvM/embed" title="Video de producto" loading="lazy" allow="encrypted-media"></iframe></div>
     </div>
-    <p class="scroll-hint">← deslizá para ver más →</p>
   </div>
 </section>
 
