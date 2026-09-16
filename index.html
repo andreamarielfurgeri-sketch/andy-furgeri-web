@@ -30,7 +30,8 @@
   a{ color:inherit; }
   img{ max-width:100%; }
 
-  header{ display:flex; align-items:center; justify-content:space-between; padding:26px 0; position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); }
+  .header-bar{ background:linear-gradient(90deg, #E0447C, #FF5D8F, #3E8FD6); position:sticky; top:0; z-index:50; box-shadow:0 4px 20px rgba(0,0,0,0.25); }
+  header{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
   .header-right{ display:flex; align-items:center; }
   .logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
   .logo img{ width:42px; height:42px; }
@@ -70,6 +71,13 @@
       0 6px 1px rgba(0,0,0,.15), 0 0 8px rgba(0,0,0,.15),
       0 2px 5px rgba(0,0,0,.35), 0 5px 10px rgba(0,0,0,.28), 0 9px 18px rgba(0,0,0,.28);
   }
+  .hero h1 .pink{
+    color:var(--pink);
+    text-shadow:
+      0 1px 0 #e0567f, 0 2px 0 #d14a72, 0 3px 0 #c23f66, 0 4px 0 #b3345a, 0 5px 0 #a4294e,
+      0 6px 1px rgba(0,0,0,.15), 0 0 8px rgba(0,0,0,.15),
+      0 2px 5px rgba(0,0,0,.35), 0 5px 10px rgba(0,0,0,.28), 0 9px 18px rgba(0,0,0,.28);
+  }
   .hero-roles{
     font-family:'Space Grotesk', 'Inter', sans-serif; font-size:14px; color:var(--text-2);
     margin-top:18px; letter-spacing:0.01em;
@@ -80,12 +88,15 @@
   .btn-ghost{ background:var(--card); border:1px solid var(--line); color:#fff; }
 
   .marquee{ background:rgba(0,0,0,0.35); border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:#fff; font-family:'Fredoka', sans-serif; font-weight:500; padding:13px 0; overflow:hidden; white-space:nowrap; font-size:13px; }
+  .marquee-track{ display:inline-block; animation:marquee-scroll 22s linear infinite; }
+  @keyframes marquee-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   .marquee span{ margin-right:32px; }
   .marquee .accent{ color:var(--pink); }
 
   section{ padding:64px 0; }
   .section-label{ font-family:'Fredoka', sans-serif; font-size:13px; color:var(--blue); font-weight:600; margin-bottom:8px; text-align:center; }
   .section-title{ font-family:'Fredoka', sans-serif; font-weight:700; font-size:clamp(22px,3vw,30px); text-align:center; margin-bottom:40px; color:#fff; }
+  .section-title .pink-t{ color:var(--pink); }
 
   /* Servicios */
   .svc-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
@@ -173,19 +184,24 @@
   .about-text p + p{ margin-top:14px; }
 
   /* Contacto */
-  .contact-box{ background:var(--card); border:1px solid var(--line); border-radius:24px; padding:40px; display:grid; grid-template-columns:1fr 1.3fr; gap:40px; }
+  .contact-box{
+    background:linear-gradient(150deg, rgba(255,93,143,0.28), rgba(62,143,214,0.28));
+    border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:40px;
+    display:grid; grid-template-columns:1fr 1.3fr; gap:40px;
+    box-shadow:0 20px 50px rgba(255,93,143,0.15);
+  }
   @media (max-width:760px){ .contact-box{ grid-template-columns:1fr; padding:26px; } }
   .contact-info h3{ font-family:'Fredoka', sans-serif; font-size:19px; color:#fff; margin-bottom:8px; }
-  .contact-info > p{ font-size:13px; color:var(--text-2); margin-bottom:22px; }
-  .contact-line{ display:flex; align-items:center; gap:14px; padding:15px 0; border-bottom:1px solid var(--line); }
-  .contact-line .ic{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .contact-line .meta span{ display:block; font-size:11.5px; color:var(--text-2); }
+  .contact-info > p{ font-size:13px; color:rgba(255,255,255,0.85); margin-bottom:22px; }
+  .contact-line{ display:flex; align-items:center; gap:14px; padding:15px 0; border-bottom:1px solid rgba(255,255,255,0.25); }
+  .contact-line .ic{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-line .meta span{ display:block; font-size:11.5px; color:rgba(255,255,255,0.75); }
   .contact-line .meta strong{ font-size:14px; color:#fff; font-weight:600; }
   .form-field{ margin-bottom:16px; }
   .form-field label{ display:block; font-family:'Fredoka', sans-serif; font-size:12.5px; color:var(--pink); margin-bottom:7px; font-weight:500; }
-  .form-field input, .form-field select, .form-field textarea{ width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:10px; padding:11px 14px; color:#fff; font-family:'Inter', sans-serif; font-size:13.5px; }
+  .form-field input, .form-field select, .form-field textarea{ width:100%; background:rgba(255,255,255,0.92); border:1px solid rgba(255,255,255,0.4); border-radius:10px; padding:11px 14px; color:var(--ink); font-family:'Inter', sans-serif; font-size:13.5px; }
   .form-field textarea{ resize:vertical; min-height:80px; }
-  .form-field input::placeholder, .form-field textarea::placeholder{ color:#7A758A; }
+  .form-field input::placeholder, .form-field textarea::placeholder{ color:#9B96A8; }
   .form-submit{ background:linear-gradient(135deg, var(--pink), var(--blue)); color:#fff; border:none; font-family:'Fredoka', sans-serif; font-weight:600; font-size:14px; padding:12px 26px; border-radius:100px; cursor:pointer; }
 
   footer{ text-align:center; padding:44px 0; border-top:1px solid var(--line); }
@@ -196,6 +212,7 @@
 </head>
 <body>
 
+<div class="header-bar">
 <div class="wrap">
   <header>
     <a href="index.html" class="logo">
@@ -216,10 +233,13 @@
       <div class="menu-toggle" id="menuToggle" role="button" aria-label="Abrir menú"><span></span></div>
     </div>
   </header>
+</div>
+</div>
 
+<div class="wrap">
   <div class="hero">
     <img class="hero-logo" src="assets/branding/guindata-logo.png" alt="Guindata">
-    <h1>No me traigas ideas locas,<br>porque las potencio y las llevo a otro nivel.</h1>
+    <h1>No me traigas ideas locas,<br>porque las <span class="pink">potencio</span> y las llevo <span class="pink">a otro nivel</span>.</h1>
     <p class="hero-roles">Diseñadora · Creativa · Film Maker · Productora Audiovisual · Marketing Digital</p>
     <div class="hero-cta">
       <a href="#portfolio" class="btn btn-primary">Ver mi trabajo</a>
@@ -229,14 +249,16 @@
 </div>
 
 <div class="marquee">
+<div class="marquee-track">
   <span>FILMMAKER <span class="accent">·</span></span><span>PAID MEDIA <span class="accent">·</span></span><span>CREACIÓN DE CONTENIDO <span class="accent">·</span></span><span>BRANDING <span class="accent">·</span></span><span>DISEÑO WEB <span class="accent">·</span></span>
   <span>FILMMAKER <span class="accent">·</span></span><span>PAID MEDIA <span class="accent">·</span></span><span>CREACIÓN DE CONTENIDO <span class="accent">·</span></span><span>BRANDING <span class="accent">·</span></span><span>DISEÑO WEB <span class="accent">·</span></span>
 </div>
+</div>
 
-<section id="servicios">
+<section id="servicios" style="background:linear-gradient(180deg, rgba(255,93,143,0.07), transparent);">
   <div class="wrap">
     <div class="section-label">Servicios</div>
-    <div class="section-title">Soluciones que ofrezco</div>
+    <div class="section-title">Soluciones que <span class="pink-t">ofrezco</span></div>
     <div class="svc-grid">
       <a class="svc-card" href="#video"><img class="ico" src="assets/icons/ico-filmmaker.png" alt=""><h4>Filmmaker</h4><p>Creación y edición de contenidos audiovisuales.</p></a>
       <a class="svc-card" href="#paidmedia"><img class="ico" src="assets/icons/ico-paidmedia.png" alt=""><h4>Paid Media</h4><p>Publicidad online: Facebook / Meta Ads y Google Ads.</p></a>
@@ -247,10 +269,10 @@
   </div>
 </section>
 
-<section id="portfolio">
+<section id="portfolio" style="background:linear-gradient(180deg, rgba(62,143,214,0.08), transparent);">
   <div class="wrap">
     <div class="section-label">Portfolio</div>
-    <div class="section-title">Marcas con las que trabajé</div>
+    <div class="section-title">Marcas con las que <span class="pink-t">trabajé</span></div>
     <div class="brand-grid">
       <a class="brand-card" href="andy-furgeri-portfolio-chapa.html">
         <div class="mark"><img src="assets/portfolio/emporio-chapa-01.jpg" alt="" style="object-fit:cover;"></div>
@@ -280,10 +302,10 @@
   </div>
 </section>
 
-<section id="video">
+<section id="video" style="background:linear-gradient(180deg, rgba(255,201,74,0.06), transparent);">
   <div class="wrap">
     <div class="section-label">Producción y edición de video</div>
-    <div class="section-title">Trabajos audiovisuales</div>
+    <div class="section-title"><span class="pink-t">Trabajos</span> audiovisuales</div>
     <div class="video-grid">
       <div class="video-card"><iframe src="https://www.youtube.com/embed/EnTrW0Kp7G4" title="Reel 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       <div class="video-card"><iframe src="https://www.youtube.com/embed/TeIl-06IqdE" title="Reel 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -303,7 +325,7 @@
 <section id="paidmedia">
   <div class="wrap">
     <div class="section-label">Paid Media</div>
-    <div class="section-title">De la idea a la campaña</div>
+    <div class="section-title">De la idea a la <span class="pink-t">campaña</span></div>
     <div class="paidmedia-box">
       <div>
         <h3>Todo el proceso, en un solo lugar</h3>
@@ -323,10 +345,10 @@
   </div>
 </section>
 
-<section id="diseno-web">
+<section id="diseno-web" style="background:linear-gradient(180deg, rgba(62,143,214,0.08), transparent);">
   <div class="wrap">
     <div class="section-label">Diseño web</div>
-    <div class="section-title">Landing pages y catálogos online</div>
+    <div class="section-title">Landing pages y <span class="pink-t">catálogos</span> online</div>
     <div class="lp-grid">
       <a class="lp-card" href="https://elgranemporiodelachapa.com.ar/" target="_blank" rel="noopener">
         <span class="lp-eyebrow">elgranemporiodelachapa.com.ar</span>
@@ -344,10 +366,10 @@
   </div>
 </section>
 
-<section id="sobre-mi">
+<section id="sobre-mi" style="background:linear-gradient(180deg, rgba(255,93,143,0.07), transparent);">
   <div class="wrap">
     <div class="section-label">Sobre mí</div>
-    <div class="section-title">¿Quién está del otro lado?</div>
+    <div class="section-title">¿Quién está del <span class="pink-t">otro lado</span>?</div>
     <div class="about-grid">
       <div class="about-photo-wrap">
         <div class="about-photo">
@@ -368,7 +390,7 @@
 <section id="contacto">
   <div class="wrap">
     <div class="section-label">Contacto</div>
-    <div class="section-title">¿Trabajamos juntos?</div>
+    <div class="section-title">¿<span class="pink-t">Trabajamos</span> juntos?</div>
     <div class="contact-box">
       <div class="contact-info">
         <h3>Contacto directo</h3>
