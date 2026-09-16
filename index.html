@@ -31,7 +31,7 @@
   img{ max-width:100%; }
 
   .header-bar{ background:linear-gradient(90deg, #E0447C, #FF5D8F, #3E8FD6); position:sticky; top:0; z-index:50; box-shadow:0 4px 20px rgba(0,0,0,0.25); }
-  header{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+  header{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
   .header-right{ display:flex; align-items:center; }
   .logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
   .logo img{ width:42px; height:42px; }
@@ -41,10 +41,10 @@
   .navlinks{ display:flex; align-items:center; gap:6px; background:var(--card); border:1px solid var(--line); padding:8px; border-radius:100px; }
   .navlinks a{ font-family:'Fredoka', sans-serif; font-size:13px; font-weight:500; padding:8px 14px; border-radius:100px; color:var(--text-2); text-decoration:none; }
   .navlinks a:hover{ color:#fff; }
-  .wa-btn{ width:40px; height:40px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; margin-left:10px; flex-shrink:0; }
-  @media (max-width:800px){ .wa-btn{ margin-left:8px; } }
+  .wa-btn{ width:38px; height:38px; border-radius:50%; background:rgba(20,16,30,0.55); display:flex; align-items:center; justify-content:center; margin-left:8px; flex-shrink:0; }
+  @media (max-width:800px){ .wa-btn{ margin-left:6px; } }
 
-  .menu-toggle{ display:none; width:42px; height:42px; border-radius:12px; background:var(--card); border:1px solid var(--line); align-items:center; justify-content:center; cursor:pointer; }
+  .menu-toggle{ display:none; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.2); border:none; align-items:center; justify-content:center; cursor:pointer; margin-left:8px; }
   .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{ content:''; display:block; width:18px; height:2px; background:#fff; position:relative; transition:0.2s; }
   .menu-toggle span::before{ position:absolute; top:-6px; }
   .menu-toggle span::after{ position:absolute; top:6px; }
@@ -199,7 +199,9 @@
   .form-field input::placeholder, .form-field textarea::placeholder{ color:#9B96A8; }
   .form-submit{ background:linear-gradient(135deg, var(--pink), var(--blue)); color:#fff; border:none; font-family:'Fredoka', sans-serif; font-weight:600; font-size:14px; padding:12px 26px; border-radius:100px; cursor:pointer; }
 
-  footer{ text-align:center; padding:44px 0; border-top:1px solid var(--line); }
+  .bottom-wave{ position:relative; margin-top:20px; height:120px; overflow:hidden; }
+  .bottom-wave svg{ position:absolute; bottom:0; left:0; width:100%; height:100%; }
+  footer{ text-align:center; padding:44px 0; position:relative; z-index:2; }
   footer .logo-f{ width:48px; margin:0 auto 12px; }
   footer .fname{ font-family:'Fredoka', sans-serif; color:#fff; font-weight:600; }
   footer p{ font-size:12px; color:var(--text-2); margin-top:6px; }
@@ -212,7 +214,7 @@
   <header>
     <a href="index.html" class="logo">
       <img src="assets/branding/guindata-logo.png" alt="Guindata">
-      <div class="names"><span class="n1">Andy Furgeri</span><span class="n2">GUINDATA — Productora de contenidos</span></div>
+      <div class="names"><span class="n1">Andy Furgeri</span><span class="n2">Productora de contenidos</span></div>
     </a>
     <div class="header-right">
       <div class="navlinks" id="navlinks">
@@ -455,6 +457,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e){
   window.open(url, '_blank');
 });
 </script>
+
+<div class="bottom-wave">
+  <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
+    <path d="M0,60 C300,140 700,0 1000,60 C1200,100 1350,40 1440,60 L1440,140 L0,140 Z" fill="#a855c9" opacity="0.9"></path>
+    <path d="M0,90 C400,40 900,140 1440,80 L1440,140 L0,140 Z" fill="#FF5D8F"></path>
+  </svg>
+</div>
 
 <footer>
   <img class="logo-f" src="assets/branding/guindata-logo.png" alt="Guindata">
