@@ -39,19 +39,37 @@
   .navlinks{ display:flex; align-items:center; gap:6px; background:var(--card); border:1px solid var(--line); padding:8px; border-radius:100px; }
   .navlinks a{ font-family:'Fredoka', sans-serif; font-size:13px; font-weight:500; padding:8px 14px; border-radius:100px; color:var(--text-2); text-decoration:none; }
   .navlinks a:hover{ color:#fff; }
-  @media (max-width:800px){ .navlinks{ display:none; } }
+
+  .menu-toggle{ display:none; width:42px; height:42px; border-radius:12px; background:var(--card); border:1px solid var(--line); align-items:center; justify-content:center; cursor:pointer; }
+  .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{ content:''; display:block; width:18px; height:2px; background:#fff; position:relative; transition:0.2s; }
+  .menu-toggle span::before{ position:absolute; top:-6px; }
+  .menu-toggle span::after{ position:absolute; top:6px; }
+
+  @media (max-width:800px){
+    .navlinks{
+      display:none; position:fixed; top:78px; left:16px; right:16px;
+      flex-direction:column; align-items:stretch; gap:2px; border-radius:18px;
+      background:#1A1526; padding:12px; z-index:60; box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    }
+    .navlinks.open{ display:flex; }
+    .navlinks a{ padding:12px 16px; border-radius:12px; text-align:center; }
+    .menu-toggle{ display:flex; }
+  }
 
   .hero{ padding:56px 0 70px; text-align:center; }
   .hero-logo{ width:100px; margin:0 auto 20px; display:block; filter:drop-shadow(0 14px 28px rgba(0,0,0,0.35)); }
   .hero h1{
-    font-family:'Inter', sans-serif; font-weight:500;
-    font-size:clamp(16px, 2.1vw, 20px); line-height:1.65; letter-spacing:0;
-    max-width:560px; margin:0 auto; color:rgba(255,255,255,0.85);
+    font-family:'Fredoka', sans-serif; font-weight:700;
+    font-size:clamp(26px, 4.4vw, 46px); line-height:1.3; letter-spacing:-0.005em;
+    max-width:680px; margin:0 auto; color:#fff;
+    text-shadow:
+      0 1px 0 #e3dcee, 0 2px 0 #d2c7e2, 0 3px 0 #c1b1d6, 0 4px 0 #b09bca, 0 5px 0 #9f85be,
+      0 6px 1px rgba(0,0,0,.15), 0 0 8px rgba(0,0,0,.15),
+      0 2px 5px rgba(0,0,0,.35), 0 5px 10px rgba(0,0,0,.28), 0 9px 18px rgba(0,0,0,.28);
   }
-  .hero h1 .pink{
-    color:var(--pink);
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
+  .hero-roles{
+    font-family:'Space Grotesk', 'Inter', sans-serif; font-size:14px; color:var(--text-2);
+    margin-top:18px; letter-spacing:0.01em;
   }
   .hero-cta{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px; }
   .btn{ display:inline-flex; align-items:center; gap:8px; font-family:'Fredoka', sans-serif; font-weight:600; font-size:14.5px; padding:14px 28px; border-radius:100px; text-decoration:none; }
@@ -158,18 +176,20 @@
       <img src="assets/branding/guindata-logo.png" alt="Guindata">
       <div class="names"><span class="n1">Andy Furgeri</span><span class="n2">GUINDATA — Productora de contenidos</span></div>
     </a>
-    <div class="navlinks">
+    <div class="navlinks" id="navlinks">
       <a href="#servicios">Servicios</a>
       <a href="#portfolio">Portfolio</a>
       <a href="#video">Video</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
     </div>
+    <div class="menu-toggle" id="menuToggle" role="button" aria-label="Abrir menú"><span></span></div>
   </header>
 
   <div class="hero">
     <img class="hero-logo" src="assets/branding/guindata-logo.png" alt="Guindata">
-    <h1>¡Hola! Soy <span class="pink">Andrea</span>. Me gusta ayudar a que las ideas tomen forma: contenido, campañas, diseño y video, para que tu proyecto se vea (y se sienta) como te lo imaginás.</h1>
+    <h1>No me traigas ideas locas,<br>porque las potencio y las llevo a otro nivel.</h1>
+    <p class="hero-roles">Diseñadora · Creativa · Film Maker · Productora Audiovisual · Marketing Digital</p>
     <div class="hero-cta">
       <a href="#portfolio" class="btn btn-primary">Ver mi trabajo</a>
       <a href="#contacto" class="btn btn-ghost">Conversemos</a>
@@ -302,8 +322,11 @@
         <img src="assets/perfil/andy-foto-01.jpg" alt="Andy Furgeri" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
       </div>
       <div class="about-text">
-        <p>Soy Andrea — Comunicadora Social y profesional de Marketing Digital. Trabajo de forma integral: contenido y social media, paid media (Meta Ads y Google Ads), branding y diseño, y diseño web.</p>
-        <p>No me interesa trabajar en compartimentos estancos: puedo pensar una idea, convertirla en una pieza, llevarla a redes, transformarla en campaña y analizar qué pasó después.</p>
+        <p>Hola, soy Andrea 👋</p>
+        <p>Me gusta crear cosas que no solo se vean lindas, sino que también tengan algo para decir.</p>
+        <p>Trabajo en diseño, comunicación y marketing digital, combinando creatividad con herramientas digitales para ayudar a marcas, emprendimientos y PYMEs a encontrar su identidad y comunicar lo que hacen de una manera auténtica.</p>
+        <p>Me gusta involucrarme en cada proyecto, entender qué hay detrás de una marca y, sobre todo, resaltar lo humano. Porque creo que detrás de cada emprendimiento hay una historia, una idea y personas que hacen que todo cobre sentido.</p>
+        <p>Siempre estoy aprendiendo, probando herramientas nuevas y buscando nuevas formas de transformar ideas en algo concreto. ✨</p>
       </div>
     </div>
   </div>
@@ -348,6 +371,17 @@
     </div>
   </div>
 </section>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navlinks = document.getElementById('navlinks');
+menuToggle.addEventListener('click', () => {
+  navlinks.classList.toggle('open');
+});
+navlinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navlinks.classList.remove('open'));
+});
+</script>
 
 <script>
 document.getElementById('contactForm').addEventListener('submit', function(e){
