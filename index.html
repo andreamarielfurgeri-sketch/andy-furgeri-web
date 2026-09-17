@@ -94,16 +94,11 @@
   .svc-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
   @media (max-width:900px){ .svc-grid{ grid-template-columns:repeat(3,1fr); gap:12px; } }
   @media (max-width:560px){
+    #servicios{ padding-top:0; }
     .servicios-desktop{ display:none; }
-    .servicios-mobile{ display:block; }
-    .svc-head-img{ position:relative; width:calc(100% + 40px); margin:0 -20px 20px; aspect-ratio:1024/615; background-image:url('assets/servicios/header-mobile.jpg'); background-size:cover; background-position:center; }
-    .svc-grid-img{ display:flex; flex-direction:column; gap:12px; }
-    .svc-card-img{
-      display:block; width:100%; border-radius:20px; background-size:cover; background-position:center;
-      text-decoration:none; overflow:hidden; box-shadow:0 10px 26px rgba(0,0,0,0.35);
-      transition:transform .18s ease, box-shadow .18s ease;
-    }
-    .svc-card-img:active{ transform:scale(0.96); box-shadow:0 4px 14px rgba(0,0,0,0.4); }
+    .servicios-mobile{ display:block; position:relative; width:100%; aspect-ratio:1024/1536; background-image:url('assets/servicios/servicios-full-mobile.jpg'); background-size:cover; background-position:top center; }
+    .svc-hit{ position:absolute; border-radius:16px; -webkit-tap-highlight-color:transparent; transition:background .15s ease, box-shadow .15s ease, transform .15s ease; }
+    .svc-hit:active{ background:rgba(255,255,255,0.07); box-shadow:0 0 0 2px rgba(var(--accent-rgb),0.6), 0 8px 22px rgba(var(--accent-rgb),0.35); transform:scale(1.015); }
   }
   .svc-card{
     position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:0;
@@ -273,6 +268,16 @@
 </div>
 
 <section id="servicios" style="background:linear-gradient(180deg, rgba(255,93,143,0.07), transparent);">
+  <div class="servicios-mobile" role="img" aria-label="Servicios — Soluciones que ofrezco">
+    <h2 class="sr-only">Soluciones que ofrezco</h2>
+    <p class="sr-only">Estrategias creativas y contenido con propósito para que tu marca conecte, inspire y crezca.</p>
+    <a class="svc-hit" href="#video" style="--accent-rgb:255,93,143; left:8.2%; top:40.89%; width:42.38%; height:10.87%;"><span class="sr-only">Filmmaker: Creación y edición de contenidos audiovisuales.</span></a>
+    <a class="svc-hit" href="#paidmedia" style="--accent-rgb:62,143,214; left:53.03%; top:40.89%; width:39.84%; height:10.87%;"><span class="sr-only">Paid Media: Publicidad online, Facebook / Meta Ads y Google Ads.</span></a>
+    <a class="svc-hit" href="#portfolio" style="--accent-rgb:168,85,201; left:8.2%; top:55.01%; width:42.38%; height:13.09%;"><span class="sr-only">Creación de contenido: Piezas gráficas, carruseles, historias, placas promocionales.</span></a>
+    <a class="svc-hit" href="#portfolio" style="--accent-rgb:255,93,143; left:53.03%; top:55.01%; width:39.84%; height:13.09%;"><span class="sr-only">Branding de marca: Identidad visual y desarrollo de marca.</span></a>
+    <a class="svc-hit" href="#diseno-web" style="--accent-rgb:62,143,214; left:8.2%; top:70.31%; width:84.67%; height:10.42%;"><span class="sr-only">Diseño web: Landing pages, catálogos online y tiendas online.</span></a>
+  </div>
+
   <div class="wrap">
     <div class="servicios-desktop">
       <div class="section-label">Servicios</div>
@@ -284,20 +289,6 @@
         <a class="svc-card" href="#portfolio" style="--accent-rgb:168,85,201;"><div class="ico-ring"><svg viewBox="0 0 24 24" fill="none" stroke="#a855c9" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#a855c9" stroke="none"/></svg></div><h4>Creación de contenido</h4><p>Piezas gráficas: carruseles, historias, placas promocionales.</p></a>
         <a class="svc-card" href="#portfolio" style="--accent-rgb:255,93,143;"><div class="ico-ring"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 2z"/></svg></div><h4>Branding de marca</h4><p>Identidad visual y desarrollo de marca.</p></a>
         <a class="svc-card" href="#diseno-web" style="--accent-rgb:62,143,214;"><div class="ico-ring"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.6"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></div><h4>Diseño web</h4><p>Landing pages, catálogos online y tiendas online.</p></a>
-      </div>
-    </div>
-
-    <div class="servicios-mobile">
-      <div class="svc-head-img" role="img" aria-label="Servicios — Soluciones que ofrezco">
-        <h2 class="sr-only">Soluciones que ofrezco</h2>
-        <p class="sr-only">Estrategias creativas y contenido con propósito para que tu marca conecte, inspire y crezca.</p>
-      </div>
-      <div class="svc-grid-img">
-        <a class="svc-card-img" href="#video" style="background-image:url('assets/servicios/card-filmmaker.jpg'); aspect-ratio:434/167;"><span class="sr-only">Filmmaker: Creación y edición de contenidos audiovisuales.</span></a>
-        <a class="svc-card-img" href="#paidmedia" style="background-image:url('assets/servicios/card-paidmedia.jpg'); aspect-ratio:408/167;"><span class="sr-only">Paid Media: Publicidad online, Facebook / Meta Ads y Google Ads.</span></a>
-        <a class="svc-card-img" href="#portfolio" style="background-image:url('assets/servicios/card-contenido.jpg'); aspect-ratio:434/201;"><span class="sr-only">Creación de contenido: Piezas gráficas, carruseles, historias, placas promocionales.</span></a>
-        <a class="svc-card-img" href="#portfolio" style="background-image:url('assets/servicios/card-branding.jpg'); aspect-ratio:408/201;"><span class="sr-only">Branding de marca: Identidad visual y desarrollo de marca.</span></a>
-        <a class="svc-card-img" href="#diseno-web" style="background-image:url('assets/servicios/card-disenoweb.jpg'); aspect-ratio:867/160;"><span class="sr-only">Diseño web: Landing pages, catálogos online y tiendas online.</span></a>
       </div>
     </div>
   </div>
