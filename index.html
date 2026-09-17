@@ -93,21 +93,20 @@
     background-image:url('assets/servicios/servicios-full-desktop.jpg'); background-size:cover; background-position:center;
   }
   .svc-hit{
-    position:absolute; border-radius:16px; -webkit-tap-highlight-color:transparent;
-    transition:background .15s ease, box-shadow .15s ease, transform .15s ease;
+    position:absolute; margin:3px; border-radius:14px; -webkit-tap-highlight-color:transparent;
+    transition:background .15s ease, box-shadow .15s ease;
   }
   .svc-hit:hover, .svc-hit:active{
-    background:rgba(255,255,255,0.07);
-    box-shadow:0 0 0 2px rgba(var(--accent-rgb),0.6), 0 8px 22px rgba(var(--accent-rgb),0.35);
-    transform:scale(1.015);
+    background:rgba(255,255,255,0.06);
+    box-shadow:0 0 0 2px rgba(var(--accent-rgb),0.65), 0 4px 12px rgba(var(--accent-rgb),0.3);
   }
   .svc-hit-1{ left:8.25%; top:35.0%; width:22.01%; height:19.89%; }
   .svc-hit-2{ left:31.58%; top:35.0%; width:20.93%; height:19.89%; }
   .svc-hit-3{ left:53.9%; top:35.0%; width:21.65%; height:19.89%; }
   .svc-hit-4{ left:8.25%; top:57.66%; width:21.59%; height:18.30%; }
   .svc-hit-5{ left:35.17%; top:57.66%; width:21.29%; height:18.30%; }
+  #servicios{ padding-top:0; padding-bottom:0; }
   @media (max-width:560px){
-    #servicios{ padding-top:0; padding-bottom:0; }
     .servicios-img{ aspect-ratio:1024/1536; background-image:url('assets/servicios/servicios-full-mobile.jpg'); background-position:top center; }
     .svc-hit-1{ left:8.2%; top:40.89%; width:42.38%; height:10.87%; }
     .svc-hit-2{ left:53.03%; top:40.89%; width:39.84%; height:10.87%; }
@@ -134,18 +133,18 @@
     }
   }
 
+  #sobre-mi{ padding:0; }
   .sobremi-img{
     position:relative; width:100%; aspect-ratio:1672/941;
     background-image:url('assets/sobre-mi/sobre-mi-full-desktop.jpg'); background-size:cover; background-position:center;
   }
   .sobremi-avatar{
     position:absolute; aspect-ratio:1/1; border-radius:50%; object-fit:cover;
-    left:63.11%; top:17.54%; width:23.49%;
+    left:62.6%; top:16.6%; width:24.6%;
   }
   @media (max-width:560px){
-    #sobre-mi{ padding:0; }
     .sobremi-img{ aspect-ratio:1024/1536; background-image:url('assets/sobre-mi/sobre-mi-full-mobile.jpg'); }
-    .sobremi-avatar{ left:33.55%; top:23.34%; width:32.91%; }
+    .sobremi-avatar{ left:33.0%; top:22.8%; width:34.0%; }
   }
 
   /* Portfolio compacto */
