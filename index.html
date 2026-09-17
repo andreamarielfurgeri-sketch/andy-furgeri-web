@@ -117,6 +117,13 @@
     .svc-hit-5{ left:8.2%; top:70.31%; width:84.67%; height:10.42%; }
   }
 
+  .paidmedia-mobile{ display:none; }
+  @media (max-width:560px){
+    #paidmedia{ padding:0; }
+    .paidmedia-desktop{ display:none; }
+    .paidmedia-mobile{ display:block; position:relative; width:100%; aspect-ratio:1024/1536; background-image:url('assets/paidmedia/paidmedia-full-mobile.jpg'); background-size:cover; background-position:top center; }
+  }
+
   /* Portfolio compacto */
   .brand-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   @media (max-width:760px){ .brand-grid{ grid-template-columns:repeat(3,1fr); gap:8px; } }
@@ -326,7 +333,21 @@
 </section>
 
 <section id="paidmedia">
+  <div class="paidmedia-mobile" role="img" aria-label="Paid Media — De la idea a la campaña">
+    <h2 class="sr-only">De la idea a la campaña</h2>
+    <p class="sr-only">Desde la creación del contenido hasta la optimización de resultados. Me encargo de todo el proceso para que cada campaña conecte, genere impacto y cumpla sus objetivos.</p>
+    <p class="sr-only">Creación de contenido: Ideas que se transforman en piezas que conectan.</p>
+    <p class="sr-only">Segmentación: El mensaje correcto, para la audiencia adecuada.</p>
+    <p class="sr-only">Campaña activa: Monitoreo y ajustes para mejorar el rendimiento.</p>
+    <p class="sr-only">Optimización: Análisis de resultados y nuevas oportunidades de crecimiento.</p>
+    <h3 class="sr-only">Mis aliados digitales</h3>
+    <p class="sr-only">Trabajo con las plataformas que mejor se adaptan a cada objetivo y audiencia.</p>
+    <p class="sr-only">Google Ads: Búsqueda, Display y Performance Max.</p>
+    <p class="sr-only">Meta Ads: Facebook / Instagram. Reconocimiento, tráfico y conversión.</p>
+  </div>
+
   <div class="wrap">
+    <div class="paidmedia-desktop">
     <div class="section-label">Paid Media</div>
     <div class="section-title">De la idea a la <span class="pink-t">campaña</span></div>
     <div class="paidmedia-box">
@@ -344,6 +365,7 @@
         <div class="platform-badge"><div class="dot" style="background:linear-gradient(135deg, var(--blue), #6FB2E8);">G</div><div><h4>Google Ads</h4><p>Búsqueda, Display y Performance Max</p></div></div>
         <div class="platform-badge"><div class="dot" style="background:linear-gradient(135deg, var(--pink), #FF8FB3);">f</div><div><h4>Meta Ads (Facebook / Instagram)</h4><p>Reconocimiento, tráfico y conversión</p></div></div>
       </div>
+    </div>
     </div>
   </div>
 </section>
