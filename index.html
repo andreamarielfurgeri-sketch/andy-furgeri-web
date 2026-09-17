@@ -134,6 +134,20 @@
     }
   }
 
+  .sobremi-img{
+    position:relative; width:100%; aspect-ratio:1672/941;
+    background-image:url('assets/sobre-mi/sobre-mi-full-desktop.jpg'); background-size:cover; background-position:center;
+  }
+  .sobremi-avatar{
+    position:absolute; aspect-ratio:1/1; border-radius:50%; object-fit:cover;
+    left:63.11%; top:17.54%; width:23.49%;
+  }
+  @media (max-width:560px){
+    #sobre-mi{ padding:0; }
+    .sobremi-img{ aspect-ratio:1024/1536; background-image:url('assets/sobre-mi/sobre-mi-full-mobile.jpg'); }
+    .sobremi-avatar{ left:33.55%; top:23.34%; width:32.91%; }
+  }
+
   /* Portfolio compacto */
   .brand-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   @media (max-width:760px){ .brand-grid{ grid-template-columns:repeat(3,1fr); gap:8px; } }
@@ -402,23 +416,12 @@
 </section>
 
 <section id="sobre-mi" style="background:linear-gradient(180deg, rgba(255,93,143,0.07), transparent);">
-  <div class="wrap">
-    <div class="section-label">Sobre mí</div>
-    <div class="section-title">¿Quién está del <span class="pink-t">otro lado</span>?</div>
-    <div class="about-grid">
-      <div class="about-photo-wrap">
-        <div class="about-photo">
-          <img src="assets/perfil/andy-foto-01.jpg" alt="Andy Furgeri">
-        </div>
-      </div>
-      <div class="about-text">
-        <p>Hola, soy Andrea 👋</p>
-        <p>Me gusta crear cosas que no solo se vean lindas, sino que también tengan algo para decir.</p>
-        <p>Trabajo en diseño, comunicación y marketing digital, combinando creatividad con herramientas digitales para ayudar a marcas, emprendimientos y PYMEs a encontrar su identidad y comunicar lo que hacen de una manera auténtica.</p>
-        <p>Me gusta involucrarme en cada proyecto, entender qué hay detrás de una marca y, sobre todo, resaltar lo humano. Porque creo que detrás de cada emprendimiento hay una historia, una idea y personas que hacen que todo cobre sentido.</p>
-        <p>Siempre estoy aprendiendo, probando herramientas nuevas y buscando nuevas formas de transformar ideas en algo concreto. ✨</p>
-      </div>
-    </div>
+  <div class="sobremi-img" role="img" aria-label="Sobre mí — Soy Lic. en Comunicación Social">
+    <img class="sobremi-avatar" src="assets/sobre-mi/andy-avatar.jpg" alt="Andy Furgeri">
+    <h2 class="sr-only">Soy Lic. en Comunicación Social</h2>
+    <p class="sr-only">Me apasiona contar historias, conectar personas y construir marcas con sentido. Soy Lic. en Comunicación Social y combino la creatividad con la estrategia para generar ideas que comuniquen, inspiren y generen impacto.</p>
+    <p class="sr-only">Ideas que conectan.</p>
+    <p class="sr-only">Mis habilidades: Comunicación estratégica, Creación de contenido, Audiovisual, Marketing digital, Trabajo en equipo, Creatividad.</p>
   </div>
 </section>
 
