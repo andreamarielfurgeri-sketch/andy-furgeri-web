@@ -151,15 +151,11 @@
   .pkg-grid{ display:grid; grid-template-columns:repeat(6, 1fr); gap:16px; margin-top:36px; }
   .pkg-card{
     position:relative; grid-column:span 2; display:flex; flex-direction:column;
-    background:linear-gradient(155deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
-    border:1px solid rgba(255,255,255,0.10); border-radius:20px; padding:24px;
-    overflow:hidden; transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(255,255,255,0.10); border-top:3px solid rgba(var(--accent-rgb),0.65); border-radius:20px; padding:24px;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   }
-  .pkg-card::after{
-    content:''; position:absolute; top:-40%; right:-30%; width:80%; height:140%;
-    background:radial-gradient(circle, rgba(var(--accent-rgb),0.16), transparent 65%); pointer-events:none;
-  }
-  .pkg-card:hover{ transform:translateY(-4px); border-color:rgba(var(--accent-rgb),0.5); box-shadow:0 18px 34px rgba(0,0,0,0.35); }
+  .pkg-card:hover{ transform:translateY(-4px); border-color:rgba(255,255,255,0.10); border-top-color:rgba(var(--accent-rgb),0.9); box-shadow:0 18px 34px rgba(0,0,0,0.35); }
   .pkg-card.wide{ grid-column:span 3; }
   .pkg-card.full{ grid-column:span 6; flex-direction:row; align-items:center; gap:32px; border-color:rgba(255,93,143,0.4); background:linear-gradient(120deg, rgba(255,93,143,0.10), rgba(168,85,201,0.08), rgba(62,143,214,0.10)); }
   .pkg-card.full .pkg-main{ flex:1; }
@@ -195,6 +191,9 @@
     .pkg-card, .pkg-card.wide, .pkg-card.full{ grid-column:span 1; }
     .pkg-card.full{ flex-direction:column; align-items:flex-start; }
   }
+
+  .av-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:36px; }
+  @media (max-width:900px){ .av-grid{ grid-template-columns:1fr; } }
 
   /* Portfolio compacto */
   .brand-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
@@ -612,6 +611,59 @@
     </div>
 
     <p class="pkg-note">Todos los precios son honorarios profesionales y funcionan como referencia inicial — el alcance final de cada proyecto se cotiza según objetivos y complejidad. En publicidad digital (Meta Ads / Google Ads), el presupuesto de pauta es siempre independiente de mi honorario de gestión y se abona directo a cada plataforma.</p>
+  </div>
+</section>
+
+<section id="produccion-audiovisual" style="background:linear-gradient(180deg, rgba(62,143,214,0.08), transparent);">
+  <div class="wrap">
+    <div class="section-label">Producción Audiovisual</div>
+    <div class="section-title">Video a medida, <span class="pink-t">por hora</span></div>
+    <p class="section-sub">Para proyectos puntuales de edición de video que no encajan en un paquete mensual. Se cotiza por hora de trabajo, según el tipo y la complejidad del video.</p>
+
+    <div class="av-grid">
+
+      <div class="pkg-card" style="--accent-rgb:255,93,143;">
+        <div class="pkg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="1.6"><rect x="3" y="5" width="14" height="14" rx="3"/><path d="M17 9l4-2v10l-4-2z"/></svg></div>
+        <h3>Video para redes sociales</h3>
+        <div class="pkg-tag">Piezas de corta duración: Reels, TikTok, Stories.</div>
+        <div class="pkg-price"><span class="from">Desde</span><span class="amount">$35.000</span> <span class="unit">/ hora</span></div>
+        <ul class="pkg-includes">
+          <li>Edición dinámica lista para redes</li>
+          <li>Incluye el tiempo de corrección pedido por el cliente</li>
+          <li>Subtítulos y cortes a medida</li>
+        </ul>
+        <a class="pkg-cta" href="https://wa.me/5491122899249?text=Hola%20Andy%2C%20quiero%20consultar%20por%20edici%C3%B3n%20de%20video%20para%20redes" target="_blank" rel="noopener">Consultar →</a>
+      </div>
+
+      <div class="pkg-card" style="--accent-rgb:62,143,214;">
+        <div class="pkg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.6"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M10 8.5l5 2.5-5 2.5z" fill="var(--blue)" stroke="none"/></svg></div>
+        <h3>Videos para YouTube</h3>
+        <div class="pkg-tag">Videos de mayor duración: entrevistas, institucionales, contenido más elaborado.</div>
+        <div class="pkg-price"><span class="from">Desde</span><span class="amount">$40.000</span> <span class="unit">/ hora</span></div>
+        <ul class="pkg-includes">
+          <li>Edición narrativa de mayor duración</li>
+          <li>Corrección de color básica</li>
+          <li>Música e identificación de marca</li>
+        </ul>
+        <a class="pkg-cta" href="https://wa.me/5491122899249?text=Hola%20Andy%2C%20quiero%20consultar%20por%20edici%C3%B3n%20de%20video%20para%20YouTube" target="_blank" rel="noopener">Consultar →</a>
+      </div>
+
+      <div class="pkg-card" style="--accent-rgb:168,85,201;">
+        <div class="pkg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#a855c9" stroke-width="1.6"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>Videoclips musicales</h3>
+        <div class="pkg-tag">Todo depende de la complejidad del video: se cotiza la cantidad de horas antes de arrancar.</div>
+        <div class="pkg-price"><span class="from">Desde</span><span class="amount">$45.000</span> <span class="unit">/ hora</span></div>
+        <ul class="pkg-includes">
+          <li>Edición creativa a medida</li>
+          <li>Sincronización con la música</li>
+          <li>Efectos y color grading</li>
+        </ul>
+        <a class="pkg-cta" href="https://wa.me/5491122899249?text=Hola%20Andy%2C%20quiero%20consultar%20por%20un%20videoclip%20musical" target="_blank" rel="noopener">Consultar →</a>
+      </div>
+
+    </div>
+
+    <p class="pkg-note">Valores de edición y postproducción por hora de trabajo. No incluyen equipo de filmación profesional (cámara, luces) salvo que se acuerde aparte. Antes de empezar, siempre se estima la cantidad de horas según el proyecto.</p>
   </div>
 </section>
 
