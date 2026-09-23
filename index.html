@@ -233,16 +233,16 @@
   @media (max-width:900px){ .video-grid{ grid-template-columns:repeat(3,1fr); } }
   @media (max-width:600px){ .video-grid{ grid-template-columns:repeat(2,1fr); } }
   .video-card{ aspect-ratio:9/16; border-radius:16px; overflow:hidden; background:#1a1626; }
-  .video-card.ig-embed{ aspect-ratio:1/1; height:auto; }
+  .video-card.ig-embed{ aspect-ratio:auto; height:700px; }
   .ig-tile{ width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(155deg, rgba(255,93,143,0.22), rgba(168,85,201,0.18), rgba(62,143,214,0.22)), #1a1626; text-decoration:none; color:#fff; text-align:center; padding:16px; transition:transform .2s ease, filter .2s ease; }
   .ig-tile:hover{ transform:scale(1.03); filter:brightness(1.1); }
   .ig-tile svg{ width:30px; height:30px; }
   .ig-tile span{ font-family:'"Poppins"', sans-serif; font-size:11.5px; font-weight:600; line-height:1.4; }
   .video-card iframe{ width:100%; height:100%; border:0; display:block; }
-  .carousel-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-  @media (max-width:900px){ .carousel-grid{ grid-template-columns:repeat(3,1fr); } }
-  @media (max-width:600px){ .carousel-grid{ grid-template-columns:repeat(2,1fr); } }
-  .carousel-card{ aspect-ratio:1/1; border-radius:16px; overflow:hidden; background:#1a1626; }
+  .carousel-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:900px){ .carousel-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .carousel-grid{ grid-template-columns:1fr; } }
+  .carousel-card{ height:700px; border-radius:16px; overflow:hidden; background:#1a1626; }
   .carousel-card iframe{ width:100%; height:100%; border:0; display:block; }
 
   /* Paid Media */
@@ -421,9 +421,9 @@
     <div class="section-label">Producción y edición de video</div>
     <div class="section-title"><span class="pink-t">Trabajos</span> audiovisuales</div>
     <div class="video-grid">
-      <a class="video-card ig-embed" href="https://www.instagram.com/reel/DOtbh27gL0k/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="5" width="14" height="14" rx="3"/><path d="M17 9l4-2v10l-4-2z"/></svg><span>Tecno Construcciones - Reel<br>Ver en Instagram →</span></div></a>
-      <a class="video-card ig-embed" href="https://www.instagram.com/reel/DdT9eOsuah6/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="5" width="14" height="14" rx="3"/><path d="M17 9l4-2v10l-4-2z"/></svg><span>Tecno Construcciones - Reel<br>Ver en Instagram →</span></div></a>
-      <a class="video-card ig-embed" href="https://www.instagram.com/reel/DdJzOrmub2B/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="5" width="14" height="14" rx="3"/><path d="M17 9l4-2v10l-4-2z"/></svg><span>Tecno Construcciones - Reel<br>Ver en Instagram →</span></div></a>
+      <div class="video-card ig-embed"><iframe src="https://www.instagram.com/reel/DOtbh27gL0k/embed" title="Tecno Construcciones - Reel" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="video-card ig-embed"><iframe src="https://www.instagram.com/reel/DdT9eOsuah6/embed" title="Tecno Construcciones - Reel" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="video-card ig-embed"><iframe src="https://www.instagram.com/reel/DdJzOrmub2B/embed" title="Tecno Construcciones - Reel" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
       <div class="video-card"><iframe src="https://www.youtube.com/embed/EnTrW0Kp7G4" title="Reel 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       <div class="video-card"><iframe src="https://www.youtube.com/embed/TeIl-06IqdE" title="Reel 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       <div class="video-card"><iframe src="https://www.youtube.com/embed/LyEUw03leP8" title="Reel 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -443,14 +443,14 @@
     <div class="section-label">Diseño y Contenido Gráfico</div>
     <div class="section-title">Carruseles <span class="pink-t">para Instagram</span></div>
     <div class="carousel-grid">
-      <a class="carousel-card" href="https://www.instagram.com/p/DdeCc_nFV7Z/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 1<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DceBLUXFVZU/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 2<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DdB-gM6Fegz/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 3<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/Dc6KcBvlXdy/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 4<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/Dc3-3JpFd7c/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 5<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DcyWLGCDR9x/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 6<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DcbXfXQlati/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 7<br>Ver en Instagram →</span></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/Da2yM2QFVBt/" target="_blank" rel="noopener"><div class="ig-tile"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 4-3 5 4" stroke-linejoin="round"/><circle cx="8" cy="8.5" r="1.3" fill="#fff" stroke="none"/></svg><span>Carrusel 8<br>Ver en Instagram →</span></div></a>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DdeCc_nFV7Z/embed" title="Carrusel 1" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DceBLUXFVZU/embed" title="Carrusel 2" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DdB-gM6Fegz/embed" title="Carrusel 3" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Dc6KcBvlXdy/embed" title="Carrusel 4" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Dc3-3JpFd7c/embed" title="Carrusel 5" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DcyWLGCDR9x/embed" title="Carrusel 6" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DcbXfXQlati/embed" title="Carrusel 7" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Da2yM2QFVBt/embed" title="Carrusel 8" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
     </div>
     <div style="text-align:center; margin-top:28px;">
       <a href="andy-furgeri-carruseles.html" class="btn btn-ghost">Ver más carruseles →</a>
