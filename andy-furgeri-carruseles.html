@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andy Furgeri — Carruseles | Portfolio</title>
+<meta name="description" content="Andy Furgeri — Portfolio completo de carruseles y piezas de diseño gráfico para Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF5D8F;
+    --blue:#3E8FD6;
+    --ink:#0C0A12;
+    --text:#F5F4F0;
+    --text-2:#C9C4D6;
+    --card:rgba(255,255,255,0.06);
+    --line:rgba(255,255,255,0.12);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    color:var(--text); font-family:'Inter', sans-serif; overflow-x:hidden;
+    background: linear-gradient(180deg, #2A2140 0%, #221A33 18%, #1A1526 36%, #14101E 55%, #0C0A12 75%, var(--ink) 100%);
+  }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+  a{ color:inherit; }
+  img{ max-width:100%; }
+
+  .header-bar{ background:linear-gradient(90deg, #E0447C, #FF5D8F, #3E8FD6); position:sticky; top:0; z-index:50; box-shadow:0 4px 20px rgba(0,0,0,0.25); }
+  header{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+  .header-right{ display:flex; align-items:center; }
+  .logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo img{ width:42px; height:42px; }
+  .logo .names{ display:flex; flex-direction:column; line-height:1.2; }
+  .logo .names .n1{ font-family:'Poppins', sans-serif; font-weight:700; font-size:17px; color:#fff; }
+  .logo .names .n2{ font-family:'Inter', sans-serif; font-weight:500; font-size:11px; color:var(--text-2); letter-spacing:0.03em; }
+  .navlinks{ display:flex; align-items:center; gap:6px; background:var(--card); border:1px solid var(--line); padding:8px; border-radius:100px; }
+  .navlinks a{ font-family:'Poppins', sans-serif; font-size:13px; font-weight:500; padding:8px 14px; border-radius:100px; color:var(--text-2); text-decoration:none; }
+  .navlinks a:hover{ color:#fff; }
+  .wa-btn{ width:38px; height:38px; border-radius:50%; background:rgba(20,16,30,0.55); display:flex; align-items:center; justify-content:center; margin-left:8px; flex-shrink:0; }
+  @media (max-width:800px){ .wa-btn{ margin-left:6px; } }
+
+  .menu-toggle{ display:none; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.2); border:none; align-items:center; justify-content:center; cursor:pointer; margin-left:8px; }
+  .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{ content:''; display:block; width:18px; height:2px; background:#fff; position:relative; transition:0.2s; }
+  .menu-toggle span::before{ position:absolute; top:-6px; }
+  .menu-toggle span::after{ position:absolute; top:6px; }
+
+  @media (max-width:800px){
+    .navlinks{
+      display:none; position:fixed; top:78px; left:16px; right:16px;
+      flex-direction:column; align-items:stretch; gap:2px; border-radius:18px;
+      background:#1A1526; padding:12px; z-index:60; box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    }
+    .navlinks.open{ display:flex; }
+    .navlinks a{ padding:12px 16px; border-radius:12px; text-align:center; }
+    .menu-toggle{ display:flex; }
+  }
+
+  .nav-item{ position:relative; }
+  .nav-item > a::after{ content:'▾'; font-size:9px; margin-left:5px; opacity:.7; }
+  .nav-dropdown{
+    display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:10px;
+    background:#1A1526; border:1px solid var(--line); border-radius:14px; padding:8px; min-width:170px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4); z-index:70;
+  }
+  .nav-item:hover .nav-dropdown{ display:block; }
+  .nav-dropdown a{ display:block; padding:9px 14px; border-radius:10px; font-size:13px; text-align:left; white-space:nowrap; }
+  .nav-dropdown a:hover{ background:rgba(255,255,255,0.07); color:#fff; }
+  @media (max-width:800px){
+    .nav-item{ display:flex; flex-direction:column; }
+    .nav-item > a::after{ display:none; }
+    .nav-dropdown{ display:flex; flex-direction:column; position:static; transform:none; margin:2px 0 4px; background:transparent; border:0; box-shadow:none; padding:0 0 0 14px; min-width:0; }
+    .nav-dropdown a{ text-align:center; color:var(--text-2); font-size:12.5px; padding:9px 16px; }
+  }
+
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  .hero{ position:relative; width:100%; aspect-ratio:1671/941; background-image:url('assets/hero/hero-home-desktop.jpg'); background-size:cover; background-position:center top; }
+  @media (max-width:800px){
+    .hero{ aspect-ratio:1024/1536; background-image:url('assets/hero/hero-home-mobile.jpg'); }
+  }
+  .hero-cta{ position:absolute; left:6%; bottom:9%; }
+  @media (max-width:800px){ .hero-cta{ left:50%; bottom:6%; transform:translateX(-50%); } }
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family:'Poppins', sans-serif; font-weight:600; font-size:14.5px; padding:14px 28px; border-radius:100px; text-decoration:none; }
+  .btn-primary{ background:linear-gradient(135deg, var(--pink), #FF8FB3); color:#fff; box-shadow:0 10px 24px rgba(255,93,143,0.35); }
+  .btn-ghost{ background:var(--card); border:1px solid var(--line); color:#fff; }
+
+  .marquee{ background:rgba(0,0,0,0.35); border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:#fff; font-family:'Poppins', sans-serif; font-weight:500; padding:13px 0; overflow:hidden; white-space:nowrap; font-size:13px; }
+  .marquee-track{ display:inline-block; animation:marquee-scroll 22s linear infinite; }
+  @keyframes marquee-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .marquee span{ margin-right:32px; }
+  .marquee .accent{ color:var(--pink); }
+
+  section{ padding:64px 0; }
+  .section-label{ font-family:'Poppins', sans-serif; font-size:13px; color:var(--blue); font-weight:600; margin-bottom:8px; text-align:center; }
+  .section-title{ font-family:'Poppins', sans-serif; font-weight:700; font-size:clamp(22px,3vw,30px); text-align:center; margin-bottom:40px; color:#fff; }
+  .section-title .pink-t{
+    background:linear-gradient(90deg, var(--pink), #a855c9, var(--blue));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .section-sub{ text-align:center; font-size:14px; color:var(--text-2); max-width:520px; margin:0 auto 40px; line-height:1.6; }
+
+  /* Servicios: imagen completa (desktop y mobile) con zonas clicables invisibles */
+  .servicios-img{
+    position:relative; width:100%; aspect-ratio:1672/940;
+    background-image:url('assets/servicios/servicios-full-desktop.jpg'); background-size:cover; background-position:center;
+  }
+  .svc-hit{
+    position:absolute; margin:3px; border-radius:14px; -webkit-tap-highlight-color:transparent;
+    transition:background .15s ease, box-shadow .15s ease;
+  }
+  .svc-hit:hover, .svc-hit:active{
+    background:rgba(255,255,255,0.06);
+    box-shadow:0 0 0 2px rgba(var(--accent-rgb),0.65), 0 4px 12px rgba(var(--accent-rgb),0.3);
+  }
+  .svc-hit-1{ left:8.25%; top:35.0%; width:22.01%; height:19.89%; }
+  .svc-hit-2{ left:31.58%; top:35.0%; width:20.93%; height:19.89%; }
+  .svc-hit-3{ left:53.9%; top:35.0%; width:21.65%; height:19.89%; }
+  .svc-hit-4{ left:8.25%; top:57.66%; width:21.59%; height:18.30%; }
+  .svc-hit-5{ left:35.17%; top:57.66%; width:21.29%; height:18.30%; }
+  #servicios{ padding-top:0; padding-bottom:0; }
+  @media (max-width:560px){
+    .servicios-img{ aspect-ratio:1024/1536; background-image:url('assets/servicios/servicios-full-mobile.jpg'); background-position:top center; }
+    .svc-hit-1{ left:8.2%; top:40.89%; width:42.38%; height:10.87%; }
+    .svc-hit-2{ left:53.03%; top:40.89%; width:39.84%; height:10.87%; }
+    .svc-hit-3{ left:8.2%; top:55.01%; width:42.38%; height:13.09%; }
+    .svc-hit-4{ left:53.03%; top:55.01%; width:39.84%; height:13.09%; }
+    .svc-hit-5{ left:8.2%; top:70.31%; width:84.67%; height:10.42%; }
+  }
+
+  .paidmedia-mobile{ display:none; }
+  @media (max-width:560px){
+    #paidmedia{ padding:0; }
+    .paidmedia-desktop{ display:none; }
+    .paidmedia-mobile{ display:block; position:relative; width:100%; aspect-ratio:1024/1536; background-image:url('assets/paidmedia/paidmedia-full-mobile.jpg'); background-size:cover; background-position:top center; }
+  }
+
+  @media (max-width:560px){
+    #portfolio{ position:relative; }
+    #portfolio::before{
+      content:''; position:absolute; top:0; left:0; right:0; height:140px;
+      background:linear-gradient(90deg, rgba(255,93,143,0.30), rgba(168,85,201,0.26), rgba(62,143,214,0.30));
+      -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0));
+      mask-image:linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0));
+      pointer-events:none;
+    }
+  }
+
+  #sobre-mi{ padding:0; }
+  .sobremi-img{
+    position:relative; width:100%; aspect-ratio:1672/941;
+    background-image:url('assets/sobre-mi/sobre-mi-full-desktop.jpg'); background-size:cover; background-position:center;
+  }
+  .sobremi-avatar{
+    position:absolute; aspect-ratio:1/1; border-radius:50%; object-fit:cover;
+    left:62.6%; top:16.6%; width:24.6%;
+  }
+  @media (max-width:560px){
+    .sobremi-img{ aspect-ratio:1024/1536; background-image:url('assets/sobre-mi/sobre-mi-full-mobile.jpg'); }
+    .sobremi-avatar{ left:33.0%; top:22.8%; width:34.0%; }
+  }
+
+  /* Paquetes */
+  .pkg-grid{ display:grid; grid-template-columns:repeat(6, 1fr); gap:16px; margin-top:36px; }
+  .pkg-card{
+    position:relative; grid-column:span 2; display:flex; flex-direction:column;
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(255,255,255,0.10); border-top:3px solid rgba(var(--accent-rgb),0.65); border-radius:20px; padding:24px;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .pkg-card:hover{ transform:translateY(-4px); border-color:rgba(255,255,255,0.10); border-top-color:rgba(var(--accent-rgb),0.9); box-shadow:0 18px 34px rgba(0,0,0,0.35); }
+  .pkg-card.wide{ grid-column:span 3; }
+  .pkg-card.full{ grid-column:span 6; flex-direction:row; align-items:center; gap:32px; border-color:rgba(255,93,143,0.4); background:linear-gradient(120deg, rgba(255,93,143,0.10), rgba(168,85,201,0.08), rgba(62,143,214,0.10)); }
+  .pkg-card.full .pkg-main{ flex:1; }
+  .pkg-badge{ position:absolute; top:18px; right:18px; font-family:'Poppins',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#fff; background:linear-gradient(135deg, var(--pink), #a855c9); padding:5px 12px; border-radius:100px; z-index:1; }
+  .pkg-ico{
+    position:relative; z-index:1; width:46px; height:46px; border-radius:13px; flex-shrink:0; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg, rgba(var(--accent-rgb),0.22), rgba(var(--accent-rgb),0.05));
+    box-shadow:inset 0 0 0 1.5px rgba(var(--accent-rgb),0.5), 0 8px 18px rgba(var(--accent-rgb),0.22);
+  }
+  .pkg-ico svg{ width:22px; height:22px; }
+  .pkg-card h3{ position:relative; z-index:1; font-family:'Poppins', sans-serif; font-weight:700; font-size:18px; color:#fff; margin-bottom:4px; }
+  .pkg-tag{ position:relative; z-index:1; font-size:12.5px; color:rgba(255,255,255,0.6); margin-bottom:14px; line-height:1.5; }
+  .pkg-price{ position:relative; z-index:1; font-family:'Poppins',sans-serif; margin-bottom:14px; }
+  .pkg-price .from{ font-size:11px; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:.04em; display:block; }
+  .pkg-price .amount{ font-size:24px; font-weight:700; background:linear-gradient(90deg, var(--pink), #a855c9, var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .pkg-price .unit{ font-size:12.5px; color:rgba(255,255,255,0.55); }
+  .pkg-price .usd{ display:block; font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px; }
+  .pkg-includes{ position:relative; z-index:1; list-style:none; margin-bottom:14px; flex-grow:1; }
+  .pkg-includes li{ font-size:13px; color:rgba(255,255,255,0.85); padding-left:20px; position:relative; margin-bottom:7px; line-height:1.4; }
+  .pkg-includes li::before{ content:'✓'; position:absolute; left:0; color:var(--accent, var(--pink)); font-weight:700; }
+  .pkg-card details{ position:relative; z-index:1; margin-bottom:16px; }
+  .pkg-card summary{ font-size:12px; color:rgba(255,255,255,0.6); cursor:pointer; font-family:'Poppins',sans-serif; }
+  .pkg-card details[open] summary{ color:#fff; }
+  .pkg-extra{ font-size:12px; color:rgba(255,255,255,0.65); line-height:1.6; margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); }
+  .pkg-extra b{ color:rgba(255,255,255,0.85); font-weight:600; }
+  .pkg-cta{ position:relative; z-index:1; display:inline-flex; align-items:center; justify-content:center; gap:6px; margin-top:auto; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; padding:11px 20px; border-radius:100px; text-decoration:none; color:#fff; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); transition:background .2s, border-color .2s; }
+  .pkg-cta:hover{ background:rgba(var(--accent-rgb),0.18); border-color:rgba(var(--accent-rgb),0.5); }
+  .pkg-card.full .pkg-cta{ background:linear-gradient(135deg, var(--pink), #FF8FB3); border:none; box-shadow:0 10px 24px rgba(255,93,143,0.35); }
+  .pkg-note{ margin-top:28px; font-size:12.5px; color:rgba(255,255,255,0.55); text-align:center; line-height:1.7; max-width:640px; margin-left:auto; margin-right:auto; }
+  @media (max-width:900px){ .pkg-card{ grid-column:span 3; } .pkg-card.wide{ grid-column:span 3; } }
+  @media (max-width:640px){
+    .pkg-grid{ grid-template-columns:1fr; gap:14px; }
+    .pkg-card, .pkg-card.wide, .pkg-card.full{ grid-column:span 1; }
+    .pkg-card.full{ flex-direction:column; align-items:flex-start; }
+  }
+
+  .av-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:36px; }
+  @media (max-width:900px){ .av-grid{ grid-template-columns:1fr; } }
+
+  /* Portfolio compacto */
+  .brand-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  @media (max-width:760px){ .brand-grid{ grid-template-columns:repeat(3,1fr); gap:8px; } }
+  @media (max-width:480px){ .brand-grid{ grid-template-columns:repeat(2,1fr); gap:8px; } }
+  .brand-card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:0; overflow:hidden; display:flex; flex-direction:column; transition:transform .2s, border-color .2s; text-decoration:none; }
+  .brand-card:hover{ transform:translateY(-3px); border-color:var(--pink); }
+  .brand-card .mark{ width:100%; aspect-ratio:1/1; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .brand-card .mark img{ width:100%; height:100%; object-fit:cover; }
+  .brand-card .info{ padding:10px 12px 12px; }
+  .brand-card .tag{ font-family:'Poppins', sans-serif; font-size:10px; font-weight:600; color:var(--pink); }
+  .brand-card h4{ font-family:'Poppins', sans-serif; font-size:12.5px; font-weight:600; color:#fff; margin-top:2px; }
+  .brand-card p{ display:none; }
+  .brand-more{ text-align:center; margin-top:22px; }
+  .brand-more a{ font-family:'Poppins', sans-serif; font-size:13.5px; color:var(--blue); text-decoration:none; }
+
+  /* Video en grilla */
+  .video-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  @media (max-width:900px){ .video-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:600px){ .video-grid{ grid-template-columns:repeat(2,1fr); } }
+  .video-card{ aspect-ratio:9/16; border-radius:16px; overflow:hidden; background:#1a1626; }
+  .video-card iframe{ width:100%; height:100%; border:0; display:block; }
+  .carousel-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  @media (max-width:900px){ .carousel-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .carousel-grid{ grid-template-columns:1fr; } }
+  .carousel-card{ height:620px; border-radius:16px; overflow:hidden; background:#1a1626; }
+  .carousel-card iframe{ width:100%; height:100%; border:0; display:block; }
+
+  /* Paid Media */
+  .paidmedia-box{
+    display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center;
+    background:linear-gradient(135deg, rgba(255,93,143,0.25), rgba(62,143,214,0.25));
+    border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:40px;
+    box-shadow:0 20px 50px rgba(255,93,143,0.15);
+  }
+  @media (max-width:760px){ .paidmedia-box{ grid-template-columns:1fr; padding:26px; } }
+  .paidmedia-box h3{ font-family:'Poppins', sans-serif; font-size:20px; color:#fff; margin-bottom:12px; }
+  .paidmedia-box p{ font-size:14px; color:rgba(255,255,255,0.85); line-height:1.7; }
+  .funnel{ display:flex; align-items:center; gap:8px; margin-top:20px; flex-wrap:wrap; }
+  .funnel .step{ font-family:'Poppins', sans-serif; font-size:12px; font-weight:700; color:var(--ink); background:#fff; padding:8px 14px; border-radius:100px; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
+  .funnel .arrow{ color:var(--pink); font-weight:700; }
+  .platform-badges{ display:flex; flex-direction:column; gap:14px; }
+  .platform-badge{ display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.92); border-radius:16px; padding:16px 18px; box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+  .platform-badge .dot{ width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:'Poppins', sans-serif; font-weight:700; font-size:19px; color:#fff; flex-shrink:0; }
+  .platform-badge h4{ font-family:'Poppins', sans-serif; font-size:14.5px; color:var(--ink); }
+  .platform-badge p{ font-size:11.5px; color:#6b6478; }
+
+  /* Landing/catalogo */
+  .lp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:760px){ .lp-grid{ grid-template-columns:1fr; } }
+  .lp-card{ background:var(--card); border:1px solid var(--line); border-radius:20px; overflow:hidden; text-decoration:none; display:block; transition:transform .2s, border-color .2s; }
+  .lp-card:hover{ transform:translateY(-4px); border-color:var(--blue); }
+  .lp-eyebrow{ display:block; font-family:'Poppins', sans-serif; font-size:12px; color:var(--blue); padding:16px 20px 0; }
+  .lp-visual{ margin:12px 20px 0; border-radius:12px; aspect-ratio:16/10; background-size:cover; background-position:center; }
+  .lp-card h4{ font-family:'Poppins', sans-serif; font-size:16px; color:#fff; padding:16px 20px 6px; }
+  .lp-card p{ font-size:12.5px; color:var(--text-2); padding:0 20px 20px; line-height:1.5; }
+
+  /* Sobre mi */
+  .about-grid{ display:grid; grid-template-columns:200px 1fr; gap:36px; align-items:center; }
+  @media (max-width:640px){ .about-grid{ grid-template-columns:1fr; text-align:center; } }
+  .about-photo-wrap{
+    width:220px; height:220px; margin:0 auto; position:relative;
+    background:linear-gradient(135deg, var(--pink), var(--blue));
+    border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 20px 40px rgba(255,93,143,0.25);
+  }
+  .about-photo{
+    width:88%; height:88%; border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;
+    overflow:hidden; display:flex; align-items:center; justify-content:center;
+  }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; }
+  .about-text p{ font-size:14.5px; color:var(--text-2); line-height:1.75; max-width:540px; }
+  .about-text p + p{ margin-top:14px; }
+
+  /* Contacto */
+  .contact-box{
+    background:linear-gradient(150deg, rgba(255,93,143,0.28), rgba(62,143,214,0.28));
+    border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:40px;
+    display:grid; grid-template-columns:1fr 1.3fr; gap:40px;
+    box-shadow:0 20px 50px rgba(255,93,143,0.15);
+  }
+  @media (max-width:760px){ .contact-box{ grid-template-columns:1fr; padding:26px; } }
+  .contact-info h3{ font-family:'Poppins', sans-serif; font-size:19px; color:#fff; margin-bottom:8px; }
+  .contact-info > p{ font-size:13px; color:rgba(255,255,255,0.85); margin-bottom:22px; }
+  .contact-line{ display:flex; align-items:center; gap:14px; padding:15px 0; border-bottom:1px solid rgba(255,255,255,0.25); }
+  .contact-line .ic{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-line .meta span{ display:block; font-size:11.5px; color:rgba(255,255,255,0.75); }
+  .contact-line .meta strong{ font-size:14px; color:#fff; font-weight:600; }
+  .form-field{ margin-bottom:16px; }
+  .form-field label{ display:block; font-family:'Poppins', sans-serif; font-size:12.5px; color:var(--pink); margin-bottom:7px; font-weight:500; }
+  .form-field input, .form-field select, .form-field textarea{ width:100%; background:rgba(255,255,255,0.92); border:1px solid rgba(255,255,255,0.4); border-radius:10px; padding:11px 14px; color:var(--ink); font-family:'Inter', sans-serif; font-size:13.5px; }
+  .form-field textarea{ resize:vertical; min-height:80px; }
+  .form-field input::placeholder, .form-field textarea::placeholder{ color:#9B96A8; }
+  .form-submit{ background:linear-gradient(135deg, var(--pink), var(--blue)); color:#fff; border:none; font-family:'Poppins', sans-serif; font-weight:600; font-size:14px; padding:12px 26px; border-radius:100px; cursor:pointer; }
+
+  .bottom-wave{ position:relative; margin-top:20px; height:120px; overflow:hidden; }
+  .bottom-wave svg{ position:absolute; bottom:0; left:0; width:100%; height:100%; }
+  footer{ text-align:center; padding:44px 0; position:relative; z-index:2; }
+  footer .logo-f{ width:48px; margin:0 auto 12px; }
+  footer .fname{ font-family:'Poppins', sans-serif; color:#fff; font-weight:600; }
+  footer p{ font-size:12px; color:var(--text-2); margin-top:6px; }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+<div class="wrap">
+  <header>
+    <a href="index.html" class="logo">
+      <img src="assets/branding/guindata-logo.png" alt="Guindata">
+      <div class="names"><span class="n1">Andy Furgeri</span><span class="n2">Productora de contenidos</span></div>
+    </a>
+    <div class="header-right">
+      <div class="navlinks" id="navlinks">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#servicios">Servicios</a>
+        <div class="nav-item">
+          <a href="index.html#portfolio">Portfolio</a>
+          <div class="nav-dropdown">
+            <a href="andy-furgeri-portfolio.html">Empresas</a>
+            <a href="andy-furgeri-videos.html">Video</a>
+            <a href="andy-furgeri-carruseles.html">Carruseles</a>
+          </div>
+        </div>
+        <a href="index.html#sobre-mi">Sobre mí</a>
+        <a href="index.html#paquetes">Paquetes</a>
+        <a href="index.html#produccion-audiovisual">Edición de video</a>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+      <a href="https://wa.me/5491122899249" target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.09-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.09-1.65-.1-.38-.12-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.93-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.45-.13.15-.27.34-.39.46-.13.13-.26.27-.11.53.15.26.66 1.09 1.42 1.77.98.87 1.8 1.14 2.06 1.27.26.13.41.11.56-.07.15-.18.64-.75.81-1.01.17-.26.34-.22.57-.13.24.09 1.5.71 1.76.84.26.13.43.19.49.3.06.11.06.62-.16 1.24z"/></svg>
+      </a>
+      <div class="menu-toggle" id="menuToggle" role="button" aria-label="Abrir menú"><span></span></div>
+    </div>
+  </header>
+</div>
+</div>
+
+
+<section style="padding-top:44px;">
+  <div class="wrap">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title">Todos los <span class="pink-t">carruseles</span></div>
+    <p class="section-sub">Diseño y contenido gráfico para Instagram — la selección completa.</p>
+    <div class="carousel-grid">
+<div class="carousel-card"><iframe src="https://www.instagram.com/p/DdeCc_nFV7Z/embed" title="Carrusel 1" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DceBLUXFVZU/embed" title="Carrusel 2" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DdB-gM6Fegz/embed" title="Carrusel 3" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Dc6KcBvlXdy/embed" title="Carrusel 4" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Dc3-3JpFd7c/embed" title="Carrusel 5" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DcyWLGCDR9x/embed" title="Carrusel 6" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DcbXfXQlati/embed" title="Carrusel 7" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Da2yM2QFVBt/embed" title="Carrusel 8" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DbbSzM5FTuv/embed" title="Carrusel 9" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXHUkY6FU82/embed" title="Carrusel 10" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DZIFaDHoOtD/embed" title="Carrusel 11" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DY4om7HjO1r/embed" title="Carrusel 12" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DYkCTWXD_Qh/embed" title="Carrusel 13" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DZptyWBleDc/embed" title="Carrusel 14" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DYUlh7mgRuW/embed" title="Carrusel 15" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXt7rcplSeR/embed" title="Carrusel 16" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXotGr6DbtZ/embed" title="Carrusel 17" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXXK6wBFSqY/embed" title="Carrusel 18" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXMtMGJDZCj/embed" title="Carrusel 19" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DWy2e6NiVio/embed" title="Carrusel 20" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DWjx9JBmc9_/embed" title="Carrusel 21" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DVtWAfQlU7I/embed" title="Carrusel 22" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DTanpd9gHuR/embed" title="Carrusel 23" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DTSy2AxgJkL/embed" title="Carrusel 24" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DTDYJRLgJGu/embed" title="Carrusel 25" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DQcVV_rkU6D/embed" title="Carrusel 26" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DRSiuvjEYgy/embed" title="Carrusel 27" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DOwKiiojgYw/embed" title="Carrusel 28" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DPWsg8xjp8d/embed" title="Carrusel 29" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Da3UMNUCdn0/embed" title="Carrusel 30" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navlinks = document.getElementById('navlinks');
+menuToggle.addEventListener('click', () => {
+  navlinks.classList.toggle('open');
+});
+navlinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navlinks.classList.remove('open'));
+});
+</script>
+
+<div class="bottom-wave">
+  <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
+    <path d="M0,60 C300,140 700,0 1000,60 C1200,100 1350,40 1440,60 L1440,140 L0,140 Z" fill="#a855c9" opacity="0.9"></path>
+    <path d="M0,90 C400,40 900,140 1440,80 L1440,140 L0,140 Z" fill="#FF5D8F"></path>
+  </svg>
+</div>
+
+<footer>
+  <img class="logo-f" src="assets/branding/guindata-logo.png" alt="Guindata">
+  <div class="fname">Andy Furgeri</div>
+  <p>Guindata — © 2026 — Quilmes, Buenos Aires</p>
+</footer>
+
+</body>
+</html>

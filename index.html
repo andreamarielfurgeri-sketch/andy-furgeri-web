@@ -59,6 +59,23 @@
     .menu-toggle{ display:flex; }
   }
 
+  .nav-item{ position:relative; }
+  .nav-item > a::after{ content:'▾'; font-size:9px; margin-left:5px; opacity:.7; }
+  .nav-dropdown{
+    display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:10px;
+    background:#1A1526; border:1px solid var(--line); border-radius:14px; padding:8px; min-width:170px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4); z-index:70;
+  }
+  .nav-item:hover .nav-dropdown{ display:block; }
+  .nav-dropdown a{ display:block; padding:9px 14px; border-radius:10px; font-size:13px; text-align:left; white-space:nowrap; }
+  .nav-dropdown a:hover{ background:rgba(255,255,255,0.07); color:#fff; }
+  @media (max-width:800px){
+    .nav-item{ display:flex; flex-direction:column; }
+    .nav-item > a::after{ display:none; }
+    .nav-dropdown{ display:flex; flex-direction:column; position:static; transform:none; margin:2px 0 4px; background:transparent; border:0; box-shadow:none; padding:0 0 0 14px; min-width:0; }
+    .nav-dropdown a{ text-align:center; color:var(--text-2); font-size:12.5px; padding:9px 16px; }
+  }
+
   .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
   .hero{ position:relative; width:100%; aspect-ratio:1671/941; background-image:url('assets/hero/hero-home-desktop.jpg'); background-size:cover; background-position:center top; }
@@ -312,9 +329,14 @@
       <div class="navlinks" id="navlinks">
         <a href="index.html">Inicio</a>
         <a href="#servicios">Servicios</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#video">Video</a>
-        <a href="#carruseles">Carruseles</a>
+        <div class="nav-item">
+          <a href="#portfolio">Portfolio</a>
+          <div class="nav-dropdown">
+            <a href="andy-furgeri-portfolio.html">Empresas</a>
+            <a href="andy-furgeri-videos.html">Video</a>
+            <a href="andy-furgeri-carruseles.html">Carruseles</a>
+          </div>
+        </div>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#paquetes">Paquetes</a>
         <a href="#produccion-audiovisual">Edición de video</a>
@@ -400,14 +422,9 @@
       <div class="video-card"><iframe src="https://www.youtube.com/embed/EnTrW0Kp7G4" title="Reel 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       <div class="video-card"><iframe src="https://www.youtube.com/embed/TeIl-06IqdE" title="Reel 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       <div class="video-card"><iframe src="https://www.youtube.com/embed/LyEUw03leP8" title="Reel 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/Zmix1Zz-tQs" title="Reel 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/d-TJBBSsKec" title="Reel 5" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/PZ4J0ITKVTw" title="Reel 6" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/JgM9o95209s" title="Reel 7" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/9p3m7ZDXwPU" title="Reel 8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/ehg3bRwTSO4" title="Reel 9" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.youtube.com/embed/BCYn19CQ2WU" title="Reel 10" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <div class="video-card"><iframe src="https://www.instagram.com/reel/DblVKHXRVvM/embed" title="Video de producto" loading="lazy" allow="encrypted-media"></iframe></div>
+    </div>
+    <div style="text-align:center; margin-top:28px;">
+      <a href="andy-furgeri-videos.html" class="btn btn-ghost">Ver más videos →</a>
     </div>
   </div>
 </section>
@@ -425,28 +442,9 @@
       <div class="carousel-card"><iframe src="https://www.instagram.com/p/DcyWLGCDR9x/embed" title="Carrusel 6" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
       <div class="carousel-card"><iframe src="https://www.instagram.com/p/DcbXfXQlati/embed" title="Carrusel 7" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
       <div class="carousel-card"><iframe src="https://www.instagram.com/p/Da2yM2QFVBt/embed" title="Carrusel 8" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DbbSzM5FTuv/embed" title="Carrusel 9" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXHUkY6FU82/embed" title="Carrusel 10" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DZIFaDHoOtD/embed" title="Carrusel 11" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DY4om7HjO1r/embed" title="Carrusel 12" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DYkCTWXD_Qh/embed" title="Carrusel 13" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DZptyWBleDc/embed" title="Carrusel 14" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DYUlh7mgRuW/embed" title="Carrusel 15" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXt7rcplSeR/embed" title="Carrusel 16" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXotGr6DbtZ/embed" title="Carrusel 17" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXXK6wBFSqY/embed" title="Carrusel 18" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DXMtMGJDZCj/embed" title="Carrusel 19" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DWy2e6NiVio/embed" title="Carrusel 20" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DWjx9JBmc9_/embed" title="Carrusel 21" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DVtWAfQlU7I/embed" title="Carrusel 22" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DTanpd9gHuR/embed" title="Carrusel 23" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DTSy2AxgJkL/embed" title="Carrusel 24" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DTDYJRLgJGu/embed" title="Carrusel 25" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DQcVV_rkU6D/embed" title="Carrusel 26" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DRSiuvjEYgy/embed" title="Carrusel 27" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DOwKiiojgYw/embed" title="Carrusel 28" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/DPWsg8xjp8d/embed" title="Carrusel 29" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
-      <div class="carousel-card"><iframe src="https://www.instagram.com/p/Da3UMNUCdn0/embed" title="Carrusel 30" loading="lazy" scrolling="no" allow="encrypted-media"></iframe></div>
+    </div>
+    <div style="text-align:center; margin-top:28px;">
+      <a href="andy-furgeri-carruseles.html" class="btn btn-ghost">Ver más carruseles →</a>
     </div>
   </div>
 </section>
