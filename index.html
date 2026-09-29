@@ -228,7 +228,10 @@
   }
 
   .av-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:36px; }
-  @media (max-width:900px){ .av-grid{ grid-template-columns:1fr; } }
+  @media (max-width:900px){ .av-grid{ grid-template-columns:repeat(2, 1fr); gap:10px; } }
+  @media (max-width:900px){ .av-grid .pkg-card{ padding:16px; } }
+  @media (max-width:900px){ .av-grid .pkg-ico{ width:38px; height:38px; margin-bottom:10px; } .av-grid .pkg-ico svg{ width:18px; height:18px; } }
+  @media (max-width:900px){ .av-grid h3{ font-size:14px; } .av-grid .pkg-tag{ font-size:11px; } .av-grid .pkg-includes li{ font-size:11.5px; } }
 
   /* Portfolio compacto */
   .brand-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
